@@ -5,9 +5,9 @@ import { Table, Label } from 'semantic-ui-react';
 export default class App extends Component {
 
   state = {
-    column: null,
+    column: "rank",
     data: this.props.data,
-    direction: null,
+    direction: "ascending",
   }
 
   handleSort = clickedColumn => () => {
@@ -36,6 +36,9 @@ export default class App extends Component {
       <Table sortable celled collapsing>
         <Table.Header>
           <Table.Row>
+            <Table.HeaderCell {...column === 'rank' ? {sorted: direction} : {}} onClick={this.handleSort('rank')}>
+              Rank
+            </Table.HeaderCell>
             <Table.HeaderCell {...column === 'delegateName' ? {sorted: direction} : {}} onClick={this.handleSort('delegateName')}>
               Delegate
             </Table.HeaderCell>
@@ -54,14 +57,12 @@ export default class App extends Component {
             <Table.HeaderCell {...column === 'affiliation' ? {sorted: direction} : {}} onClick={this.handleSort('affiliation')}>
               Affiliation
             </Table.HeaderCell>
-            <Table.HeaderCell {...column === 'githubActivity' ? {sorted: direction} : {}} onClick={this.handleSort('githubActivity')}>
-              Activity score
-            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {_.map(data, ({ delegateName, delegateAddress, proposal, githubUsername, poolPercentage, affiliation, githubActivity }) => (
+          {_.map(data, ({ rank, delegateName, delegateAddress, proposal, githubUsername, poolPercentage, affiliation }) => (
             <Table.Row key={delegateAddress}>
+              <Table.Cell>{rank}</Table.Cell>
               <Table.Cell>{delegateName}</Table.Cell>
               <Table.Cell>{delegateAddress}</Table.Cell>
               <Table.Cell><a target="_blank" href={proposal}>Proposal</a></Table.Cell>
@@ -69,9 +70,6 @@ export default class App extends Component {
               <Table.Cell>{poolPercentage}%</Table.Cell>
               <Table.Cell>
                 <Label color={affiliation === 'Freelance' ? 'green' : 'red'}>{affiliation}</Label>
-              </Table.Cell>
-              <Table.Cell>
-                {githubActivity}
               </Table.Cell>
             </Table.Row>
           ))}
