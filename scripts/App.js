@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Table, Label } from 'semantic-ui-react';
 import Banner from './Banner';
 import Note from './Note';
 import Panel from './Panel';

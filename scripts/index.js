@@ -11,9 +11,8 @@ const getDelegateData = delegate =>
 
 const getGitHubData = delegate =>
   axios.get(`https://api.github.com/users/${delegate.githubUsername}`)
-  .then(res => delegate.avatar_url = res.data.avatar_url ? res.data.avatar_url : undefined);
-
-
+  .then(res => delegate.avatar_url = res.data.avatar_url ? res.data.avatar_url : undefined)
+  .catch(res => delegate);
 
 const renderDom = res => {
   const sortedData = _.sortBy(delegates, ["rank"]);
