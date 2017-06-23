@@ -7,9 +7,9 @@ const colors = {
 };
 
 const tooltips = {
-    P: 'shared with pool',
+    P: 'pool',
     D: 'donations',
-    O: 'own use',
+    O: 'personal',
 };
 const tooltip = data =>
     Object.keys(data)
