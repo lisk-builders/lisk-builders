@@ -59,5 +59,17 @@
     "affiliation": "GDT",
     "liskChat": "Gr33nDrag0n",
     "pool": null
+  },
+  {
+    "delegateName": "mrv",
+    "delegateAddress": "11380384760969655418L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?t=292",
+    "githubUsername": "mrv777",
+    "poolPercentage": {
+      "100": "O"
+    },
+    "affiliation": "GDT",
+    "liskChat": "MrV",
+    "pool": null
   }
 ]

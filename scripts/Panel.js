@@ -21,6 +21,7 @@ const Panel = ({
     delegateAddress,
     avatar_url,
     proposal,
+    pool,
     githubUsername,
     poolPercentage,
     affiliation,
@@ -55,6 +56,12 @@ const Panel = ({
                 <div>
                   <span className>Reward spending:</span>
                   <Bar {...poolPercentage}/>
+                </div>
+                <div className="divider"></div>
+                <div className="tile tile-centered">
+                    <div className="tile-content">
+                        <a className="btn btn-sm btn-block" target="_blank" href={pool}>Pool</a>
+                    </div>
                 </div>
                 <div className="divider"></div>
                 <div className="tile tile-centered">
