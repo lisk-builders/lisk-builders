@@ -4,7 +4,9 @@
     "delegateAddress": "14871479939815286293L",
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1521",
     "githubUsername": "5an1ty",
-    "poolPercentage": "60",
+    "poolPercentage": {
+      "60": "shared with voters"
+    },
     "affiliation": "Freelance",
     "liskChat": "5an1ty"
   },

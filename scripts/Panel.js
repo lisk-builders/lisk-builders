@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import Bar from './Bar';
 
 const rankClassNames = (rank) =>
   classnames('label float-right', {
@@ -32,6 +33,10 @@ const Panel = ({
                         <span className="tile-title">Rank</span>
                         <label className={rankClassNames(rank)}>{rank}</label>
                     </div>
+                </div>
+                <div className="divider"></div>
+                <div className="tile">
+                  <Bar {...poolPercentage}/>
                 </div>
                 <div className="divider"></div>
                 <div className="tile tile-centered">
