@@ -4,6 +4,7 @@ const Panel = ({
     rank,
     delegateName,
     delegateAddress,
+    avatar_url,
     proposal,
     githubUsername,
     poolPercentage,
@@ -13,6 +14,7 @@ const Panel = ({
         <div className="panel">
             <div className="panel-header text-center">
                 <figure className="avatar avatar-lg">
+                  <img src={avatar_url} />
                 </figure>
                 <div className="panel-title mt-10">{delegateName} </div>
                 <div className="panel-subtitle">{delegateAddress}</div>

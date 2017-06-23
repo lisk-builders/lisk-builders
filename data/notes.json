@@ -1,0 +1,15 @@
+{
+  "note1": {
+    "title": "Hi there fellow Liskers",
+    "p": [
+      "We are lisk.builders, a community of individual delegates who actively contribute to the future of Lisk, by developing software / hardware,creating community awareness or any other activities that directly improve the platform.",
+      "This list enforces no internal voting and does not require you to vote for all of us in order to receive rewards. Some of us will share a % of their delegate forging rewards and others will not. You can vote for one of us or all of us and every small vote is a vote for the future of Lisk!"
+    ]
+  },
+  "note2": {
+    "p":[
+      "To get yourself added to the list you can submit a PR to the following repository: https://github.com/5an1ty/lisk-builders.",
+      "This list is maintained by 5an1ty, Isabella and alepop."
+    ]
+  }
+}

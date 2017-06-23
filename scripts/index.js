@@ -7,9 +7,15 @@ import delegates from '../data/delegates.json';
 
 const getDelegateData = delegate =>
   axios.get(`https://wallet.lisknode.io/api/delegates/get?username=${delegate.delegateName}`)
-    .then(res => delegate.rank = res.data.delegate ? parseInt(res.data.delegate.rank) : undefined);
+    .then(res => delegate.rank = res.data.delegate ? parseInt(res.data.delegate.rank) : undefined)
 
-const renderDom = data => {
+const getGitHubData = delegate =>
+  axios.get(`https://api.github.com/users/${delegate.githubUsername}`)
+  .then(res => delegate.avatar_url = res.data.avatar_url ? res.data.avatar_url : undefined);
+
+
+
+const renderDom = res => {
   const sortedData = _.sortBy(delegates, ["rank"]);
     render(
       <App data={sortedData}/>,
@@ -17,5 +23,5 @@ const renderDom = data => {
   );
 }
 
-axios.all(delegates.map(getDelegateData)).then(renderDom)
+axios.all([...delegates.map(getDelegateData), ...delegates.map(getGitHubData)]).then(renderDom);
 
