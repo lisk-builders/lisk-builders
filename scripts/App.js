@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Table, Label } from 'semantic-ui-react';
 import Banner from './Banner';
 import Note from './Note';
 import Panel from './Panel';
+import Container from './Container';
+import notes from '../data/notes.json';
 
 export default class App extends Component {
     state = {
@@ -36,11 +37,18 @@ export default class App extends Component {
         return (
             <div>
                 <Banner />
-                <div className="container grid-960">
-                    <Note />
-                    <div className="columns">
-                        {_.map(data, Panel)}
-                    </div>
+                <div className="bg-gray">
+                    <Container>
+                        <Note {...notes.note1} />
+                    </Container>
+                </div>
+                <Container>
+                    {_.map(data, Panel)}
+                </Container>
+                <div className="bg-gray">
+                    <Container>
+                        <Note {...notes.note2} action="test" />
+                    </Container>
                 </div>
             </div>
         );
