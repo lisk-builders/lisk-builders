@@ -1,13 +1,18 @@
 import React from 'react';
 
-const colors = ["#5764c6", "#818bd5", "#abb1e2"]
+const colors = ["#5764c6", "#818bd5", "#abb1e2"];
+const tooltips = {
+    "P": "shared with pool",
+    "D": "donations",
+    "O": "own use"
+}
 const Bar = data => {
     console.log(data)
     return <div className="bar custom-bar">
         {Object.keys(data).sort((a,b) => a < b).map((key, i) =>
             <div key={i}
                 className="bar-item tooltip"
-                data-tooltip={`${key}% ${data[key]}`}
+                data-tooltip={`${key}% ${tooltips[data[key]]}`}
                 role="progressbar"
                 style={{width: `${key}%`, backgroundColor: colors[i]}}>{key}%
             </div>,

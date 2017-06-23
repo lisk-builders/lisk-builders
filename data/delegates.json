@@ -5,36 +5,59 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1521",
     "githubUsername": "5an1ty",
     "poolPercentage": {
-      "60": "shared with voters"
+      "60": "P",
+      "40": "O"
     },
     "affiliation": "Freelance",
-    "liskChat": "5an1ty"
+    "liskChat": "5an1ty",
+    "pool": "https://5an1ty.github.io/lisk-pool/"
   },
   {
     "delegateName": "isabella",
     "delegateAddress": "12668885769632475474L",
     "proposal": "https://forum.lisk.io/viewtopic.php?f=6&t=201",
     "githubUsername": "Isabello",
-    "poolPercentage": "0",
+    "poolPercentage": {
+      "100": "O"
+    },
     "affiliation": "Freelance",
-    "liskChat": "isabella"
+    "liskChat": "isabella",
+    "pool": null
   },
   {
     "delegateName": "cc001",
     "delegateAddress": "6787154358850114730L",
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=54",
     "githubUsername": "simonmorgenthaler",
-    "poolPercentage": "0",
+    "poolPercentage": {
+      "100": "O"
+    },
     "affiliation": "GDT",
-    "liskChat": "cc001"
+    "liskChat": "cc001",
+    "pool": null
   },
   {
     "delegateName": "atreides",
     "delegateAddress": "305922413481072012L",
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=350",
     "githubUsername": "stenea",
-    "poolPercentage": "0",
+    "poolPercentage": {
+      "100": "O"
+    },
     "affiliation": "Freelance",
-    "liskChat": "atreides"
+    "liskChat": "atreides",
+    "pool": null
+  },
+  {
+    "delegateName": "gr33ndrag0n",
+    "delegateAddress": "194109334904015388L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=143",
+    "githubUsername": "Gr33nDrag0n69",
+    "poolPercentage": {
+      "100": "O"
+    },
+    "affiliation": "GDT",
+    "liskChat": "Gr33nDrag0n",
+    "pool": null
   }
 ]
