@@ -5,7 +5,8 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1521",
     "githubUsername": "5an1ty",
     "poolPercentage": "60",
-    "affiliation": "Freelance"
+    "affiliation": "Freelance",
+    "liskChat": "5an1ty"
   },
   {
     "delegateName": "isabella",
@@ -13,6 +14,25 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=6&t=201",
     "githubUsername": "Isabello",
     "poolPercentage": "0",
-    "affiliation": "Freelance"
+    "affiliation": "Freelance",
+    "liskChat": "isabella"
+  },
+  {
+    "delegateName": "cc001",
+    "delegateAddress": "6787154358850114730L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=54",
+    "githubUsername": "simonmorgenthaler",
+    "poolPercentage": "0",
+    "affiliation": "GDT",
+    "liskChat": "cc001"
+  },
+  {
+    "delegateName": "atreides",
+    "delegateAddress": "305922413481072012L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=350",
+    "githubUsername": "",
+    "poolPercentage": "0",
+    "affiliation": "Freelance",
+    "liskChat": "atreides"
   }
 ]
