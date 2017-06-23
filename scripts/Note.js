@@ -11,7 +11,7 @@ const Note = note =>
         )}
         {note.action &&
             <div className="empty-action">
-                <button className="btn btn-primary">Send a message</button>
+                <a className="btn btn-primary" target="_blank" href="https://lisk.chat/direct/5an1ty">Send a message</a>
             </div>}
     </section>;
 
