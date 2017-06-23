@@ -66,10 +66,12 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?t=292",
     "githubUsername": "mrv777",
     "poolPercentage": {
-      "100": "O"
+      "5": "P",
+      "50": "D",
+      "45": "O"
     },
     "affiliation": "GDT",
     "liskChat": "MrV",
-    "pool": null
+    "pool": "https://lisktools.io/profitShares.php"
   }
 ]
