@@ -27,7 +27,7 @@ const Panel = ({
     affiliation,
     liskChat
 }) =>
-    <div key={rank} className="column col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div key={rank} className="column col-xs-12 col-sm-12 col-md-6 col-4">
         <div className="panel">
             <div className="panel-header text-center">
                 <figure className="avatar avatar-lg" data-initial={delegateName.split('')[0].toUpperCase()}>
@@ -60,7 +60,7 @@ const Panel = ({
                 <div className="divider"></div>
                 <div className="tile tile-centered">
                     <div className="tile-content">
-                        <a className="btn btn-sm btn-block" target="_blank" href={pool}>Pool</a>
+                        <a className="btn btn-sm btn-block" target="_blank" disabled={!pool} href={pool}>Pool</a>
                     </div>
                 </div>
                 <div className="divider"></div>

@@ -8,6 +8,7 @@ import delegates from '../data/delegates.json';
 const getDelegateData = delegate =>
   axios.get(`https://wallet.lisknode.io/api/delegates/get?username=${delegate.delegateName}`)
     .then(res => delegate.rank = res.data.delegate ? parseInt(res.data.delegate.rank) : undefined)
+    .catch(res => delegate);
 
 const getGitHubData = delegate =>
   axios.get(`https://api.github.com/users/${delegate.githubUsername}`)
