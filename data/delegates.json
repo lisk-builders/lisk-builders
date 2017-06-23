@@ -30,7 +30,8 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=54",
     "githubUsername": "simonmorgenthaler",
     "poolPercentage": {
-      "O": "100"
+      "O": "75",
+      "D": "25"
     },
     "affiliation": "GDT",
     "liskChat": "cc001",
