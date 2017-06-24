@@ -5,8 +5,8 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1521",
     "githubUsername": "5an1ty",
     "poolPercentage": {
-      "P": "60",
-      "O": "40"
+      "D": "25",
+      "O": "75"
     },
     "affiliation": "Freelance",
     "liskChat": "5an1ty",
