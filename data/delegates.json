@@ -10,7 +10,7 @@
     },
     "affiliation": "Freelance",
     "liskChat": "5an1ty",
-    "pool": ""
+    "pool": null
   },
   {
     "delegateName": "isabella",
@@ -74,5 +74,18 @@
     "affiliation": "GDT",
     "liskChat": "MrV",
     "pool": "https://lisktools.io/profitShares.php"
+  },
+  {
+    "delegateName": "wannabe_rotebaron",
+    "delegateAddress": "16379340065696424247L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?t=1135",
+    "githubUsername": "cezarsn",
+    "poolPercentage": {
+      "D": "25",
+      "O": "75"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "wannabe_RoteBaron",
+    "pool": null
   }
 ]
