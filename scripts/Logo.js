@@ -3,7 +3,7 @@ import React from 'react';
 const style = {
     width: '350px',
     height: '350px',
-    margin: '0 auto'
+    margin: '0 auto',
 };
 const Logo = () =>
     <div style={style}>

@@ -87,5 +87,18 @@
     "affiliation": "Freelance",
     "liskChat": "wannabe_RoteBaron",
     "pool": null
+  },
+  {
+    "delegateName": "alepop",
+    "delegateAddress": "9010579446607279905L",
+    "proposal": "",
+    "githubUsername": "alepop",
+    "poolPercentage": {
+      "D": "25",
+      "O": "75"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "alepop",
+    "pool": null
   }
 ]
