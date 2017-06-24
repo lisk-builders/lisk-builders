@@ -23,6 +23,11 @@
     padding: 0;
     line-height: normal;
 }
+.bar-title {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 3px;
+}
 .loading {
   position: absolute;
   top:50%;

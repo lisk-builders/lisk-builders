@@ -63,7 +63,7 @@ const Panel = ({
                 </div>
                 <div className="divider" />
                 <div>
-                    <span>Reward spending:</span>
+                    <span className="bar-title">Reward spending:</span>
                     <Bar {...poolPercentage} />
                 </div>
                 <div className="divider" />
