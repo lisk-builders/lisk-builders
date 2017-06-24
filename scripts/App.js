@@ -36,7 +36,7 @@ export default class App extends Component {
     checkEntered = () => {
         axios.get(`https://node08.lisk.io/api/accounts/delegates/?address=${this.input.value}`)
             .then(res => {
-                const neededVotes = this.state.data.length;
+                const neededVotes = this.state.data.filter(dg => dg.affiliation === 'Freelance').length;
                 const relevantVotes = res.data.delegates.filter(delegate => this.state.data.filter((dg) => dg.delegateAddress === delegate.address).length > 0).length;
                 if(relevantVotes === neededVotes) {
                     alert('OK');
