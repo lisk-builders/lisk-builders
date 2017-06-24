@@ -30,21 +30,22 @@ class Lottery extends React.Component {
         const { delegates } = this.props;
         const neededVotes = delegates.filter(
             dg => dg.affiliation === 'Freelance',
-        ).length;
-        const relevantVotes = data.delegates.filter(
+        );
+        const relevantVotes = neededVotes.filter(
             delegate =>
-                delegates.filter(dg => dg.delegateAddress === delegate.address)
+                data.delegates.filter(dg => dg.address === delegate.delegateAddress)
                     .length > 0,
-        ).length;
-        if (relevantVotes === neededVotes) {
+        );
+        const missingVotes = neededVotes.filter(delegate => relevantVotes.filter(dg => dg.delegateAddress === delegate.delegateAddress).length === 0).map(delegate => delegate.delegateName);
+        if (relevantVotes.length === neededVotes.length) {
             this.setState({
                 showModal: true,
-                lotteryResult: 'OK',
+                lotteryResult: 'You are entered in the lotery!',
             });
         } else {
             this.setState({
                 showModal: true,
-                lotteryResult: 'NOK',
+                lotteryResult: 'You have not voted for all delegates with tag Freelance yet. Missing: ' + missingVotes.join(', '),
             });
         }
     };

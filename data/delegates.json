@@ -43,7 +43,8 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=350",
     "githubUsername": "stenea",
     "poolPercentage": {
-      "O": "100"
+      "D": "20",
+      "O": "80"
     },
     "affiliation": "Freelance",
     "liskChat": "atreides",
