@@ -121,7 +121,7 @@ class Lottery extends React.Component {
                         </div>
                         <div className="modal-body">
                             <div className="content">
-                                <p>The first drawing will happen on July 1st, 2017!</p>
+                                <p>The first drawing will happen on June 30th, 2017!</p>
                                 <p>If you would like to stay anonymous, send us a message and we will remove you from the winners page.</p>
                             </div>
                         </div>
@@ -142,7 +142,7 @@ class Lottery extends React.Component {
                     <div className="panel-body">
                         <p>Vote for all members with the affiliation <label className="label label-success">Freelance</label>{' '}
                         on this list to be entered in a lottery.</p>
-                        <p>Each participant gets 1 ticket per LSK, capped to the twice the average LSK across all participants.</p>
+                        <p>Each participant gets 1 ticket per LSK, capped to twice the average LSK across all participants.</p>
                         <div>The lottery draws every month and gives out:</div>
                         <ul>
                             <li>First prize: <strong>1500 LSK</strong></li>
