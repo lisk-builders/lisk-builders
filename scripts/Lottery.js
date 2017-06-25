@@ -161,7 +161,7 @@ class Lottery extends React.Component {
                                 className="btn btn-primary input-group-btn"
                                 disabled={!this.state.address}
                                 onClick={this.checkEntered}>
-                                Check if you are entered in the lottery
+                                Check if you are participating
                             </button>
                             <input
                                 value={this.state.address}
