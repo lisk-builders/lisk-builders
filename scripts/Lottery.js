@@ -121,7 +121,8 @@ class Lottery extends React.Component {
                         </div>
                         <div className="modal-body">
                             <div className="content">
-                                The first drawing will happen on the 1st of July!
+                                <p>The first drawing will happen on July 1st, 2017!</p>
+                                <p>If you would like to stay anonymous, send us a message and we will remove you from the winners page.</p>
                             </div>
                         </div>
                         <div className="modal-footer">
