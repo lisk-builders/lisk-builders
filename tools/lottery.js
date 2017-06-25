@@ -5,7 +5,7 @@ const freelancers = delegates.filter(dg => dg.affiliation === 'Freelance');
 
 const candidates = {};
 
-const getRandomArbitrary = function(min, max) {
+const getRandomArbitrary = (min, max) => {
     return Math.random() * (max - min) + min;
 };
 
@@ -20,6 +20,29 @@ const getDelegateData = delegate =>
         })
         .catch(res => delegate);
 
+const lotto = (entries) => {
+  const totalTickets = entries.reduce((mem, val) => mem + val.tickets, 0);
+  const avgTickets = Math.floor(totalTickets / entries.length);
+  console.log('Total Tickets: ' + totalTickets);
+  console.log('Average Tickets: ' + avgTickets);
+  const avgEntries = entries.map(acc => {
+    acc.tickets = Math.min(acc.tickets, avgTickets);
+    return acc;
+  });
+  const finalTotalTickets = avgEntries.reduce((mem, val) => mem + val.tickets, 0);
+  console.log('Final Total Tickets: ' + finalTotalTickets);
+  console.log('Entries:');
+  console.log(avgEntries);
+  const lotto = [];
+  avgEntries.forEach((entry, index) => {
+    for (let i = 0; i < entry.tickets; i++) {
+      lotto.push(index);
+    }
+  });
+  const winnerId = Math.floor(getRandomArbitrary(0, lotto.length));
+  console.log('Winner: ' + JSON.stringify(entries[lotto[winnerId]]));
+};
+
 axios
     .all(freelancers.map(getDelegateData))
     .then((res) => {
@@ -32,32 +55,10 @@ axios
           }
         });
       });
-      const validCandidates = Object.keys(candidates).filter(key => candidates[key] >= freelancers.length - 1);
+      const validCandidates = Object.keys(candidates).filter(key => candidates[key] === freelancers.length);
       Promise.all(validCandidates.map(vc => {
-          return axios.get(`https://node02.lisk.io/api/accounts/getBalance?address=${vc}`).then(res2 => {
-            return { account: vc, tickets: Math.floor((res2.data.balance ? res2.data.balance : 0) / 100000000) };
-          });
-      })).then(res3 => {
-        const totalTickets = res3.reduce((mem, val) => mem + val.tickets, 0);
-        const avgTickets = Math.floor(totalTickets / res3.length);
-        console.log('Total Tickets: ' + totalTickets);
-        console.log('Average Tickets: ' + avgTickets);
-        const entries = res3.map(acc => {
-          acc.tickets = Math.min(acc.tickets, avgTickets);
-          return acc;
+        return axios.get(`https://node02.lisk.io/api/accounts/getBalance?address=${vc}`).then(res2 => {
+          return { account: vc, tickets: Math.floor((res2.data.balance ? res2.data.balance : 0) / 100000000) };
         });
-        const finalTotalTickets = entries.reduce((mem, val) => mem + val.tickets, 0);
-        console.log('Final Total Tickets: ' + finalTotalTickets);
-        console.log('Entries:');
-        console.log(entries);
-        const lotto = [];
-        entries.forEach((entry, index) => {
-          for (let i = 0; i < entry.tickets; i++) {
-            lotto.push(index);
-          }
-        });
-        const winnerId = Math.floor(getRandomArbitrary(0, lotto.length));
-        console.log('Winner: ' + JSON.stringify(entries[lotto[winnerId]]));
-      }).catch(err => console.log(err));
-      //console.log(validCandidates);
+      })).then(lotto).catch(err => console.log(err));
     });
