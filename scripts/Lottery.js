@@ -139,7 +139,7 @@ class Lottery extends React.Component {
                         <div className="panel-title">Lottery</div>
                     </div>
                     <div className="panel-body">
-                        Vote for all members with the tag <mark>Freelance</mark>{' '}
+                        Vote for all members with the affiliation <label className="label label-success">Freelance</label>{' '}
                         on this list to be entered in a lottery. The lottery
                         draws every month and gives out:
                         <ul>
