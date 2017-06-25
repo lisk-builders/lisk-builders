@@ -24,11 +24,11 @@ const getDelegateData = delegate =>
 const lotto = (entries) => {
   const cleanedEntries = entries.filter(e => e.tickets > 0);
   const totalTickets = cleanedEntries.reduce((mem, val) => mem + val.tickets, 0);
-  const avgTickets = Math.floor(totalTickets / cleanedEntries.length);
+  const capTickets = Math.floor(totalTickets / cleanedEntries.length) * 2;
   console.log('Total Tickets: ' + totalTickets);
-  console.log('Average Tickets: ' + avgTickets);
+  console.log('Average Tickets: ' + capTickets);
   const firstEntries = cleanedEntries.map(acc => {
-    acc.tickets = Math.min(acc.tickets, avgTickets);
+    acc.tickets = Math.min(acc.tickets, capTickets);
     return acc;
   });
   const finalTotalTickets = firstEntries.reduce((mem, val) => mem + val.tickets, 0);
