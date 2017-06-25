@@ -25,22 +25,30 @@ const lotto = (entries) => {
   const avgTickets = Math.floor(totalTickets / entries.length);
   console.log('Total Tickets: ' + totalTickets);
   console.log('Average Tickets: ' + avgTickets);
-  const avgEntries = entries.map(acc => {
+  const firstEntries = entries.map(acc => {
     acc.tickets = Math.min(acc.tickets, avgTickets);
     return acc;
   });
-  const finalTotalTickets = avgEntries.reduce((mem, val) => mem + val.tickets, 0);
+  const finalTotalTickets = firstEntries.reduce((mem, val) => mem + val.tickets, 0);
   console.log('Final Total Tickets: ' + finalTotalTickets);
-  console.log('Entries:');
-  console.log(avgEntries);
-  const lotto = [];
-  avgEntries.forEach((entry, index) => {
+  console.log('Entries: ' + firstEntries.length);
+  const firstLotto = [];
+  firstEntries.forEach((entry, index) => {
     for (let i = 0; i < entry.tickets; i++) {
-      lotto.push(index);
+      firstLotto.push(index);
     }
   });
-  const winnerId = Math.floor(getRandomArbitrary(0, lotto.length));
-  console.log('Winner: ' + JSON.stringify(entries[lotto[winnerId]]));
+  const firstWinnerId = Math.floor(getRandomArbitrary(0, firstLotto.length));
+  const firstWinner = entries[firstLotto[firstWinnerId]];
+  console.log('First Prize Winner: ' + JSON.stringify(firstWinner));
+  const secondLotto = firstLotto.filter(e => entries[e].address !== firstWinner.address);
+  const secondWinnerId = Math.floor(getRandomArbitrary(0, secondLotto.length));
+  const secondWinner = entries[secondLotto[secondWinnerId]];
+  console.log('Second Prize Winner: ' + JSON.stringify(secondWinner));
+  const thirdLotto = secondLotto.filter(e => [firstWinner.address, secondWinner.address].indexOf(entries[e].address) === -1);
+  const thirdWinnerId = Math.floor(getRandomArbitrary(0, thirdLotto.length));
+  const thirdWinner = entries[thirdLotto[thirdWinnerId]];
+  console.log('Third Prize Winner: ' + JSON.stringify(thirdWinner));
 };
 
 axios
@@ -58,7 +66,7 @@ axios
       const validCandidates = Object.keys(candidates).filter(key => candidates[key] === freelancers.length);
       Promise.all(validCandidates.map(vc => {
         return axios.get(`https://node02.lisk.io/api/accounts/getBalance?address=${vc}`).then(res2 => {
-          return { account: vc, tickets: Math.floor((res2.data.balance ? res2.data.balance : 0) / 100000000) };
+          return { address: vc, tickets: Math.floor((res2.data.balance ? res2.data.balance : 0) / 100000000) };
         });
       })).then(lotto).catch(err => console.log(err));
     });
