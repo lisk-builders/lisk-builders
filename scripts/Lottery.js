@@ -86,7 +86,7 @@ class Lottery extends React.Component {
 
                 <div className={modalClassnames(showModal)}>
                     <div className="modal-overlay" />
-                    <div className="modal-container col-4">
+                    <div className="modal-container col-xs-12 col-sm-12 col-md-12 col-5">
                         <div className="modal-header">
                             <button
                                 className="btn btn-clear float-right"
@@ -111,7 +111,7 @@ class Lottery extends React.Component {
 
                 <div className={modalClassnames(showWinnersModal)}>
                     <div className="modal-overlay" />
-                    <div className="modal-container col-4">
+                    <div className="modal-container col-xs-12 col-sm-12 col-md-12 col-5">
                         <div className="modal-header">
                             <button
                                 className="btn btn-clear float-right"
