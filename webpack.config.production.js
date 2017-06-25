@@ -46,6 +46,7 @@
 
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './scripts/index',
@@ -69,6 +70,12 @@ module.exports = {
       compress: {
         warnings: false
       }
+    }),
+    new HtmlWebpackPlugin({
+        version: new Date().getTime(),
+        template: 'index.ejs',
+        filename: '../index.html',
+        inject: false
     })
   ],
   module: {
