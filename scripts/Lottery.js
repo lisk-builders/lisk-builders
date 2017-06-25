@@ -142,7 +142,7 @@ class Lottery extends React.Component {
                     <div className="panel-body">
                         <p>Vote for all members with the affiliation <label className="label label-success">Freelance</label>{' '}
                         on this list to be entered in a lottery.</p>
-                        <p>Each entrant is given 1 ticket per LSK they have, capped on the average of LSK for all entrants.</p>
+                        <p>Each participant gets 1 ticket per LSK, capped to the average LSK across all participants.</p>
                         <div>The lottery draws every month and gives out:</div>
                         <ul>
                             <li>First prize: <strong>1500 LSK</strong></li>
