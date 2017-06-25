@@ -51,7 +51,7 @@ class Lottery extends React.Component {
         } else {
             this.setState({
                 showModal: true,
-                lotteryResult: 'You have not voted for all delegates with tag Freelance yet. Missing: ' + missingVotes.join(', '),
+                lotteryResult: 'You have not voted for all delegates with the tag Freelance yet. Missing: ' + missingVotes.join(', '),
             });
         }
     };
