@@ -22,11 +22,12 @@ const getDelegateData = delegate =>
         .catch(res => delegate);
 
 const lotto = (entries) => {
-  const totalTickets = entries.reduce((mem, val) => mem + val.tickets, 0);
-  const avgTickets = Math.floor(totalTickets / entries.length);
+  const cleanedEntries = entries.filter(e => e.tickets > 0);
+  const totalTickets = cleanedEntries.reduce((mem, val) => mem + val.tickets, 0);
+  const avgTickets = Math.floor(totalTickets / cleanedEntries.length);
   console.log('Total Tickets: ' + totalTickets);
   console.log('Average Tickets: ' + avgTickets);
-  const firstEntries = entries.map(acc => {
+  const firstEntries = cleanedEntries.map(acc => {
     acc.tickets = Math.min(acc.tickets, avgTickets);
     return acc;
   });
@@ -40,15 +41,15 @@ const lotto = (entries) => {
     }
   });
   const firstWinnerId = Math.floor(getRandomArbitrary(0, firstLotto.length));
-  const firstWinner = entries[firstLotto[firstWinnerId]];
+  const firstWinner = cleanedEntries[firstLotto[firstWinnerId]];
   console.log('First Prize Winner: ' + JSON.stringify(firstWinner));
-  const secondLotto = firstLotto.filter(e => entries[e].address !== firstWinner.address);
+  const secondLotto = firstLotto.filter(e => cleanedEntries[e].address !== firstWinner.address);
   const secondWinnerId = Math.floor(getRandomArbitrary(0, secondLotto.length));
-  const secondWinner = entries[secondLotto[secondWinnerId]];
+  const secondWinner = cleanedEntries[secondLotto[secondWinnerId]];
   console.log('Second Prize Winner: ' + JSON.stringify(secondWinner));
-  const thirdLotto = secondLotto.filter(e => [firstWinner.address, secondWinner.address].indexOf(entries[e].address) === -1);
+  const thirdLotto = secondLotto.filter(e => [firstWinner.address, secondWinner.address].indexOf(cleanedEntries[e].address) === -1);
   const thirdWinnerId = Math.floor(getRandomArbitrary(0, thirdLotto.length));
-  const thirdWinner = entries[thirdLotto[thirdWinnerId]];
+  const thirdWinner = cleanedEntries[thirdLotto[thirdWinnerId]];
   console.log('Third Prize Winner: ' + JSON.stringify(thirdWinner));
 };
 
