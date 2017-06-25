@@ -167,7 +167,7 @@ class Lottery extends React.Component {
                                 onChange={this.handleChange}
                                 type="text"
                                 className="form-input"
-                                placeholder="type your LSK adrress"
+                                placeholder="type your LSK address"
                             />
                         </div>
                     </div>
