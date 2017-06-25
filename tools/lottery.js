@@ -2,6 +2,7 @@ const axios = require('axios');
 const delegates = require('../data/delegates.json');
 
 const freelancers = delegates.filter(dg => dg.affiliation === 'Freelance');
+const blacklist = freelancers.map(dg => dg.delegateAddress);
 
 const candidates = {};
 
@@ -56,10 +57,12 @@ axios
     .then((res) => {
       res.forEach(dg => {
         dg.voters.forEach(vt => {
-          if (!candidates[vt.address]) {
-            candidates[vt.address] = 1;
-          } else {
-            candidates[vt.address] += 1;
+          if (blacklist.indexOf(vt.address) === -1) {
+            if (!candidates[vt.address]) {
+              candidates[vt.address] = 1;
+            } else {
+              candidates[vt.address] += 1;
+            }
           }
         });
       });
