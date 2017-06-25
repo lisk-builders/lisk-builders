@@ -13,6 +13,7 @@ class Lottery extends React.Component {
         this.state = {
             address: '',
             showModal: false,
+            showWinnersModal: false,
             lotteryResult: '',
         };
     }
@@ -24,6 +25,11 @@ class Lottery extends React.Component {
     closeModal = () => {
         this.setState({
             showModal: false,
+        });
+    };
+    closeWinnersModal = () => {
+        this.setState({
+            showWinnersModal: false,
         });
     };
     showData = data => {
@@ -66,8 +72,15 @@ class Lottery extends React.Component {
                 }
             });
     };
+
+    showPreviousWinners = () => {
+        this.setState({
+            showWinnersModal: true
+        });
+    };
+
     render() {
-        const { showModal } = this.state;
+        const { showModal, showWinnersModal } = this.state;
         return (
             <div className="col-12 column">
 
@@ -96,6 +109,31 @@ class Lottery extends React.Component {
                     </div>
                 </div>
 
+                <div className={modalClassnames(showWinnersModal)}>
+                    <div className="modal-overlay" />
+                    <div className="modal-container col-4">
+                        <div className="modal-header">
+                            <button
+                                className="btn btn-clear float-right"
+                                onClick={this.closeWinnersModal}
+                            />
+                            <div className="modal-title">Previous winners</div>
+                        </div>
+                        <div className="modal-body">
+                            <div className="content">
+                                The first drawing will happen on the 1st of July!
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button
+                                className="btn btn-primary"
+                                onClick={this.closeWinnersModal}>
+                                OK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="panel">
                     <div className="panel-header">
                         <div className="panel-title">Lottery</div>
@@ -109,6 +147,11 @@ class Lottery extends React.Component {
                             <li>Second prize: <strong>900 LSK</strong></li>
                             <li>Third prize: <strong>600 LSK</strong></li>
                         </ul>
+                        <button
+                            className="btn btn-primary"
+                            onClick={this.showPreviousWinners}>
+                            Previous winners
+                        </button>
                     </div>
                     <div className="panel-footer">
                         <div className="input-group">
