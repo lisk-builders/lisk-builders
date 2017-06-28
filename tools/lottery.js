@@ -1,8 +1,8 @@
 const axios = require("axios");
 const delegates = require("../data/delegates.json");
 
-const freelancers = delegates.filter(dg => dg.affiliation === "Freelance");
-const blacklist = freelancers.map(dg => dg.delegateAddress);
+const lotteryMembers = delegates.filter(dg => dg.lotteryMember && dg.delegateName !== '5an1ty' && dg.delegateName !== 'alepop');
+const blacklist = lotteryMembers.map(dg => dg.delegateAddress);
 
 const candidates = {};
 
@@ -53,7 +53,7 @@ const lotto = entries => {
   console.log("Third Prize Winner: " + JSON.stringify(thirdWinner));
 };
 
-axios.all(freelancers.map(getDelegateData)).then(res => {
+axios.all(lotteryMembers.map(getDelegateData)).then(res => {
   res.forEach(dg => {
     dg.voters.forEach(vt => {
       if (blacklist.indexOf(vt.address) === -1) {
@@ -65,7 +65,7 @@ axios.all(freelancers.map(getDelegateData)).then(res => {
       }
     });
   });
-  const validCandidates = Object.keys(candidates).filter(key => candidates[key] === freelancers.length);
+  const validCandidates = Object.keys(candidates).filter(key => candidates[key] === lotteryMembers.length);
   Promise.all(
     validCandidates.map(vc => {
       return axios.get(`https://node02.lisk.io/api/accounts/getBalance?address=${vc}`).then(res2 => {
