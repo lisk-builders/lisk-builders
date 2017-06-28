@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import Bar from './Bar';
+import Ribbon from './Ribbon';
 import { GitHub } from './Icons';
 
 const rankClassNames = rank =>
@@ -27,9 +28,11 @@ const Panel = ({
     poolPercentage,
     affiliation,
     liskChat,
+    lotteryMember
 }) =>
     <div key={rank} className="column col-xs-12 col-sm-12 col-md-6 col-4">
-        <div className="panel">
+        <div className="panel rel">
+            { lotteryMember && <Ribbon text='lottery'/> }
             <div className="panel-header text-center">
                 <figure
                     className="avatar avatar-lg"
