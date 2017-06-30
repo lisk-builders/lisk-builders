@@ -1,8 +1,8 @@
 const axios = require("axios");
 const delegates = require("../data/delegates.json");
 
-const lotteryMembers = delegates.filter(dg => dg.lotteryMember && dg.delegateName !== '5an1ty' && dg.delegateName !== 'alepop');
-const blacklist = delegates.filter(dg => dg.lotteryMember).map(dg => dg.delegateAddress);
+const lotteryMembers = delegates.filter(dg => dg.lotteryMember);
+const blacklist = lotteryMembers.map(dg => dg.delegateAddress);
 
 const candidates = {};
 
