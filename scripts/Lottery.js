@@ -170,9 +170,15 @@ class Lottery extends React.Component {
                                         )}
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                         <div className="modal-footer">
+                          <p className="text-left">
+                                    If you would like to stay anonymous, send us
+                                    a message and we will remove you from the
+                                    winners page.
+                                </p>
                             <button
                                 className="btn btn-primary"
                                 onClick={this.closeWinnersModal}>
@@ -198,18 +204,11 @@ class Lottery extends React.Component {
                             Each participant gets 1 ticket per LSK, capped to
                             twice the average LSK across all participants.
                         </p>
-                        <div>The lottery draws every month and gives out:</div>
-                        <ul>
-                            <li>
-                                First prize: <strong>1500 LSK</strong>
-                            </li>
-                            <li>
-                                Second prize: <strong>900 LSK</strong>
-                            </li>
-                            <li>
-                                Third prize: <strong>600 LSK</strong>
-                            </li>
-                        </ul>
+                        <p>
+                            The lottery draws on the last day of every month and
+                            gives out <strong>250 LSK</strong> to{' '}
+                            <strong>20</strong> winners!
+                        </p>
                         <button
                             className="btn btn-primary"
                             onClick={this.showPreviousWinners}>
