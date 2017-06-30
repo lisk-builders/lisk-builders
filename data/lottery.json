@@ -1,0 +1,23 @@
+[
+  {
+    "date": "June 30th, 2017",
+    "totalTickets": 2032915,
+    "averageTickets": 25570,
+    "finalTotalTickets": 1155488,
+    "entries": 159,
+    "winers": [
+      {
+        "address": "11380384760969655418L",
+        "tickets": 6569
+      },
+      {
+        "address": "3741683474356548491L",
+        "tickets": 5229
+      },
+      {
+        "address": "14095257265018404332L",
+        "tickets": 1711
+      }
+    ]
+  }
+]
