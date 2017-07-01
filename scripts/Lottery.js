@@ -1,11 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import classnames from 'classnames';
+import lotteryData from '../data/lottery.json';
 
 const modalClassnames = isActive =>
     classnames('modal', {
         active: isActive,
     });
+
+const getLastWinnersData = lotteryData[lotteryData.length - 1];
 
 class Lottery extends React.Component {
     constructor(props) {
@@ -39,10 +42,18 @@ class Lottery extends React.Component {
         );
         const relevantVotes = neededVotes.filter(
             delegate =>
-                data.delegates.filter(dg => dg.address === delegate.delegateAddress)
-                    .length > 0,
+                data.delegates.filter(
+                    dg => dg.address === delegate.delegateAddress,
+                ).length > 0,
         );
-        const missingVotes = neededVotes.filter(delegate => relevantVotes.filter(dg => dg.delegateAddress === delegate.delegateAddress).length === 0).map(delegate => delegate.delegateName);
+        const missingVotes = neededVotes
+            .filter(
+                delegate =>
+                    relevantVotes.filter(
+                        dg => dg.delegateAddress === delegate.delegateAddress,
+                    ).length === 0,
+            )
+            .map(delegate => delegate.delegateName);
         if (relevantVotes.length === neededVotes.length) {
             this.setState({
                 showModal: true,
@@ -51,7 +62,9 @@ class Lottery extends React.Component {
         } else {
             this.setState({
                 showModal: true,
-                lotteryResult: 'You have not voted for all delegates with the tag Freelance yet. Missing: ' + missingVotes.join(', '),
+                lotteryResult:
+                    'You have not voted for all delegates with the tag Freelance yet. Missing: ' +
+                    missingVotes.join(', '),
             });
         }
     };
@@ -75,7 +88,7 @@ class Lottery extends React.Component {
 
     showPreviousWinners = () => {
         this.setState({
-            showWinnersModal: true
+            showWinnersModal: true,
         });
     };
 
@@ -83,7 +96,6 @@ class Lottery extends React.Component {
         const { showModal, showWinnersModal } = this.state;
         return (
             <div className="col-12 column">
-
                 <div className={modalClassnames(showModal)}>
                     <div className="modal-overlay" />
                     <div className="modal-container col-xs-12 col-sm-12 col-md-12 col-5">
@@ -117,15 +129,56 @@ class Lottery extends React.Component {
                                 className="btn btn-clear float-right"
                                 onClick={this.closeWinnersModal}
                             />
-                            <div className="modal-title">Previous winners</div>
+                            <div className="modal-title">
+                                Previous winners ({getLastWinnersData.date})
+                            </div>
                         </div>
                         <div className="modal-body">
                             <div className="content">
-                                <p>The first drawing will happen on June 30th, 2017 at 20 CEST!</p>
-                                <p>If you would like to stay anonymous, send us a message and we will remove you from the winners page.</p>
+                                Total Tickets:{' '}
+                                <b>{getLastWinnersData.totalTickets}</b>
+                                <br />
+                                Average Tickets:{' '}
+                                <b>{getLastWinnersData.averageTickets}</b>
+                                <br />
+                                Final Total Tickets:{' '}
+                                <b>{getLastWinnersData.finalTotalTickets}</b>
+                                <br />
+                                Entries: <b>{getLastWinnersData.entries}</b>
+                                <table className="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Address</th>
+                                            <th>Tickets</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {getLastWinnersData.winers.map(
+                                            (el, i) =>
+                                                <tr>
+                                                    <td>
+                                                        {' '}<a
+                                                            target="_blank"
+                                                            href={`https://explorer.lisk.io/address/${el.address}`}>
+                                                            {el.address}
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        {el.tickets}
+                                                    </td>
+                                                </tr>,
+                                        )}
+                                    </tbody>
+                                </table>
+
                             </div>
                         </div>
                         <div className="modal-footer">
+                          <p className="text-left">
+                                    If you would like to stay anonymous, send us
+                                    a message and we will remove you from the
+                                    winners page.
+                                </p>
                             <button
                                 className="btn btn-primary"
                                 onClick={this.closeWinnersModal}>
@@ -140,10 +193,22 @@ class Lottery extends React.Component {
                         <div className="panel-title">Lottery</div>
                     </div>
                     <div className="panel-body">
-                        <p>Vote for all members with the <label className="label label-primary">Lottery</label> badge
-                        on this list to be entered in a lottery.</p>
-                        <p>Each participant gets 1 ticket per LSK, capped to twice the average LSK across all participants.</p>
-                        <div>The lottery draws on the last day of every month and gives out <strong>250 LSK</strong> to <strong>20</strong> winners!</div>
+                        <p>
+                            Vote for all members with the{' '}
+                            <label className="label label-primary">
+                                Lottery
+                            </label>{' '}
+                            badge on this list to be entered in a lottery.
+                        </p>
+                        <p>
+                            Each participant gets 1 ticket per LSK, capped to
+                            twice the average LSK across all participants.
+                        </p>
+                        <p>
+                            The lottery draws on the last day of every month and
+                            gives out <strong>250 LSK</strong> to{' '}
+                            <strong>20</strong> winners!
+                        </p>
                         <button
                             className="btn btn-primary"
                             onClick={this.showPreviousWinners}>
