@@ -150,6 +150,7 @@ class Lottery extends React.Component {
                                         <tr>
                                             <th>Address</th>
                                             <th>Tickets</th>
+                                            <th>Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -165,6 +166,9 @@ class Lottery extends React.Component {
                                                     </td>
                                                     <td>
                                                         {el.tickets}
+                                                    </td>
+                                                    <td>
+                                                        {el.amount}
                                                     </td>
                                                 </tr>,
                                         )}

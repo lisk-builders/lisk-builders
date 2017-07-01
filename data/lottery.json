@@ -8,15 +8,18 @@
     "winers": [
       {
         "address": "11380384760969655418L",
-        "tickets": 6569
+        "tickets": 6569,
+        "amount": 1500
       },
       {
         "address": "3741683474356548491L",
-        "tickets": 5229
+        "tickets": 5229,
+        "amount": 900
       },
       {
         "address": "14095257265018404332L",
-        "tickets": 1711
+        "tickets": 1711,
+        "amount": 600
       }
     ]
   }
