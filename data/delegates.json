@@ -109,5 +109,18 @@
     "liskChat": "alepop",
     "pool": null,
     "lotteryMember": true
+  },
+  {
+    "delegateName": "carbonara",
+    "delegateAddress": "6165534766664619667L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?t=1530",
+    "githubUsername": "xunga",
+    "poolPercentage": {
+      "O": "100"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "carbonara",
+    "pool": null,
+    "lotteryMember": false
   }
 ]
