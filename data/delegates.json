@@ -123,4 +123,18 @@
     "pool": null,
     "lotteryMember": false
   }
+    {
+    "delegateName": "liskpro.com",
+    "delegateAddress": " 13112651512533400586L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1524",
+    "githubUsername": "liskprocom",
+    "poolPercentage": {
+      "D": "85",
+      "O": "15"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "LiskPro.com",
+    "pool": null,
+    "lotteryMember": false
+  }
 ]
