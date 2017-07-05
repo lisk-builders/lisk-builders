@@ -43,7 +43,7 @@ const Panel = ({
                 <div className="panel-subtitle">
                     <a
                         target="_blank"
-                        href={`https://explorer.lisk.io/address/${delegateAddress}`}>
+                        href={`https://explorer.lisk.io/delegate/${delegateAddress}`}>
                         {delegateAddress}
                     </a>
                 </div>
