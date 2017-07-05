@@ -156,7 +156,7 @@ class Lottery extends React.Component {
                                     <tbody>
                                         {getLastWinnersData.winers.map(
                                             (el, i) =>
-                                                <tr>
+                                                <tr key={i}>
                                                     <td>
                                                         {' '}<a
                                                             target="_blank"
