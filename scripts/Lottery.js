@@ -37,9 +37,7 @@ class Lottery extends React.Component {
     };
     showData = data => {
         const { delegates } = this.props;
-        const neededVotes = delegates.filter(
-            dg => dg.affiliation === 'Freelance',
-        );
+        const neededVotes = delegates.filter(dg => dg.lotteryMember);
         const relevantVotes = neededVotes.filter(
             delegate =>
                 data.delegates.filter(
@@ -63,7 +61,7 @@ class Lottery extends React.Component {
             this.setState({
                 showModal: true,
                 lotteryResult:
-                    'You have not voted for all delegates with the tag Freelance yet. Missing: ' +
+                    'You have not voted for all delegates with the Lottery badge yet. Missing: ' +
                     missingVotes.join(', '),
             });
         }
