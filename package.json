@@ -30,6 +30,7 @@
     "babel-runtime": "^6.20.0",
     "classnames": "^2.2.5",
     "lodash": "^4.17.4",
+    "ramda": "=0.24.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
   },
