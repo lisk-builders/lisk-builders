@@ -22,5 +22,34 @@
         "amount": 600
       }
     ]
+  },
+  {
+    "date": "July 31th, 2017",
+    "totalTickets": 1204907,
+    "averageTickets": 44626,
+    "finalTotalTickets": 756170,
+    "entries": 54,
+    "winers": [
+      {"address":"15009685889676879216L","tickets":51676,"amount":250},
+      {"address":"15021706936228711665L","tickets":202945,"amount":250},
+      {"address":"3924323828918650088L","tickets":49377,"amount":250},
+      {"address":"3444858832803576755L","tickets":166800,"amount":250},
+      {"address":"11689646608419521503L","tickets":13508,"amount":250},
+      {"address":"17438085793668748066L","tickets":4880,"amount":250},
+      {"address":"9371956568900629857L","tickets":41391,"amount":250},
+      {"address":"4566425409445727276L","tickets":69021,"amount":250},
+      {"address":"16732147553885618839L","tickets":97,"amount":250},
+      {"address":"1128004867122839082L","tickets":60053,"amount":250},
+      {"address":"15622318907282326521L","tickets":1176,"amount":250},
+      {"address":"11206277563376415967L","tickets":10524,"amount":250},
+      {"address":"11950819909555235066L","tickets":13473,"amount":250},
+      {"address":"14535439548965309658L","tickets":96231,"amount":250},
+      {"address":"15234803553064000463L","tickets":25018,"amount":250},
+      {"address":"3050836032577170077L","tickets":62179,"amount":250},
+      {"address":"15015136092749848942L","tickets":1142,"amount":250},
+      {"address":"9218911569612952003L","tickets":40035,"amount":250},
+      {"address":"11380384760969655418L","tickets":8808,"amount":250},
+      {"address":"16978137402459917971L","tickets":20009,"amount":250}
+    ]
   }
 ]
