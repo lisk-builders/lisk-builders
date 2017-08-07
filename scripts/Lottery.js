@@ -196,14 +196,14 @@ class Lottery extends React.Component {
                     </div>
                     <div className="panel-body">
                         <p>
-                            Vote for all members with the{' '}
+                            Use <a href="https://github.com/LiskHQ/lisk-nano/releases/tag/v1.0.2" target="_blank">Lisk Nano</a> to Vote for all delegates with the{' '}
                             <label className="label label-primary">
                                 Lottery
                             </label>{' '}
-                            badge on this list to be entered in a lottery.
+                            badge on the members list to be entered in a lottery.
                         </p>
                         <p>
-                            Each participant gets 1 ticket per LSK, capped to
+                            Each participant gets 1 ticket per LSK they have in their Lisk account, capped to
                             twice the average LSK across all participants.
                         </p>
                         <p>
