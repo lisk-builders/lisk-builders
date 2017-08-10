@@ -9,7 +9,7 @@ const Stars = () =>
         <Logo />
     </div>;
 
-const Banner = () =>
+const Banner = (props) =>
     <div className="">
         <section className="header">
             <Stars />

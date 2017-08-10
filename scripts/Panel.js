@@ -3,13 +3,7 @@ import classnames from 'classnames';
 import Bar from './Bar';
 import Ribbon from './Ribbon';
 import { GitHub } from './Icons';
-
-const rankClassNames = rank =>
-    classnames('label float-right', {
-        'label-success': rank < 102,
-        'label-warning': rank > 101 && rank < 500,
-        'label-error': rank > 500
-    });
+import { rankClassNames } from './utils';
 
 const affiliationClassNames = affiliation =>
     classnames('label float-right', {

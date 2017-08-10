@@ -1,34 +1,23 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import Banner from './Banner';
-import Note from './Note';
-import Panel from './Panel';
-import Container from './Container';
-import Lottery from './Lottery';
-import notes from '../data/notes.json';
-import axios from 'axios';
+import Builders from './Builders';
+import Pool from './Pool';
+import NavBar from './NavBar';
+import { Route, Switch } from 'react-router-dom';
 
 export default class App extends Component {
-    render() {
-        const { data } = this.props;
-        return (
-            <div>
-                <Banner />
-                <div className="bg-gray">
-                    <Container>
-                        <Note {...notes.note1} />
-                    </Container>
-                </div>
-                <Container>
-                    <Lottery delegates={data} />
-                    {_.map(data, Panel)}
-                </Container>
-                <div className="bg-gray">
-                    <Container>
-                        <Note {...notes.note2} action="test" />
-                    </Container>
-                </div>
-            </div>
-        );
-    }
+  render() {
+    const { data } = this.props;
+    return (
+      <div>
+        <NavBar />
+        <Banner />
+        <Switch>
+          <Route exact path='/' render={() => <Builders data={data} />} />
+          <Route exact path='/pool' render={() => <Pool delegates={data} />} />
+        </Switch>
+      </div>
+    );
+  }
 }
