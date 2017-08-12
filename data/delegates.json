@@ -1,5 +1,19 @@
 [
   {
+    "delegateName": "vekexasia",
+    "delegateAddress": "9102643396261850794L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1546",
+    "githubUsername": "vekexasia",
+    "poolPercentage": {
+      "O": "75",
+      "P": "25"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "vekexasia",
+    "pool": null,
+    "lotteryMember": true
+  },
+  {
     "delegateName": "5an1ty",
     "delegateAddress": "14871479939815286293L",
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1521",
