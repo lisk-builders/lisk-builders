@@ -1,5 +1,19 @@
 [
   {
+      "delegateName": "liskit",
+      "delegateAddress": "10310263204519541551L",
+      "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=197",
+      "githubUsername": "andreafspeziale",
+      "poolPercentage": {
+        "O": "80",
+        "P": "20"
+      },
+      "affiliation": "GDT",
+      "liskChat": "liskit.me",
+      "pool": "http://liskit.me",
+      "lotteryMember": false
+    },
+    {
     "delegateName": "dakk",
     "delegateAddress": "2324852447570841050L",
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1094",
@@ -8,7 +22,7 @@
       "O": "80",
       "P": "20"
     },
-    "affiliation": "Freelance",
+    "affiliation": "GDT",
     "liskChat": "dakk_delegate",
     "pool": "https://dakk.github.io/lisk-pool/",
     "lotteryMember": false
