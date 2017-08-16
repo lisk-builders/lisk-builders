@@ -82,7 +82,7 @@ class Lottery extends React.Component {
             this.setState({
                 showModal: true,
                 lotteryResult:
-                    'You have not voted for all delegates with the Lottery badge yet. Missing: ' +
+                    'You have not voted for all delegates with the Required badge yet. Missing: ' +
                     missingVotes.join(', '),
             });
         }
