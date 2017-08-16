@@ -162,3 +162,7 @@
   z-index: 200;
   border-bottom: 1px solid #f0f1f4;
 }
+
+.btn-stats {
+  margin-left: 5px;
+}

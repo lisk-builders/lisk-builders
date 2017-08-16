@@ -1,5 +1,47 @@
 [
   {
+      "delegateName": "liskit",
+      "delegateAddress": "10310263204519541551L",
+      "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=197",
+      "githubUsername": "andreafspeziale",
+      "poolPercentage": {
+        "O": "80",
+        "P": "20"
+      },
+      "affiliation": "GDT",
+      "liskChat": "liskit.me",
+      "pool": "http://liskit.me",
+      "required": false
+    },
+    {
+    "delegateName": "dakk",
+    "delegateAddress": "2324852447570841050L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1094",
+    "githubUsername": "dakk",
+    "poolPercentage": {
+      "O": "80",
+      "P": "20"
+    },
+    "affiliation": "GDT",
+    "liskChat": "dakk_delegate",
+    "pool": "https://dakk.github.io/lisk-pool/",
+    "required": false
+  },
+  {
+    "delegateName": "vekexasia",
+    "delegateAddress": "9102643396261850794L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1546",
+    "githubUsername": "vekexasia",
+    "poolPercentage": {
+      "O": "75",
+      "P": "25"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "vekexasia",
+    "pool": null,
+    "required": false
+  },
+  {
     "delegateName": "5an1ty",
     "delegateAddress": "14871479939815286293L",
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1521",
@@ -12,7 +54,7 @@
     "liskChat": "5an1ty",
     "pool": null,
     "poolMember": true,
-    "lotteryMember": true
+    "required": true
   },
   {
     "delegateName": "isabella",
@@ -26,7 +68,7 @@
     "liskChat": "isabella",
     "pool": null,
     "poolMember": true,
-    "lotteryMember": true
+    "required": true
   },
   {
     "delegateName": "cc001",
@@ -40,7 +82,7 @@
     "affiliation": "GDT",
     "liskChat": "cc001",
     "pool": null,
-    "lotteryMember": false
+    "required": false
   },
   {
     "delegateName": "atreides",
@@ -55,7 +97,7 @@
     "liskChat": "atreides",
     "pool": null,
     "poolMember": true,
-    "lotteryMember": true
+    "required": true
   },
   {
     "delegateName": "gr33ndrag0n",
@@ -66,9 +108,9 @@
       "O": "100"
     },
     "affiliation": "GDT",
-    "liskChat": "Gr33nDrag0n",
+    "liskChat": "Gr33ndrag0n",
     "pool": null,
-    "lotteryMember": false
+    "required": false
   },
   {
     "delegateName": "mrv",
@@ -83,7 +125,7 @@
     "affiliation": "GDT",
     "liskChat": "MrV",
     "pool": "https://lisktools.io/profitShares.php",
-    "lotteryMember": false
+    "required": false
   },
   {
     "delegateName": "wannabe_rotebaron",
@@ -98,7 +140,7 @@
     "liskChat": "wannabe_RoteBaron",
     "pool": null,
     "poolMember": true,
-    "lotteryMember": true
+    "required": true
   },
   {
     "delegateName": "alepop",
@@ -113,7 +155,7 @@
     "liskChat": "alepop",
     "pool": null,
     "poolMember": true,
-    "lotteryMember": true
+    "required": true
   },
   {
     "delegateName": "carbonara",
@@ -126,7 +168,7 @@
     "affiliation": "Freelance",
     "liskChat": "carbonara",
     "pool": null,
-    "lotteryMember": false
+    "required": false
   },
   {
     "delegateName": "liskpro.com",
@@ -140,6 +182,6 @@
     "affiliation": "Freelance",
     "liskChat": "LiskPro.com",
     "pool": null,
-    "lotteryMember": false
+    "required": false
   }
 ]
