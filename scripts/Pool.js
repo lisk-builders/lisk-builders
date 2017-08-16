@@ -26,6 +26,37 @@ const PoolData = props => (
   </div>
 );
 
+const Payouts = props => (
+  <div className='column col-12'>
+    <div className='panel'>
+      <div className='panel-header text-center'>
+        <div className='panel-title'> Pool payouts </div>
+        <div className='panel-subtitle'>{ new Date(poolData.updateTimestamp * 1000).toUTCString()}</div>
+      </div>
+      <div className='panel-body'>
+        <table className='table table-hover'>
+          <thead>
+            <tr>
+              <th>Address</th>
+              <th>Paid Balance</th>
+              <th>Unpaid Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            { poolData.accounts.map((data, i) => (
+              <tr key={i}>
+                <td>{ data.address }</td>
+                <td>{ data.paidBalance }</td>
+                <td>{ data.unpaidBalance }</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+)
+
 class Pool extends Component {
   constructor(props) {
     super(props);
@@ -58,6 +89,9 @@ class Pool extends Component {
           <PoolData forged={this.state.forged} progress={progress}/>
           {_.map(delegates, Panel)}
         </Container>
+      <Container>
+        <Payouts />
+      </Container>
       </div>
     );
   } }
