@@ -11,7 +11,7 @@
       "affiliation": "GDT",
       "liskChat": "liskit.me",
       "pool": "http://liskit.me",
-      "lotteryMember": false
+      "required": false
     },
     {
     "delegateName": "dakk",
@@ -25,7 +25,7 @@
     "affiliation": "GDT",
     "liskChat": "dakk_delegate",
     "pool": "https://dakk.github.io/lisk-pool/",
-    "lotteryMember": false
+    "required": false
   },
   {
     "delegateName": "vekexasia",
@@ -39,7 +39,7 @@
     "affiliation": "Freelance",
     "liskChat": "vekexasia",
     "pool": null,
-    "lotteryMember": false
+    "required": false
   },
   {
     "delegateName": "5an1ty",
@@ -53,7 +53,7 @@
     "affiliation": "Freelance",
     "liskChat": "5an1ty",
     "pool": null,
-    "lotteryMember": true
+    "required": true
   },
   {
     "delegateName": "isabella",
@@ -66,7 +66,7 @@
     "affiliation": "Freelance",
     "liskChat": "isabella",
     "pool": null,
-    "lotteryMember": true
+    "required": true
   },
   {
     "delegateName": "cc001",
@@ -80,7 +80,7 @@
     "affiliation": "GDT",
     "liskChat": "cc001",
     "pool": null,
-    "lotteryMember": false
+    "required": false
   },
   {
     "delegateName": "atreides",
@@ -94,7 +94,7 @@
     "affiliation": "Freelance",
     "liskChat": "atreides",
     "pool": null,
-    "lotteryMember": true
+    "required": true
   },
   {
     "delegateName": "gr33ndrag0n",
@@ -105,9 +105,9 @@
       "O": "100"
     },
     "affiliation": "GDT",
-    "liskChat": "Gr33nDrag0n",
+    "liskChat": "Gr33ndrag0n",
     "pool": null,
-    "lotteryMember": false
+    "required": false
   },
   {
     "delegateName": "mrv",
@@ -122,7 +122,7 @@
     "affiliation": "GDT",
     "liskChat": "MrV",
     "pool": "https://lisktools.io/profitShares.php",
-    "lotteryMember": false
+    "required": false
   },
   {
     "delegateName": "wannabe_rotebaron",
@@ -136,7 +136,7 @@
     "affiliation": "Freelance",
     "liskChat": "wannabe_RoteBaron",
     "pool": null,
-    "lotteryMember": true
+    "required": true
   },
   {
     "delegateName": "alepop",
@@ -150,7 +150,7 @@
     "affiliation": "Freelance",
     "liskChat": "alepop",
     "pool": null,
-    "lotteryMember": true
+    "required": true
   },
   {
     "delegateName": "carbonara",
@@ -163,7 +163,7 @@
     "affiliation": "Freelance",
     "liskChat": "carbonara",
     "pool": null,
-    "lotteryMember": false
+    "required": false
   },
   {
     "delegateName": "liskpro.com",
@@ -177,6 +177,6 @@
     "affiliation": "Freelance",
     "liskChat": "LiskPro.com",
     "pool": null,
-    "lotteryMember": false
+    "required": false
   }
 ]

@@ -142,3 +142,6 @@
   border-bottom: 3px solid transparent;
   border-top: 3px solid rgb(87, 100, 198);
 }
+.btn-stats {
+  margin-left: 5px;
+}

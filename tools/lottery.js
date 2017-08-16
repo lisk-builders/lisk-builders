@@ -1,7 +1,8 @@
 const axios = require("axios");
 const delegates = require("../data/delegates.json");
 
-const lotteryMembers = delegates.filter(dg => dg.lotteryMember);
+const lotteryMembers = delegates.filter(dg => dg.required);
+const optionalMembers = delegates.filter(dg => !dg.required);
 const blacklist = lotteryMembers.map(dg => dg.delegateAddress);
 
 const candidates = {};
@@ -49,28 +50,37 @@ const lotto = entries => {
 const drawWinner = (tickets, cleanedEntries) => {
   const winnerId = Math.floor(getRandomArbitrary(0, tickets.length));
   const winner = cleanedEntries[tickets[winnerId]];
-  const winnerData = { address: winner.address, tickets: winner.tickets, amount: 250 };
+  const winnerData = { address: winner.address, tickets: winner.tickets, required: winner.required, optional: winner.optional, amount: 250 };
   console.log(JSON.stringify(winnerData));
   return tickets.filter(e => cleanedEntries[e].address !== winner.address);
 }
 
-axios.all(lotteryMembers.map(getDelegateData)).then(res => {
+axios.all(delegates.map(getDelegateData)).then(res => {
   res.forEach(dg => {
     dg.voters.forEach(vt => {
       if (blacklist.indexOf(vt.address) === -1) {
-        if (!candidates[vt.address]) {
-          candidates[vt.address] = 1;
+        if (dg.required) {
+          if (!candidates[vt.address]) {
+            candidates[vt.address] = { required: 1, optional: 0 };
+          } else {
+            candidates[vt.address].required += 1;
+          }
         } else {
-          candidates[vt.address] += 1;
+          if (!candidates[vt.address]) {
+            candidates[vt.address] = { required: 0, optional: 1 };
+          } else {
+            candidates[vt.address].optional += 1;
+          }
         }
       }
     });
   });
-  const validCandidates = Object.keys(candidates).filter(key => candidates[key] === lotteryMembers.length);
+  const validCandidates = Object.keys(candidates).filter(key => candidates[key].required === lotteryMembers.length);
   Promise.all(
     validCandidates.map(vc => {
       return axios.get(`https://node02.lisk.io/api/accounts/getBalance?address=${vc}`).then(res2 => {
-        return { address: vc, tickets: Math.floor((res2.data.balance ? res2.data.balance : 0) / 100000000) };
+        const tickets = Math.floor(((res2.data.balance ? res2.data.balance : 0) / 100000000) * (1 + ((candidates[vc].optional * 5) / 100)));
+        return { address: vc, required: candidates[vc].required, optional: candidates[vc].optional, tickets };
       });
     })
   )
