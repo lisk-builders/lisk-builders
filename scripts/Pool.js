@@ -17,7 +17,7 @@ const PoolData = props => (
   <div className="column col-12">
     <div className="panel">
       <div className="panel-header text-center">
-        <div className="panel-title">Forged from last payout: <b>{props.forged} LSK</b></div>
+        <div className="panel-title">Forged since last payout: <b>{props.forged} LSK</b></div>
         <div className="panel-subtitle">{ new Date(poolData.updateTimestamp * 1000).toUTCString()}</div>
       </div>
       <div className="panel-body" />
