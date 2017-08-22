@@ -185,12 +185,12 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1366",
     "githubUsername": "karek314",
     "poolPercentage": {
-      "D": "70",
+      "P": "70",
       "O": "30"
     },
     "affiliation": "Freelance",
     "liskChat": "Karek",
-    "pool": true,
+    "pool": "http://thepool.io/",
     "required": false
   }
 ]
