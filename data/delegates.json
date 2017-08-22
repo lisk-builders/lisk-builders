@@ -183,5 +183,19 @@
     "liskChat": "LiskPro.com",
     "pool": null,
     "required": false
+  },
+  {
+    "delegateName": "thepool.io",
+    "delegateAddress": " 10839494368003872009L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1366",
+    "githubUsername": "karek314",
+    "poolPercentage": {
+      "P": "70",
+      "O": "30"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "Karek",
+    "pool": "http://thepool.io/",
+    "required": false
   }
 ]
