@@ -185,6 +185,20 @@
     "required": false
   },
   {
+    "delegateName": "joo5ty",
+    "delegateAddress": "12654423644480926777L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1543",
+    "githubUsername": "Joo5t",
+    "poolPercentage": {
+      "D": "25",
+      "O": "75"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "joo5ty",
+    "pool": null,
+    "required": false
+  },
+  {
     "delegateName": "thepool",
     "delegateAddress": "10839494368003872009L",
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1366",
