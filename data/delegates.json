@@ -47,8 +47,9 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1521",
     "githubUsername": "5an1ty",
     "poolPercentage": {
-      "D": "25",
-      "O": "75"
+      "P": "30",
+      "D": "10",
+      "O": "60"
     },
     "affiliation": "Freelance",
     "liskChat": "5an1ty",
@@ -62,7 +63,9 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=6&t=201",
     "githubUsername": "Isabello",
     "poolPercentage": {
-      "O": "100"
+      "P": "30",
+      "D": "10",
+      "O": "60"
     },
     "affiliation": "Freelance",
     "liskChat": "isabella",
@@ -90,8 +93,9 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=350",
     "githubUsername": "stenea",
     "poolPercentage": {
-      "D": "20",
-      "O": "80"
+      "P": "30",
+      "D": "10",
+      "O": "60"
     },
     "affiliation": "Freelance",
     "liskChat": "atreides",
@@ -133,8 +137,9 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?t=1135",
     "githubUsername": "cezarsn",
     "poolPercentage": {
-      "D": "25",
-      "O": "75"
+      "P": "30",
+      "D": "10",
+      "O": "60"
     },
     "affiliation": "Freelance",
     "liskChat": "wannabe_RoteBaron",
@@ -148,8 +153,9 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?t=1526",
     "githubUsername": "alepop",
     "poolPercentage": {
-      "D": "25",
-      "O": "75"
+      "P": "30",
+      "D": "10",
+      "O": "60"
     },
     "affiliation": "Freelance",
     "liskChat": "alepop",
