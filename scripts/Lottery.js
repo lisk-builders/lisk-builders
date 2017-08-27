@@ -70,12 +70,12 @@ class Lottery extends React.Component {
             if (relevantOptionalVotes.length > 0) {
                  this.setState({
                     showModal: true,
-                    lotteryResult: `You are entered in the lotery! You have also voted for ${relevantOptionalVotes.length} other members, this increases your tickets by ${relevantOptionalVotes.length * 5}%.`,
+                    lotteryResult: `You are entered in the lottery! You have also voted for ${relevantOptionalVotes.length} other members, this increases your tickets by ${relevantOptionalVotes.length * 5}%.`,
                 });               
             } else {
                 this.setState({
                     showModal: true,
-                    lotteryResult: 'You are entered in the lotery!',
+                    lotteryResult: 'You are entered in the lottery!',
                 });
             }
         } else {
