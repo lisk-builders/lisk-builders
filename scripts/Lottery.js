@@ -328,8 +328,12 @@ class Lottery extends React.Component {
                             In addition if you vote for other members your tickets will be increased by <strong>5%</strong> with each vote.
                         </p>
                         <p>
-                            The lottery draws on the last day of every month and
-                            gives out <strong>250 LSK</strong> to{' '}
+                            The lottery winners are drawn at a <b>random point in time</b> during the month.<br/>
+                            This means that removing your votes temporarily puts you at <b>risk of missing out</b>.
+                        </p>
+                        <p>
+                            Payments happen on the last day of every month and
+                            give out <strong>250 LSK</strong> to{' '}
                             <strong>20</strong> winners!
                         </p>
                         <button
