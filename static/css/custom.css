@@ -166,3 +166,12 @@
 .btn-stats {
   margin-left: 5px;
 }
+
+.empty .icon {
+  font-size: 4rem;
+  color: #5764c6;
+}
+
+.empty-help {
+  background: white;
+}

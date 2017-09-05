@@ -1,18 +1,19 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import axios from 'axios';
+import classnames from 'classnames';
 import Container from './Container';
 import Note from './Note';
 import Panel from './Panel';
+import Slack from './Slack';
 import poolData from '../data/pool.json';
 import notes from '../data/notes.json';
-import classnames from 'classnames';
 import { fromRawLsk } from './utils';
 
 const modalClassnames = isActive =>
-    classnames('modal', {
-        active: isActive,
-    });
+  classnames('modal', {
+    active: isActive,
+  });
 
 const getForgedLisk = ({ publicKey }) =>
   axios.get(`https://node01.lisk.io/api/delegates/forging/getForgedByAccount?generatorPublicKey=${publicKey}&start=${poolData.updateTimestamp}`)
@@ -114,7 +115,7 @@ class Pool extends Component {
                 this.setState({
                   showModal: true,
                   poolResult: `You are all set! You have also voted for ${relevantOptionalVotes.length} other members, this increases your payout by ${relevantOptionalVotes.length * 5}%.`,
-              });               
+              });
           } else {
               this.setState({
                   showModal: true,
@@ -220,6 +221,9 @@ class Pool extends Component {
         <Container>
           <PoolData forged={this.state.forged} progress={progress} />
           {_.map(delegates, Panel)}
+        </Container>
+        <Container>
+          <Slack />
         </Container>
         <Container>
           <Payouts />
