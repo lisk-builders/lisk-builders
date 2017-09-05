@@ -1,14 +1,11 @@
-
 import _ from 'lodash';
 import React, { Component } from 'react';
-import Banner from './Banner';
 import Note from './Note';
 import Panel from './Panel';
+import Slack from './Slack';
 import Container from './Container';
-import Lottery from './Lottery';
 import notes from '../data/notes.json';
-import axios from 'axios';
-//<pool delegates={data}/>
+
 export default class Builders extends Component {
   render() {
     const { data } = this.props;
@@ -20,8 +17,10 @@ export default class Builders extends Component {
           </Container>
         </div>
         <Container>
-          {/*<Lottery delegates={data} />*/}
           {_.map(data, Panel)}
+        </Container>
+        <Container>
+          <Slack />
         </Container>
         <div className="bg-gray">
           <Container>
