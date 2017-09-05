@@ -20,7 +20,7 @@ export default class Builders extends Component {
           </Container>
         </div>
         <Container>
-          <Lottery delegates={data} />
+          {/*<Lottery delegates={data} />*/}
           {_.map(data, Panel)}
         </Container>
         <div className="bg-gray">
