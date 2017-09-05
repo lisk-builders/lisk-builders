@@ -113,7 +113,7 @@ class Pool extends Component {
           if (relevantOptionalVotes.length > 0) {
                 this.setState({
                   showModal: true,
-                  poolResult: `You are all set! You have also voted for ${relevantOptionalVotes.length} other members, this increases your payout by ${relevantOptionalVotes.length * 5}%.`,
+                  poolResult: `You are all set! You have also voted for ${relevantOptionalVotes.length} other members, this virtually increases your voting weight by ${relevantOptionalVotes.length * 5}%.`,
               });               
           } else {
               this.setState({
@@ -194,7 +194,11 @@ class Pool extends Component {
                   Make sure you are voting for all <label className="label label-primary">Required</label> members to receive your reward.
                 </p>
                 <p>
-                  In addition if you vote for other members your payout will be increased by <strong>5%</strong> with each vote.
+                  In addition if you vote for other members your voting weight will be virtually increased by <strong>5%</strong> with each vote.<br/>
+                  For instance: if you vote for 8 additional delegates on top the required delegates, your voting weight will be virtually increased by 40%.
+                </p>
+                <p>
+                  However if everyone votes the same way as you, you will not notice any increase in your payout.
                 </p>
               </div>
               <div className="panel-footer">
