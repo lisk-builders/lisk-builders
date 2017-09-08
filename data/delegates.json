@@ -58,20 +58,6 @@
     "required": true
   },
   {
-    "delegateName": "isabella",
-    "delegateAddress": "12668885769632475474L",
-    "proposal": "https://forum.lisk.io/viewtopic.php?f=6&t=201",
-    "githubUsername": "Isabello",
-    "poolPercentage": {
-      "O": "100"
-    },
-    "affiliation": "LiskHQ",
-    "liskChat": "isabella",
-    "pool": null,
-    "poolMember": false,
-    "required": false
-  },
-  {
     "delegateName": "cc001",
     "delegateAddress": "6787154358850114730L",
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=54",
