@@ -63,15 +63,13 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=6&t=201",
     "githubUsername": "Isabello",
     "poolPercentage": {
-      "P": "30",
-      "D": "10",
-      "O": "60"
+      "O": "100"
     },
     "affiliation": "LiskHQ",
     "liskChat": "isabella",
-    "pool": "https://lisk.builders/pool",
-    "poolMember": true,
-    "required": true
+    "pool": null,
+    "poolMember": false,
+    "required": false
   },
   {
     "delegateName": "cc001",
