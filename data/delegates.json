@@ -148,6 +148,22 @@
     "required": true
   },
   {
+    "delegateName": "4fryn",
+    "delegateAddress": "12632212355488748579L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?t=1560",
+    "githubUsername": "4fryn",
+    "poolPercentage": {
+      "P": "80",
+      "D": "15",
+      "O": "5"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "4fryn",
+    "pool": null,
+    "poolMember": false,
+    "required": false
+  },
+  {
     "delegateName": "carbonara",
     "delegateAddress": "6165534766664619667L",
     "proposal": "https://forum.lisk.io/viewtopic.php?t=1530",
