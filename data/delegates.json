@@ -217,5 +217,19 @@
     "liskChat": "Karek",
     "pool": "http://thepool.io/",
     "required": false
+  },
+  {
+    "delegateName": "bioly",
+    "delegateAddress": "7984234674117396356L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=237&p=2331",
+    "githubUsername": "biolypl",
+    "poolPercentage": {
+      "P": "30",
+      "O": "70"
+    },
+    "affiliation": "GDT",
+    "liskChat": "biolypl",
+    "pool": "http://pool.mylisk.com/",
+    "required": false
   }
 ]
