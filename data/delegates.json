@@ -47,9 +47,9 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1521",
     "githubUsername": "5an1ty",
     "poolPercentage": {
-      "P": "30",
+      "P": "40",
       "D": "10",
-      "O": "60"
+      "O": "50"
     },
     "affiliation": "Freelance",
     "liskChat": "5an1ty",
@@ -77,8 +77,8 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=350",
     "githubUsername": "stenea",
     "poolPercentage": {
-      "P": "30",
-      "D": "10",
+      "P": "40",
+      "D": "0",
       "O": "60"
     },
     "affiliation": "Freelance",
@@ -121,8 +121,8 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?t=1135",
     "githubUsername": "cezarsn",
     "poolPercentage": {
-      "P": "30",
-      "D": "10",
+      "P": "40",
+      "D": "0",
       "O": "60"
     },
     "affiliation": "Freelance",
@@ -137,8 +137,8 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?t=1526",
     "githubUsername": "alepop",
     "poolPercentage": {
-      "P": "30",
-      "D": "10",
+      "P": "40",
+      "D": "0",
       "O": "60"
     },
     "affiliation": "Freelance",
