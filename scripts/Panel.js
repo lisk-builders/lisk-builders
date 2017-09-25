@@ -22,11 +22,12 @@ const Panel = ({
     poolPercentage,
     affiliation,
     liskChat,
-    required
+    required,
+    featured
 }) =>
     <div key={rank} className="column col-xs-12 col-sm-12 col-md-6 col-4">
         <div className="panel rel">
-            { required && <Ribbon text='required'/> }
+            { featured && <Ribbon text='featured'/> }
             <div className="panel-header text-center">
                 <figure
                     className="avatar avatar-lg"

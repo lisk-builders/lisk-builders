@@ -11,7 +11,9 @@
       "affiliation": "GDT",
       "liskChat": "liskit.me",
       "pool": "http://liskit.me",
-      "required": false
+      "poolMember": false,
+      "required": false,
+      "featured": false
     },
     {
     "delegateName": "dakk",
@@ -25,7 +27,9 @@
     "affiliation": "GDT",
     "liskChat": "dakk_delegate",
     "pool": "https://dakk.github.io/lisk-pool/",
-    "required": false
+    "poolMember": false,
+    "required": false,
+    "featured": false
   },
   {
     "delegateName": "vekexasia",
@@ -39,7 +43,9 @@
     "affiliation": "GDT",
     "liskChat": "vekexasia",
     "pool": null,
-    "required": false
+    "poolMember": false,
+    "required": false,
+    "featured": false
   },
   {
     "delegateName": "5an1ty",
@@ -47,15 +53,16 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1521",
     "githubUsername": "5an1ty",
     "poolPercentage": {
-      "P": "40",
-      "D": "10",
-      "O": "50"
+      "P": "5",
+      "D": "20",
+      "O": "75"
     },
     "affiliation": "Freelance",
     "liskChat": "5an1ty",
-    "pool": "https://lisk.builders/pool",
-    "poolMember": true,
-    "required": true
+    "pool": null,
+    "poolMember": false,
+    "required": false,
+    "featured": true
   },
   {
     "delegateName": "cc001",
@@ -69,7 +76,9 @@
     "affiliation": "GDT",
     "liskChat": "cc001",
     "pool": null,
-    "required": false
+    "poolMember": false,
+    "required": false,
+    "featured": false
   },
   {
     "delegateName": "atreides",
@@ -84,8 +93,9 @@
     "affiliation": "Freelance",
     "liskChat": "atreides",
     "pool": "https://lisk.builders/pool",
-    "poolMember": true,
-    "required": true
+    "poolMember": false,
+    "required": false,
+    "featured": false
   },
   {
     "delegateName": "gr33ndrag0n",
@@ -98,7 +108,9 @@
     "affiliation": "GDT",
     "liskChat": "Gr33ndrag0n",
     "pool": null,
-    "required": false
+    "poolMember": false,
+    "required": false,
+    "featured": false
   },
   {
     "delegateName": "mrv",
@@ -113,7 +125,9 @@
     "affiliation": "GDT",
     "liskChat": "MrV",
     "pool": "https://lisktools.io/profitShares.php",
-    "required": false
+    "poolMember": false,
+    "required": false,
+    "featured": false
   },
   {
     "delegateName": "wannabe_rotebaron",
@@ -128,8 +142,9 @@
     "affiliation": "Freelance",
     "liskChat": "wannabe_RoteBaron",
     "pool": "https://lisk.builders/pool",
-    "poolMember": true,
-    "required": true
+    "poolMember": false,
+    "required": false,
+    "featured": false
   },
   {
     "delegateName": "alepop",
@@ -144,8 +159,9 @@
     "affiliation": "Freelance",
     "liskChat": "alepop",
     "pool": "https://lisk.builders/pool",
-    "poolMember": true,
-    "required": true
+    "poolMember": false,
+    "required": false,
+    "featured": true
   },
   {
     "delegateName": "4fryn",
@@ -161,7 +177,8 @@
     "liskChat": "4fryn",
     "pool": null,
     "poolMember": false,
-    "required": false
+    "required": false,
+    "featured": false
   },
   {
     "delegateName": "carbonara",
@@ -174,7 +191,9 @@
     "affiliation": "Freelance",
     "liskChat": "carbonara",
     "pool": null,
-    "required": false
+    "poolMember": false,
+    "required": false,
+    "featured": true
   },
   {
     "delegateName": "liskpro.com",
@@ -188,7 +207,9 @@
     "affiliation": "Freelance",
     "liskChat": "LiskPro.com",
     "pool": null,
-    "required": false
+    "poolMember": false,
+    "required": false,
+    "featured": false
   },
   {
     "delegateName": "joo5ty",
@@ -202,7 +223,9 @@
     "affiliation": "Freelance",
     "liskChat": "joo5ty",
     "pool": null,
-    "required": false
+    "poolMember": false,
+    "required": false,
+    "featured": false
   },
   {
     "delegateName": "thepool",
@@ -216,7 +239,9 @@
     "affiliation": "Freelance",
     "liskChat": "Karek",
     "pool": "http://thepool.io/",
-    "required": false
+    "poolMember": false,
+    "required": false,
+    "featured": false
   },
   {
     "delegateName": "bioly",
@@ -230,6 +255,8 @@
     "affiliation": "GDT",
     "liskChat": "biolypl",
     "pool": "http://pool.mylisk.com/",
-    "required": false
+    "poolMember": false,
+    "required": false,
+    "featured": false
   }
 ]

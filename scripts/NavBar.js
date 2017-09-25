@@ -13,7 +13,7 @@ export default () => (
         </section>
         <section className="navbar-section">
           <Link to='/' className="btn btn-link">Builders</Link>
-          <Link to='/pool' className="btn btn-link">Pool</Link>
+          {/*<Link to='/pool' className="btn btn-link">Pool</Link>*/}
         </section>
       </header> 
     </div>
