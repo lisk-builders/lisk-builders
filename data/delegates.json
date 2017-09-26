@@ -258,5 +258,21 @@
     "poolMember": false,
     "required": false,
     "featured": false
+  },
+  {
+    "delegateName": "pelops",
+    "delegateAddress": "6669300595452632273L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1576",
+    "githubUsername": "cb0",
+    "poolPercentage": {
+      "D": "90",
+      "O": "10"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "cb0",
+    "pool": null,
+    "poolMember": false,
+    "required": false,
+    "featured": false
   }
 ]
