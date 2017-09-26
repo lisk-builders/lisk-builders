@@ -15,7 +15,7 @@ export default class App extends Component {
         <Banner />
         <Switch>
           <Route exact path='/' render={() => <Builders data={data} />} />
-          <Route exact path='/pool' render={() => <Pool delegates={data} />} />
+          {/* <Route exact path='/pool' render={() => <Pool delegates={data} />} /> */}
         </Switch>
       </div>
     );
