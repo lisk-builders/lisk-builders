@@ -225,7 +225,7 @@
     "pool": null,
     "poolMember": false,
     "required": false,
-    "featured": false
+    "featured": true
   },
   {
     "delegateName": "thepool",
