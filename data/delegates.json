@@ -59,7 +59,7 @@
     },
     "affiliation": "Freelance",
     "liskChat": "5an1ty",
-    "pool": null,
+    "pool": "https://pool.liskgdt.net",
     "poolMember": false,
     "required": false,
     "featured": true
@@ -92,7 +92,7 @@
     },
     "affiliation": "Freelance",
     "liskChat": "atreides",
-    "pool": "https://lisk.builders/pool",
+    "pool": null,
     "poolMember": false,
     "required": false,
     "featured": false
@@ -141,7 +141,7 @@
     },
     "affiliation": "Freelance",
     "liskChat": "wannabe_RoteBaron",
-    "pool": "https://lisk.builders/pool",
+    "pool": null,
     "poolMember": false,
     "required": false,
     "featured": false
@@ -158,7 +158,7 @@
     },
     "affiliation": "Freelance",
     "liskChat": "alepop",
-    "pool": "https://lisk.builders/pool",
+    "pool": null,
     "poolMember": false,
     "required": false,
     "featured": true
