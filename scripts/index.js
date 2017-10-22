@@ -39,7 +39,7 @@ const renderDom = res => {
   render(
     <BrowserRouter>
       <App data={sortedData} />
-    </BrowserRouter>, 
+    </BrowserRouter>,
     document.getElementById('root'));
 };
 
