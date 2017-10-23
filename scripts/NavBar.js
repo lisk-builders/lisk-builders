@@ -14,6 +14,7 @@ export default () => (
           <section className="navbar-section">
             <Link to="/" className="btn btn-link">Builders</Link>
             <Link to="/contributions" className="btn btn-link">Contributions</Link>
+            <Link to="/votemanager" className="btn btn-link">Vote Manager</Link>
           </section>
         </header>
       </div>
