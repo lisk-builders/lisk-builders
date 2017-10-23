@@ -1,10 +1,9 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Banner from './Banner';
 import Builders from './Builders';
-import Pool from './Pool';
+import Contributions from './Contributions';
 import NavBar from './NavBar';
-import { Route, Switch } from 'react-router-dom';
 
 export default class App extends Component {
   render() {
@@ -14,8 +13,8 @@ export default class App extends Component {
         <NavBar />
         <Banner />
         <Switch>
-          <Route exact path='/' render={() => <Builders data={data} />} />
-          {/* <Route exact path='/pool' render={() => <Pool delegates={data} />} /> */}
+          <Route exact path="/" render={() => <Builders data={data} />} />
+          <Route exact path="/contributions" render={() => <Contributions />} />
         </Switch>
       </div>
     );

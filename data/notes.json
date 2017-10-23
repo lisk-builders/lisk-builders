@@ -21,5 +21,10 @@
       "Payouts will happen every Saturday at 10 AM UTC and a minimum payout amount of 1 LSK is required.",
       "The first pooled blocks will be forged on Saturday the 26th of August, be sure to have your votes locked in!"
     ]
+  },
+  "note4": {
+    "p": [
+    "Making Lisk better block by block is not just a catchphrase, we actually strive for that! lisk.builders is an organisation on GitHub where we group all projects that we work on as a team.","Below you can find a list of those projects with a little clarification."
+    ]
   }
 }
