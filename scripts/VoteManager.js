@@ -5,22 +5,14 @@ import Container from './Container';
 
 const url = 'https://node01.lisk.io/api/delegates';
 
-const renderRow = (delegate) => (
-  <tr key={delegate.rank} className="active">
-    <td>{delegate.rank}</td>
-    <td>{delegate.username}</td>
-    <td>{`${delegate.productivity}%`}</td>
-    <td>{`${delegate.approval}%`}</td>
-  </tr>
-);
-
 export default class VoteManager extends Component {
 
   constructor() {
     super();
     this.state = {
       loaded: false,
-      data: null
+      data: [],
+      selectedDelegates: []
     };
   }
 
@@ -34,6 +26,39 @@ export default class VoteManager extends Component {
         console.warn(res);
       });
   }
+
+  selectDelegate = (delegate) => {
+    let delegates = [];
+    let selectedDelegates = [];
+    if (delegate.selected) {
+      selectedDelegates = this.state.selectedDelegates.filter(dg =>
+        dg !== delegate.username
+      );
+    } else {
+      selectedDelegates.push(delegate.username);
+    }
+    delegates = this.state.data.map(dg => {
+      const newDg = dg;
+      if (dg.username === delegate.username) {
+        newDg.selected = !newDg.selected;
+      }
+      return newDg;
+    });
+    this.setState({delegates, selectedDelegates });
+  }
+
+  renderRow = (delegate) => (
+    <tr key={delegate.rank} className={delegate.selected ? 'active' : null} onClick={() => this.selectDelegate(delegate)}>
+      <td>
+        <input type="checkbox" checked={!!delegate.selected} />
+        <i className="form-icon"></i>
+      </td>
+      <td>{delegate.rank}</td>
+      <td>{delegate.username}</td>
+      <td>{`${delegate.productivity}%`}</td>
+      <td>{`${delegate.approval}%`}</td>
+    </tr>
+  );
 
   render() {
     return (
@@ -53,6 +78,7 @@ export default class VoteManager extends Component {
           <table className="table table-striped table-hover">
             <thead>
               <tr>
+                <th />
                 <th>rank</th>
                 <th>username</th>
                 <th>productivity</th>
@@ -60,7 +86,7 @@ export default class VoteManager extends Component {
               </tr>
             </thead>
             <tbody>
-              { this.state.loaded ? this.state.data.map(renderRow) : null }
+              { this.state.loaded ? this.state.data.map(this.renderRow) : null }
             </tbody>
           </table>
         </Container>
