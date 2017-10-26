@@ -13,16 +13,32 @@ export default class VoteManager extends Component {
       loaded: false,
       data: [],
       selectedDelegates: [],
-      selectedPage: 0
+      selectedPage: 1,
+      totalPages: 1
     };
   }
 
   componentDidMount() {
-    axios.get(`${url}?limit=101&offset=0`)
-      .then(res => this.setState({
-        data: res.data.delegates,
-        loaded: true
-      }))
+    this.navigate(1);
+  }
+
+  navigate(page) {
+    axios.get(`${url}?limit=101&offset=${(page - 1) * 101}`)
+      .then(res => {
+        const delegates = res.data.delegates.map(dg => {
+          const delegate = { ...dg };
+          delegate.selected = this.state.selectedDelegates.find(sd => sd === dg.username) !== undefined;
+          return delegate;
+        });
+        console.log(res.data);
+        const totalPages = 1 + Math.floor((res.data.totalCount - 1) / 101);
+        return this.setState({
+          selectedPage: page,
+          data: delegates,
+          loaded: true,
+          totalPages
+        });
+      })
       .catch(res => {
         console.warn(res);
       });
@@ -30,9 +46,9 @@ export default class VoteManager extends Component {
 
   selectDelegate = (delegate) => {
     let delegates = [];
-    let selectedDelegates = [];
+    let selectedDelegates = this.state.selectedDelegates;
     if (delegate.selected) {
-      selectedDelegates = this.state.selectedDelegates.filter(dg =>
+      selectedDelegates = selectedDelegates.filter(dg =>
         dg !== delegate.username
       );
     } else {
@@ -45,13 +61,13 @@ export default class VoteManager extends Component {
       }
       return newDg;
     });
-    this.setState({delegates, selectedDelegates });
+    this.setState({ delegates, selectedDelegates });
   }
 
   renderRow = (delegate) => (
     <tr key={delegate.rank} className={delegate.selected ? 'active' : null} onClick={() => this.selectDelegate(delegate)}>
       <td>
-        <input type="checkbox" checked={!!delegate.selected} />
+        <input type="checkbox" checked={!!delegate.selected} onChange={() => true} />
         <i className="form-icon"></i>
       </td>
       <td>{delegate.rank}</td>
@@ -92,26 +108,30 @@ export default class VoteManager extends Component {
           </table>
           <div className="centered">
             <ul className="pagination">
-              <li className="page-item disabled">
-                <a href="#" tabIndex="-1">Previous</a>
+              <li className="page-item">
+                <a href="#scroll" tabIndex="-1" disabled={this.state.selectedPage <= 1} onClick={() => this.navigate(this.state.selectedPage - 1)}>Previous</a>
               </li>
+              { this.state.selectedPage - 1 > 0 &&
+                <li className="page-item">
+                  <a href="#scroll" onClick={() => this.navigate(this.state.selectedPage - 1)}>{ this.state.selectedPage - 1 }</a>
+                </li>
+              }
               <li className="page-item active">
-                <a href="#">1</a>
+                <a href="#scroll" onClick={() => this.navigate(this.state.selectedPage )}>{ this.state.selectedPage }</a>
               </li>
-              <li className="page-item">
-                <a href="#">2</a>
-              </li>
-              <li className="page-item">
-                <a href="#">3</a>
-              </li>
+              { this.state.selectedPage + 1 <= this.state.totalPages &&
+                <li className="page-item">
+                  <a href="#scroll" onClick={() => this.navigate(this.state.selectedPage + 1)}>{ this.state.selectedPage + 1 }</a>
+                </li>
+              }
               <li className="page-item">
                 <span>...</span>
               </li>
               <li className="page-item">
-                <a href="#">12</a>
+                <a href="#scroll" onClick={() => this.navigate(this.state.totalPages)}>{this.state.totalPages}</a>
               </li>
               <li className="page-item">
-                <a href="#">Next</a>
+                <a href="#scroll" disabled={this.state.selectedPage >= this.state.totalPages} onClick={(e) => this.navigate(this.state.selectedPage + 1)}>Next</a>
               </li>
             </ul>
           </div>
