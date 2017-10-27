@@ -30,7 +30,6 @@ export default class VoteManager extends Component {
           delegate.selected = this.state.selectedDelegates.find(sd => sd === dg.username) !== undefined;
           return delegate;
         });
-        console.log(res.data);
         const totalPages = 1 + Math.floor((res.data.totalCount - 1) / 101);
         return this.setState({
           selectedPage: page,
