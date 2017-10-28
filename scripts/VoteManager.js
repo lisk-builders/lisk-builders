@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Slack from './Slack';
 import Container from './Container';
+import delegates from '../data/delegates.json';
 
 const url = 'https://node01.lisk.io/api/delegates';
 
@@ -43,30 +44,41 @@ export default class VoteManager extends Component {
       });
   }
 
-  selectDelegate = (delegate) => {
-    let delegates = [];
-    let selectedDelegates = this.state.selectedDelegates;
-    if (delegate.selected) {
+  toggleDelegate = (delegate) => {
+    let selectedDelegates = [...this.state.selectedDelegates];
+    if (selectedDelegates.find(username => username === delegate.username)) {
       selectedDelegates = selectedDelegates.filter(dg =>
         dg !== delegate.username
       );
     } else {
       selectedDelegates.push(delegate.username);
     }
-    delegates = this.state.data.map(dg => {
-      const newDg = dg;
-      if (dg.username === delegate.username) {
-        newDg.selected = !newDg.selected;
+    this.setState({ selectedDelegates });
+  }
+
+  selectDelegates(delegateUsernames) {
+    const selectedDelegates = [...this.state.selectedDelegates];
+    delegateUsernames.forEach(delegateUsername => {
+      if (!selectedDelegates.find(username => username === delegateUsername)) {
+        selectedDelegates.push(delegateUsername);
       }
-      return newDg;
     });
-    this.setState({ delegates, selectedDelegates });
+    this.setState({ selectedDelegates });
+  }
+
+  isSelected(delegateUsername) {
+    return this.state.selectedDelegates.find(username => username === delegateUsername) !== undefined;
+  }
+
+  selectLiskBuilders() {
+    const builders = delegates.map(dg => dg.delegateName);
+    this.selectDelegates(builders);
   }
 
   renderRow = (delegate) => (
-    <tr key={delegate.rank} className={delegate.selected ? 'active' : null} onClick={() => this.selectDelegate(delegate)}>
+    <tr key={delegate.rank} className={this.isSelected(delegate.username) ? 'active' : null} onClick={() => this.toggleDelegate(delegate)}>
       <td>
-        <input type="checkbox" checked={!!delegate.selected} onChange={() => true} />
+        <input type="checkbox" checked={this.isSelected(delegate.username)} onChange={() => true} />
         <i className="form-icon"></i>
       </td>
       <td>{delegate.rank}</td>
@@ -91,7 +103,7 @@ export default class VoteManager extends Component {
             </div>
           </form>
           { !this.state.loaded ? <div className="loading" /> : null }
-          <table className="table table-striped table-hover">
+          <table className="table table-striped table-hover col-12">
             <thead>
               <tr>
                 <th />
@@ -133,6 +145,9 @@ export default class VoteManager extends Component {
                 <a href="#scroll" disabled={this.state.selectedPage >= this.state.totalPages} onClick={(e) => this.navigate(this.state.selectedPage + 1)}>Next</a>
               </li>
             </ul>
+          </div>
+          <div className="col-12">
+            <button className="btn" onClick={() => this.selectLiskBuilders()}>Vote Lisk.Builders</button>
           </div>
         </Container>
         <Container>
