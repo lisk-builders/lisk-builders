@@ -20,12 +20,14 @@ const url = 'https://node01.lisk.io/api/delegates';
 
 export default class VoteManager extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    // @alepop from the other component where you need to fill in your address to "log in" I would like to receive:
+    // a prop called initialVotes, which is the existing votes for that account
     this.state = {
       loaded: false,
       data: [],
-      selectedDelegates: [],
+      selectedDelegates: this.props.initialVotes ? this.props.initialVotes : [],
       selectedPage: 1,
       totalPages: 1
     };
@@ -35,6 +37,15 @@ export default class VoteManager extends Component {
 
   componentDidMount() {
     this.navigate(1);
+  }
+
+  getVoteUnvoteList() {
+    // @alepop this function should return the list of delegates to be voted / unvoted by your lisk-buttons
+    const voteList = this.state.selectedDelegates;
+    const unvoteList = this.props.initialVotes.filter(iv =>
+      !this.state.selectedDelegates.find(dg => dg === iv)
+    );
+    return { voteList, unvoteList };
   }
 
   search(qs) {
@@ -143,6 +154,9 @@ export default class VoteManager extends Component {
     return (
       <div>
         <Container>
+          {
+            // @alepop this search form could use some styling.
+          }
           <form className="form-horizontal col-12">
             <div className="form-group">
               <div className="col-3">
@@ -204,6 +218,17 @@ export default class VoteManager extends Component {
             <button className="btn" onClick={() => this.selectElite()}>Select Elite</button>
             <button className="btn" onClick={() => this.selectShw()}>Select Sherwood</button>
           </div>
+          {
+            // @alepop would be cool if the tracker of how many remaining votes you had would be floating next to the table that way the user is always informed of how many votes he/she has left
+          }
+          <div className="col-12">
+            <span className={`label label-${this.state.selectedDelegates.length > 101 ? 'error' : 'primary'}`}>
+              {this.state.selectedDelegates.length}/101 Votes
+            </span>
+          </div>
+          {
+            // @alepop the button to submit the votes should probably be here towards the bottom and should be disabled if selectedDelegates > 101
+          }
         </Container>
         <Container>
           <Slack />
