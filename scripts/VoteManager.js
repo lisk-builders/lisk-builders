@@ -3,6 +3,7 @@ import axios from 'axios';
 import Slack from './Slack';
 import Container from './Container';
 import delegates from '../data/delegates.json';
+import groups from '../data/groups.json';
 
 const url = 'https://node01.lisk.io/api/delegates';
 
@@ -73,6 +74,25 @@ export default class VoteManager extends Component {
   selectLiskBuilders() {
     const builders = delegates.map(dg => dg.delegateName);
     this.selectDelegates(builders);
+  }
+
+  selectGDT() {
+    const GDT = groups.gdt;
+    this.selectDelegates(GDT);
+  }
+
+  selectElite() {
+    const elite = groups.elite;
+    this.selectDelegates(elite);
+  }
+
+  selectShw() {
+    const shw = groups.shw;
+    this.selectDelegates(shw);
+  }
+
+  resetSelectedDelegates() {
+    this.setState({ selectedDelegates: [] });
   }
 
   renderRow = (delegate) => (
@@ -146,8 +166,12 @@ export default class VoteManager extends Component {
               </li>
             </ul>
           </div>
-          <div className="col-12">
-            <button className="btn" onClick={() => this.selectLiskBuilders()}>Vote Lisk.Builders</button>
+          <div className="btn-group btn-group-block col-12">
+            <button className="btn" onClick={() => this.resetSelectedDelegates()}>Reset Selection</button>
+            <button className="btn" onClick={() => this.selectLiskBuilders()}>Select Lisk.Builders</button>
+            <button className="btn" onClick={() => this.selectGDT()}>Select GDT</button>
+            <button className="btn" onClick={() => this.selectElite()}>Select Elite</button>
+            <button className="btn" onClick={() => this.selectShw()}>Select Sherwood</button>
           </div>
         </Container>
         <Container>
