@@ -2,8 +2,19 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Slack from './Slack';
 import Container from './Container';
-import delegates from '../data/delegates.json';
+import liskbuilders from '../data/delegates.json';
 import groups from '../data/groups.json';
+
+function debounce(fn, delay) {
+  let timer = null;
+  return function debounced(...args) {
+    const context = this;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fn.apply(context, args);
+    }, delay);
+  };
+}
 
 const url = 'https://node01.lisk.io/api/delegates';
 
@@ -18,24 +29,44 @@ export default class VoteManager extends Component {
       selectedPage: 1,
       totalPages: 1
     };
+    this.debouncedSearch = debounce(this.search, 400).bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
     this.navigate(1);
   }
 
+  search(qs) {
+    if (qs) {
+      axios.get(`${url}/search?q=${qs}&orderBy=username:asc`)
+        .then(res => {
+          if (res.data.success) {
+            this.setState({ data: res.data.delegates });
+            return true;
+          } else {
+            return false;
+          }
+        })
+        .catch(res => {
+          console.warn(res);
+        });
+    } else {
+      this.navigate(this.state.selectedPage);
+    } 
+  }
+
+  handleSearch(event) {
+    this.debouncedSearch(event.target.value);
+  }
+
   navigate(page) {
     axios.get(`${url}?limit=101&offset=${(page - 1) * 101}`)
       .then(res => {
-        const delegates = res.data.delegates.map(dg => {
-          const delegate = { ...dg };
-          delegate.selected = this.state.selectedDelegates.find(sd => sd === dg.username) !== undefined;
-          return delegate;
-        });
         const totalPages = 1 + Math.floor((res.data.totalCount - 1) / 101);
         return this.setState({
           selectedPage: page,
-          data: delegates,
+          data: res.data.delegates,
           loaded: true,
           totalPages
         });
@@ -72,7 +103,7 @@ export default class VoteManager extends Component {
   }
 
   selectLiskBuilders() {
-    const builders = delegates.map(dg => dg.delegateName);
+    const builders = liskbuilders.map(dg => dg.delegateName);
     this.selectDelegates(builders);
   }
 
@@ -118,7 +149,7 @@ export default class VoteManager extends Component {
                 <label className="form-label" htmlFor="input-example-1">Address</label>
               </div>
               <div className="col-9">
-                <input className="form-input" type="text" id="input-example-1" placeholder="Address" />
+                <input className="form-input" type="text" id="input-example-1" placeholder="Address" onKeyUp={this.handleSearch} />
               </div>
             </div>
           </form>
