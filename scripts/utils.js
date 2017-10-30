@@ -17,3 +17,17 @@ export const fromRawLsk = value => (
 export const toRawLsk = value => (
   new BigNumber(value * new BigNumber(10).pow(8)).round(0).toNumber()
 );
+
+export const debounce = (fn, delay) => {
+  let timer = null;
+  return (...args) => {
+    const context = this;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(context, args);
+    }, delay);
+  };
+};
+
+export const listDiff = (a, b) => a.filter(el => b.indexOf(el) === -1);
+

@@ -4,19 +4,16 @@ import Slack from './Slack';
 import Container from './Container';
 import liskbuilders from '../data/delegates.json';
 import groups from '../data/groups.json';
-
-function debounce(fn, delay) {
-  let timer = null;
-  return function debounced(...args) {
-    const context = this;
-    clearTimeout(timer);
-    timer = setTimeout(function () {
-      fn.apply(context, args);
-    }, delay);
-  };
-}
+import { listDiff, debounce } from './utils';
 
 const url = 'https://node01.lisk.io/api/delegates';
+
+const delegateSet = {
+  builders: liskbuilders.map(dg => dg.delegateName),
+  gdt: groups.gdt,
+  elite: groups.elite,
+  sherwood: groups.shw
+};
 
 export default class VoteManager extends Component {
 
@@ -29,7 +26,8 @@ export default class VoteManager extends Component {
       data: [],
       selectedDelegates: this.props.initialVotes ? this.props.initialVotes : [],
       selectedPage: 1,
-      totalPages: 1
+      totalPages: 1,
+      selectedSet: []
     };
     this.debouncedSearch = debounce(this.search, 400).bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -64,7 +62,7 @@ export default class VoteManager extends Component {
         });
     } else {
       this.navigate(this.state.selectedPage);
-    } 
+    }
   }
 
   handleSearch(event) {
@@ -99,43 +97,61 @@ export default class VoteManager extends Component {
     this.setState({ selectedDelegates });
   }
 
-  selectDelegates(delegateUsernames) {
-    const selectedDelegates = [...this.state.selectedDelegates];
-    delegateUsernames.forEach(delegateUsername => {
-      if (!selectedDelegates.find(username => username === delegateUsername)) {
-        selectedDelegates.push(delegateUsername);
-      }
-    });
+  toggleDelegates(delegateUsernames, key) {
+    const delegateDiff = this.getDelegatesDiff(delegateUsernames, key);
+    const currentSelectedDelegates = [...this.state.selectedDelegates];
+    const delegates = delegateDiff.length > 0 ? delegateDiff : delegateUsernames;
+
+    const selectedDelegates = delegates.reduce((acc, delegateName) =>
+      acc.indexOf(delegateName) !== -1 ?
+        acc.filter(el => el !== delegateName) :
+        [...acc, delegateName]
+    , currentSelectedDelegates);
     this.setState({ selectedDelegates });
   }
 
+  getDelegatesDiff(delegateUsernames, key) {
+    const selectedGroups = this.state.selectedSet.filter(k => k !== key).map(k => delegateSet[k]);
+    return selectedGroups.reduce((acc, group) => listDiff(acc, group), delegateUsernames);
+  }
+
   isSelected(delegateUsername) {
-    return this.state.selectedDelegates.find(username => username === delegateUsername) !== undefined;
+    return this.state.selectedDelegates
+      .find(username => username === delegateUsername) !== undefined;
   }
 
-  selectLiskBuilders() {
-    const builders = liskbuilders.map(dg => dg.delegateName);
-    this.selectDelegates(builders);
-  }
-
-  selectGDT() {
-    const GDT = groups.gdt;
-    this.selectDelegates(GDT);
-  }
-
-  selectElite() {
-    const elite = groups.elite;
-    this.selectDelegates(elite);
-  }
-
-  selectShw() {
-    const shw = groups.shw;
-    this.selectDelegates(shw);
+  selectPreset(key) {
+    const delegates = delegateSet[key];
+    this.setState(
+      { selectedSet: this.state.selectedSet.includes(key) ?
+        this.state.selectedSet.filter(el => el !== key) :
+        [...this.state.selectedSet, key]
+      }, this.toggleDelegates.bind(this, delegates, key));
   }
 
   resetSelectedDelegates() {
     this.setState({ selectedDelegates: [] });
   }
+
+  getFilterData() {
+    return [
+      { title: 'Lisk Builders', set: 'builders' },
+      { title: 'GDT', set: 'gdt' },
+      { title: 'Elite', set: 'elite'},
+      { title: 'Sherwood', set: 'sherwood' },
+    ];
+  }
+
+  renderFilters() {
+    return this.getFilterData().map(({ title, set }, i) => (
+      <div className="col-6" key={i}>
+        <label className="form-switch">
+          <input type="checkbox" onChange={() => this.selectPreset(set)}/>
+          <i className="form-icon"></i> { title }
+        </label>
+      </div>
+    ))
+  };
 
   renderRow = (delegate) => (
     <tr key={delegate.rank} className={this.isSelected(delegate.username) ? 'active' : null} onClick={() => this.toggleDelegate(delegate)}>
@@ -157,7 +173,7 @@ export default class VoteManager extends Component {
           {
             // @alepop this search form could use some styling.
           }
-          <form className="form-horizontal col-12">
+          <div className="form-horizontal col-12">
             <div className="form-group">
               <div className="col-3">
                 <label className="form-label" htmlFor="input-example-1">Address</label>
@@ -166,7 +182,12 @@ export default class VoteManager extends Component {
                 <input className="form-input" type="text" id="input-example-1" placeholder="Address" onKeyUp={this.handleSearch} />
               </div>
             </div>
-          </form>
+            <div className="form-group">
+              { this.renderFilters() }
+            </div>
+          </div>
+        </Container>
+        <Container>
           { !this.state.loaded ? <div className="loading" /> : null }
           <table className="table table-striped table-hover col-12">
             <thead>
@@ -210,13 +231,6 @@ export default class VoteManager extends Component {
                 <a href="#scroll" disabled={this.state.selectedPage >= this.state.totalPages} onClick={(e) => this.navigate(this.state.selectedPage + 1)}>Next</a>
               </li>
             </ul>
-          </div>
-          <div className="btn-group btn-group-block col-12">
-            <button className="btn" onClick={() => this.resetSelectedDelegates()}>Reset Selection</button>
-            <button className="btn" onClick={() => this.selectLiskBuilders()}>Select Lisk.Builders</button>
-            <button className="btn" onClick={() => this.selectGDT()}>Select GDT</button>
-            <button className="btn" onClick={() => this.selectElite()}>Select Elite</button>
-            <button className="btn" onClick={() => this.selectShw()}>Select Sherwood</button>
           </div>
           {
             // @alepop would be cool if the tracker of how many remaining votes you had would be floating next to the table that way the user is always informed of how many votes he/she has left
