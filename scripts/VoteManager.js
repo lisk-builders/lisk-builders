@@ -29,7 +29,7 @@ export default class VoteManager extends Component {
       totalPages: 1,
       selectedSet: []
     };
-    this.debouncedSearch = debounce(this.search, 400).bind(this);
+    this.debouncedSearch = debounce(this.search.bind(this), 400).bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
 
@@ -44,25 +44,6 @@ export default class VoteManager extends Component {
       !this.state.selectedDelegates.find(dg => dg === iv)
     );
     return { voteList, unvoteList };
-  }
-
-  search(qs) {
-    if (qs) {
-      axios.get(`${url}/search?q=${qs}&orderBy=username:asc`)
-        .then(res => {
-          if (res.data.success) {
-            this.setState({ data: res.data.delegates });
-            return true;
-          } else {
-            return false;
-          }
-        })
-        .catch(res => {
-          console.warn(res);
-        });
-    } else {
-      this.navigate(this.state.selectedPage);
-    }
   }
 
   handleSearch(event) {
@@ -152,6 +133,25 @@ export default class VoteManager extends Component {
       { title: 'Elite', set: 'elite'},
       { title: 'Sherwood', set: 'sherwood' },
     ];
+  }
+
+  search(qs) {
+    if (qs) {
+      axios.get(`${url}/search?q=${qs}&orderBy=username:asc`)
+        .then(res => {
+          if (res.data.success) {
+            this.setState({ data: res.data.delegates });
+            return true;
+          } else {
+            return false;
+          }
+        })
+        .catch(res => {
+          console.warn(res);
+        });
+    } else {
+      this.navigate(this.state.selectedPage);
+    }
   }
 
   renderFilters() {
