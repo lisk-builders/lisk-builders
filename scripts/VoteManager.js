@@ -100,19 +100,31 @@ export default class VoteManager extends Component {
   toggleDelegates(delegateUsernames, key) {
     const delegateDiff = this.getDelegatesDiff(delegateUsernames, key);
     const currentSelectedDelegates = [...this.state.selectedDelegates];
-    const delegates = delegateDiff.length > 0 ? delegateDiff : delegateUsernames;
+    const delegates = delegateDiff.length > 0 ?  delegateDiff : delegateUsernames;
+    if (this.state.selectedSet.indexOf(key) === -1) {
+      this.setState({
+        selectedDelegates: currentSelectedDelegates.filter(el => delegates.indexOf(el) === -1)
+      });
+    } else {
+      this.setState({
+        selectedDelegates: [...currentSelectedDelegates, ...delegates]
+      });
+    }
 
-    const selectedDelegates = delegates.reduce((acc, delegateName) =>
-      acc.indexOf(delegateName) !== -1 ?
-        acc.filter(el => el !== delegateName) :
-        [...acc, delegateName]
-    , currentSelectedDelegates);
-    this.setState({ selectedDelegates });
+    // const selectedDelegates = delegates.reduce((acc, delegateName) =>
+    //   acc.indexOf(delegateName) !== -1 ?
+    //     acc.filter(el => el !== delegateName) :
+    //     [...acc, delegateName]
+    // , currentSelectedDelegates);
+    // this.setState({ selectedDelegates });
   }
 
   getDelegatesDiff(delegateUsernames, key) {
-    const selectedGroups = this.state.selectedSet.filter(k => k !== key).map(k => delegateSet[k]);
-    return selectedGroups.reduce((acc, group) => listDiff(acc, group), delegateUsernames);
+    const selectedGroups = this.state.selectedSet
+      .filter(k => k !== key)
+      .map(k => delegateSet[k])
+      .reduce((acc, group) => listDiff(acc, group), delegateUsernames);
+    return selectedGroups;
   }
 
   isSelected(delegateUsername) {
