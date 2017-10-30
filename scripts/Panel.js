@@ -3,13 +3,7 @@ import classnames from 'classnames';
 import Bar from './Bar';
 import Ribbon from './Ribbon';
 import { GitHub } from './Icons';
-
-const rankClassNames = rank =>
-    classnames('label float-right', {
-        'label-success': rank < 102,
-        'label-warning': rank > 101 && rank < 500,
-        'label-error': rank > 500
-    });
+import { rankClassNames } from './utils';
 
 const affiliationClassNames = affiliation =>
     classnames('label float-right', {
@@ -28,11 +22,12 @@ const Panel = ({
     poolPercentage,
     affiliation,
     liskChat,
-    lotteryMember
+    required,
+    featured
 }) =>
     <div key={rank} className="column col-xs-12 col-sm-12 col-md-6 col-4">
         <div className="panel rel">
-            { lotteryMember && <Ribbon text='lottery'/> }
+            { featured && <Ribbon text='featured'/> }
             <div className="panel-header text-center">
                 <figure
                     className="avatar avatar-lg"
@@ -43,7 +38,7 @@ const Panel = ({
                 <div className="panel-subtitle">
                     <a
                         target="_blank"
-                        href={`https://explorer.lisk.io/address/${delegateAddress}`}>
+                        href={`https://explorer.lisk.io/delegate/${delegateAddress}`}>
                         {delegateAddress}
                     </a>
                 </div>

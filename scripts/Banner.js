@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from './Logo';
+import { Logo } from './Logo';
 
 const Stars = () =>
     <div>
@@ -9,7 +9,7 @@ const Stars = () =>
         <Logo />
     </div>;
 
-const Banner = () =>
+const Banner = (props) =>
     <div className="">
         <section className="header">
             <Stars />

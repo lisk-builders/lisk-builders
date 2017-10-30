@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { render } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom'
 import App from './App';
 import axios from 'axios';
 import delegates from '../data/delegates.json';
@@ -11,10 +12,14 @@ const getDelegateData = delegate =>
             `https://node01.lisk.io/api/delegates/get?username=${delegate.delegateName}`,
         )
         .then(
-            res =>
-                (delegate.rank = res.data.delegate
-                    ? parseInt(res.data.delegate.rank)
-                    : undefined),
+            res => {
+              const data = res.data.delegate;
+              if (data) {
+                delegate.rank = data.rank;
+                delegate.publicKey = data.publicKey;
+              }
+              return delegate;
+            }
         )
         .catch(res => delegate);
 
@@ -31,7 +36,11 @@ const getGitHubData = delegate =>
 
 const renderDom = res => {
     const sortedData = _.sortBy(delegates, ['rank']).reverse();
-    render(<App data={sortedData} />, document.getElementById('root'));
+  render(
+    <BrowserRouter>
+      <App data={sortedData} />
+    </BrowserRouter>,
+    document.getElementById('root'));
 };
 
 axios

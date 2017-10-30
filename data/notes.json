@@ -2,15 +2,29 @@
   "note1": {
     "title": "Hi there fellow Liskers",
     "p": [
-      "We are lisk.builders, a community of individual delegates who actively contribute to the future of Lisk, by developing software or hardware, creating community awareness or any other activities that directly improve the platform.",
-      "This list enforces no internal voting and does not require you to vote for all of us in order to receive rewards. Some of us will share a % of their delegate forging rewards and others will not. You can vote for one of us or all of us and every small vote is a vote for the future of Lisk!",
-      "This list is based on ranking, lowest ranking first. This way the people who need the votes most, are more visible."
+      "We are lisk.builders, a community of delegates that are developers, entrepreneurs and public speakers.","By developing software/hardware, creating community awareness, funding projects or any other activities, we make it our mission to improve Lisk day by day.",
+      "This website presents you with a list of Delegates and easy ways to look up their activity and past contributions. You can vote for one of us or all of us and every small vote is a vote for the future of Lisk!",
+      "This list is based on ranking, lowest ranking first. This way the people who need the votes most, are more visible.",
+      "We strive for quality not quantity and therefore enforce a strict rule that requires members to stay active. If they become inactive for a period greater than 3 months, they will be delisted."
     ]
   },
   "note2": {
     "p":[
-      "To get yourself added to the list you can submit a PR to the following GitHub repository: 5an1ty/lisk-builders.",
+      "To get yourself added to the list you can submit a PR that edits data/delegates.json to the following GitHub repository: 5an1ty/lisk-builders.",
       "This list is maintained by 5an1ty, Isabella and alepop."
+    ]
+  },
+  "note3": {
+    "title": "{ Pool }",
+    "p" :[
+      "Lisk.builders Pool - We believe in a fair distribution of forged Lisk among the voting population and therefore we are happy to announce today that we are launching a 40% sharing pool.",
+      "Payouts will happen every Saturday at 10 AM UTC and a minimum payout amount of 1 LSK is required.",
+      "The first pooled blocks will be forged on Saturday the 26th of August, be sure to have your votes locked in!"
+    ]
+  },
+  "note4": {
+    "p": [
+    "Making Lisk better block by block is not just a catchphrase, we actually strive for that! lisk.builders is an organisation on GitHub where we group all projects that we work on as a team.","Below you can find a list of those projects with a little clarification."
     ]
   }
 }

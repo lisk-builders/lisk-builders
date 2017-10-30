@@ -1,7 +1,6 @@
-
 .header {
   /*margin-bottom: 4rem;*/
-  /*margin-top: 10rem;*/
+  padding-top: 54px;
   width: 100%;
   min-height: 28rem;
   background: #454d5d;
@@ -96,8 +95,8 @@
   }
 }
 
-/*Logo animation*/
-.FVGbjvFx_0{stroke-dasharray:813 815;stroke-dashoffset:814;animation:FVGbjvFx_draw 2000ms ease-in 0ms forwards;}.FVGbjvFx_1{stroke-dasharray:1693 1695;stroke-dashoffset:1694;animation:FVGbjvFx_draw 2000ms ease-in 250ms forwards;}.FVGbjvFx_2{stroke-dasharray:3008 3010;stroke-dashoffset:3009;animation:FVGbjvFx_draw 2000ms ease-in 500ms forwards;}.FVGbjvFx_3{stroke-dasharray:6419 6421;stroke-dashoffset:6420;animation:FVGbjvFx_draw 2000ms ease-in 750ms forwards;}.FVGbjvFx_4{stroke-dasharray:4823 4825;stroke-dashoffset:4824;animation:FVGbjvFx_draw 2000ms ease-in 1000ms forwards;}@keyframes FVGbjvFx_draw{100%{stroke-dashoffset:0;}}@keyframes FVGbjvFx_fade{0%{stroke-opacity:1;}94.44444444444444%{stroke-opacity:1;}100%{stroke-opacity:0;}}
+/*Logo Animation 2*/
+.fptsToIY_0{stroke-dasharray:2943 2945;stroke-dashoffset:2944;animation:fptsToIY_draw 2900ms ease-in-out 0ms forwards;}@keyframes fptsToIY_draw{100%{stroke-dashoffset:0;}}@keyframes fptsToIY_fade{0%{stroke-opacity:1;}94.44444444444444%{stroke-opacity:1;}100%{stroke-opacity:0;}}
 
 /*Ribbon*/
 .ribbon {
@@ -141,4 +140,38 @@
   border-right: 3px solid rgb(87, 100, 198);;
   border-bottom: 3px solid transparent;
   border-top: 3px solid rgb(87, 100, 198);
+}
+
+.panel-light {
+  background: #fff;
+}
+
+.panel-pool {
+  margin-top: -30px;
+  margin-bottom: 4rem;
+  z-index: 100;
+}
+
+.panel-pool .tile {
+  margin: 1.5rem 0;
+}
+
+.nav-bar {
+  background: #fff;
+  width: 100%;
+  z-index: 200;
+  border-bottom: 1px solid #f0f1f4;
+}
+
+.btn-stats {
+  margin-left: 5px;
+}
+
+.empty .icon {
+  font-size: 4rem;
+  color: #5764c6;
+}
+
+.empty-help {
+  background: white;
 }
