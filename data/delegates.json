@@ -186,11 +186,12 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?t=1530",
     "githubUsername": "xunga",
     "poolPercentage": {
-      "O": "100"
+      "D": "25",
+      "O": "75"
     },
     "affiliation": "Freelance",
     "liskChat": "carbonara",
-    "pool": null,
+    "pool": "https://lottery.lisk.rocks/",
     "poolMember": false,
     "required": false,
     "featured": true
