@@ -188,10 +188,10 @@ export default class VoteManager extends Component {
           <div className="form-horizontal col-12">
             <div className="form-group">
               <div className="col-3">
-                <label className="form-label" htmlFor="input-example-1">Address</label>
+                <label className="form-label" htmlFor="input-example-1">Search for a delegate:</label>
               </div>
               <div className="col-9">
-                <input className="form-input" type="text" id="input-example-1" placeholder="Address" onKeyUp={this.handleSearch} />
+                <input className="form-input" type="text" id="input-example-1" placeholder="Delegate" onKeyUp={this.handleSearch} />
               </div>
             </div>
             <div className="form-group">
