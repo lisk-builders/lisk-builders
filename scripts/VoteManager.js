@@ -27,23 +27,67 @@ export default class VoteManager extends Component {
       selectedDelegates: this.props.initialVotes ? this.props.initialVotes : [],
       selectedPage: 1,
       totalPages: 1,
-      selectedSet: []
+      selectedSet: [],
+      isSticky: false
     };
-    this.debouncedSearch = debounce(this.search.bind(this), 400).bind(this);
+    this.debouncedSearch = debounce(this.search, 400).bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.stickyCounter = this.stickyCounter.bind(this);
+    this.getVoteUnvoteList = this.getVoteUnvoteList.bind(this)
+    this.offsetTop = null;
   }
 
   componentDidMount() {
+    this.offsetTop = this.delegateCountRef.offsetTop;
+    document.addEventListener('scroll', this.stickyCounter);
     this.navigate(1);
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.stickyCounter);
+  }
+
+  stickyCounter() {
+    const sticky = window.scrollY >= this.offsetTop;
+    if (this.state.isSticky !== sticky) {
+      this.setState({
+        isSticky: sticky
+      });
+    }
+  }
+
   getVoteUnvoteList() {
-    // @alepop this function should return the list of delegates to be voted / unvoted by your lisk-buttons
-    const voteList = this.state.selectedDelegates;
-    const unvoteList = this.props.initialVotes.filter(iv =>
-      !this.state.selectedDelegates.find(dg => dg === iv)
-    );
-    return { voteList, unvoteList };
+    const { initialVotes } = this.props;
+    const voteList = this.state.selectedDelegates.join(',');
+    let unvoteList = [];
+    if (initialVotes) {
+      unvoteList = initialVotes.filter(iv =>
+        !this.state.selectedDelegates.find(dg => dg === iv)
+      );
+    }
+    return {
+      voteList,
+      unvoteList: unvoteList.join(',')
+    };
+  }
+
+  search(qs) {
+    if (qs) {
+      axios.get(`${url}/search?q=${qs}&orderBy=username:asc`)
+        .then(res => {
+          if (res.data.success) {
+            this.setState({ data: res.data.delegates });
+            return true;
+          } else {
+            return false;
+          }
+        })
+        .catch(res => {
+          console.warn(res);
+        });
+    } else {
+      this.navigate(this.state.selectedPage);
+    }
   }
 
   handleSearch(event) {
@@ -91,13 +135,6 @@ export default class VoteManager extends Component {
         selectedDelegates: [...currentSelectedDelegates, ...delegates]
       });
     }
-
-    // const selectedDelegates = delegates.reduce((acc, delegateName) =>
-    //   acc.indexOf(delegateName) !== -1 ?
-    //     acc.filter(el => el !== delegateName) :
-    //     [...acc, delegateName]
-    // , currentSelectedDelegates);
-    // this.setState({ selectedDelegates });
   }
 
   getDelegatesDiff(delegateUsernames, key) {
@@ -135,34 +172,15 @@ export default class VoteManager extends Component {
     ];
   }
 
-  search(qs) {
-    if (qs) {
-      axios.get(`${url}/search?q=${qs}&orderBy=username:asc`)
-        .then(res => {
-          if (res.data.success) {
-            this.setState({ data: res.data.delegates });
-            return true;
-          } else {
-            return false;
-          }
-        })
-        .catch(res => {
-          console.warn(res);
-        });
-    } else {
-      this.navigate(this.state.selectedPage);
-    }
-  }
-
   renderFilters() {
     return this.getFilterData().map(({ title, set }, i) => (
       <div className="col-6" key={i}>
         <label className="form-switch">
-          <input type="checkbox" onChange={() => this.selectPreset(set)}/>
+          <input type="checkbox" onChange={() => this.selectPreset(set)} />
           <i className="form-icon"></i> { title }
         </label>
       </div>
-    ))
+    ));
   };
 
   renderRow = (delegate) => (
@@ -179,12 +197,10 @@ export default class VoteManager extends Component {
   );
 
   render() {
+    const { voteList, unvoteList } = this.getVoteUnvoteList();
     return (
       <div>
         <Container>
-          {
-            // @alepop this search form could use some styling.
-          }
           <div className="form-horizontal col-12">
             <div className="form-group">
               <div className="col-3">
@@ -194,8 +210,15 @@ export default class VoteManager extends Component {
                 <input className="form-input" type="text" id="input-example-1" placeholder="Delegate" onKeyUp={this.handleSearch} />
               </div>
             </div>
+            <div className="divider"></div>
             <div className="form-group">
               { this.renderFilters() }
+            </div>
+            <div className="divider"></div>
+            <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el;}}>
+              <span className={`label label-${this.state.selectedDelegates.length > 101 ? 'error' : 'primary'}`}>
+                {this.state.selectedDelegates.length}/101 Votes
+              </span>
             </div>
           </div>
         </Container>
@@ -245,17 +268,8 @@ export default class VoteManager extends Component {
             </ul>
           </div>
           {
-            // @alepop would be cool if the tracker of how many remaining votes you had would be floating next to the table that way the user is always informed of how many votes he/she has left
-          }
-          <div className="col-12">
-            <span className={`label label-${this.state.selectedDelegates.length > 101 ? 'error' : 'primary'}`}>
-              {this.state.selectedDelegates.length}/101 Votes
-            </span>
-          </div>
-          {
             // @alepop the button to submit the votes should probably be here towards the bottom and should be disabled if selectedDelegates > 101
           }
-        </Container>
         <Container>
           <Slack />
         </Container>
