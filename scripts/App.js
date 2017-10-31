@@ -9,7 +9,6 @@ import NavBar from './NavBar';
 
 export default class App extends Component {
   render() {
-    const { data } = this.props;
     return (
       <div>
         <NavBar />
