@@ -6,7 +6,7 @@ import liskbuilders from '../data/delegates.json';
 import groups from '../data/groups.json';
 import { listDiff, debounce } from './utils';
 
-const url = 'https://node01.lisk.io/api/delegates';
+const url = 'https://node01.lisk.io';
 
 const delegateSet = {
   builders: liskbuilders.map(dg => dg.delegateName),
@@ -24,7 +24,8 @@ export default class VoteManager extends Component {
     this.state = {
       loaded: false,
       data: [],
-      selectedDelegates: this.props.initialVotes ? this.props.initialVotes : [],
+      selectedDelegates: [],
+      initialVotes: [],
       selectedPage: 1,
       totalPages: 1,
       selectedSet: [],
@@ -40,11 +41,31 @@ export default class VoteManager extends Component {
   componentDidMount() {
     this.offsetTop = this.delegateCountRef.offsetTop;
     document.addEventListener('scroll', this.stickyCounter);
-    this.navigate(1);
+    if (this.props.match.params.address) {
+      this.getVotesForAddress(this.props.match.params.address).then(res => {
+        this.navigate(1);
+      });
+    } else {
+      this.navigate(1);
+    }
   }
 
   componentWillUnmount() {
     document.removeEventListener('scroll', this.stickyCounter);
+  }
+
+  getVotesForAddress(address) {
+    return axios.get(`${url}/api/accounts/delegates/?address=${address}`).then(res => {
+      if (res.data.success) {
+        const initialVotes = res.data.delegates.map(dg => dg.username);
+        this.setState({ selectedDelegates: initialVotes, initialVotes });
+        return true;
+      } else {
+        return false;
+      }
+    }).catch(err => {
+
+    })
   }
 
   stickyCounter() {
@@ -57,7 +78,7 @@ export default class VoteManager extends Component {
   }
 
   getVoteUnvoteList() {
-    const { initialVotes } = this.props;
+    const { initialVotes } = this.state;
     const voteList = this.state.selectedDelegates.join(',');
     let unvoteList = [];
     if (initialVotes) {
@@ -73,7 +94,7 @@ export default class VoteManager extends Component {
 
   search(qs) {
     if (qs) {
-      axios.get(`${url}/search?q=${qs}&orderBy=username:asc`)
+      axios.get(`${url}/api/delegates/search?q=${qs}&orderBy=username:asc`)
         .then(res => {
           if (res.data.success) {
             this.setState({ data: res.data.delegates });
@@ -95,7 +116,7 @@ export default class VoteManager extends Component {
   }
 
   navigate(page) {
-    axios.get(`${url}?limit=101&offset=${(page - 1) * 101}`)
+    axios.get(`${url}/api/delegates?limit=101&offset=${(page - 1) * 101}`)
       .then(res => {
         const totalPages = 1 + Math.floor((res.data.totalCount - 1) / 101);
         return this.setState({
