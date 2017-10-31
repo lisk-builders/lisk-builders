@@ -175,3 +175,12 @@
 .empty-help {
   background: white;
 }
+
+.sticky {
+  position: fixed;
+  top: 16px;
+  z-index: 300;
+  transform: translate(-50%,0);
+  left: 50%;
+}
+
