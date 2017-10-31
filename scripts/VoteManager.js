@@ -30,7 +30,7 @@ export default class VoteManager extends Component {
       selectedSet: [],
       isSticky: false
     };
-    this.debouncedSearch = debounce(this.search, 400).bind(this);
+    this.debouncedSearch = debounce(this.search.bind(this), 400).bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.stickyCounter = this.stickyCounter.bind(this);
     this.getVoteUnvoteList = this.getVoteUnvoteList.bind(this)
@@ -270,6 +270,7 @@ export default class VoteManager extends Component {
           {
             // @alepop the button to submit the votes should probably be here towards the bottom and should be disabled if selectedDelegates > 101
           }
+        </Container>
         <Container>
           <Slack />
         </Container>
