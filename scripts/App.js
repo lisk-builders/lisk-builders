@@ -15,7 +15,7 @@ export default class App extends Component {
         <NavBar />
         <Banner />
         <Switch>
-          <Route exact path="/" render={() => <Builders data={data} />} />
+          <Route exact path="/" render={() => <Builders />} />
           <Route exact path="/contributions" render={() => <Contributions />} />
           <Route exact path="/votemanager" render={() => <VoteManagerLogin />} />
           <Route path="/votemanager/:address" component={VoteManager} />
