@@ -27,10 +27,12 @@ export default class VoteManager extends Component {
       data: [],
       selectedDelegates: [],
       initialVotes: [],
+      pages: [],
       selectedPage: 1,
       totalPages: 1,
       selectedSet: [],
-      isSticky: false
+      isSticky: false,
+      groupIsShown: null
     };
     this.debouncedSearch = debounce(this.search.bind(this), 400).bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -116,20 +118,38 @@ export default class VoteManager extends Component {
     this.debouncedSearch(event.target.value);
   }
 
-  navigate(page) {
-    axios.get(`${url}/api/delegates?limit=101&offset=${(page - 1) * 101}`)
+  searchInPages(delegates) {
+
+  }
+
+  getPage(page) {
+    const existingPage = this.state.pages.find(pg => pg.id === page);
+    if (!existingPage) {
+      return axios.get(`${url}/api/delegates?limit=101&offset=${(page - 1) * 101}`)
       .then(res => {
         const totalPages = 1 + Math.floor((res.data.totalCount - 1) / 101);
-        return this.setState({
-          selectedPage: page,
-          data: res.data.delegates,
-          loaded: true,
-          totalPages
+        this.setState({
+          pages: [...this.state.pages, { id: page, delegates: res.data.delegates }],
+          totalPages: page === 1 ? totalPages : this.state.totalPages,
         });
-      })
-      .catch(res => {
-        console.warn(res);
+        return res.data.delegates;
       });
+    } else {
+      return Promise.resolve(existingPage.delegates);
+    }
+  }
+
+  navigate(page) {
+    this.getPage(page).then(data => {
+      return this.setState({
+        selectedPage: page,
+        data,
+        loaded: true,
+        groupIsShown: null
+      });
+    }).catch(res => {
+      console.warn(res);
+    });
   }
 
   toggleDelegate = (delegate) => {
@@ -181,6 +201,16 @@ export default class VoteManager extends Component {
       }, this.toggleDelegates.bind(this, delegates, key));
   }
 
+  showGroup(key) {
+    if (this.state.groupIsShown !== key) {
+      Promise.all(delegateSet[key].map(username => axios.get(`${url}/api/delegates/get?username=${username}`)))
+      .then(res => this.setState({ data: res.map(d => d.data.delegate), groupIsShown: key }))
+      .catch(err => console.warn(err));
+    } else {
+      this.navigate(this.state.selectedPage);
+    }
+  }
+
   resetSelectedDelegates() {
     this.setState({ selectedDelegates: [] });
   }
@@ -200,6 +230,7 @@ export default class VoteManager extends Component {
         <label className="form-switch">
           <input type="checkbox" onChange={() => this.selectPreset(set)} />
           <i className="form-icon"></i> { title }
+          <button className="btn btn-primary" onClick={() => this.showGroup(set)}>{ this.state.groupIsShown === set ? 'Hide' : 'Show' }</button>
         </label>
       </div>
     ));
