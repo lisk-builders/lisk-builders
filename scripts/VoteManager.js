@@ -18,10 +18,17 @@ const delegateSet = {
 
 export default class VoteManager extends Component {
 
+  static getFilterData() {
+    return [
+      { title: 'Lisk Builders', set: 'builders' },
+      { title: 'GDT', set: 'gdt' },
+      { title: 'Elite', set: 'elite'},
+      { title: 'Sherwood', set: 'sherwood' },
+    ];
+  }
+
   constructor(props) {
     super(props);
-    // @alepop from the other component where you need to fill in your address to "log in" I would like to receive:
-    // a prop called initialVotes, which is the existing votes for that account
     this.state = {
       loaded: false,
       data: [],
@@ -61,13 +68,13 @@ export default class VoteManager extends Component {
     return axios.get(`${url}/api/accounts/delegates/?address=${address}`).then(res => {
       if (res.data.success) {
         const initialVotes = res.data.delegates.map(dg => dg.username);
-        this.setState({ selectedDelegates: initialVotes, initialVotes });
+        this.setState({ selectedDelegates: initialVotes, initialVotes }, this.updateSelectedSets);
         return true;
       } else {
         return false;
       }
     }).catch(err => {
-
+      console.warn(err);
     })
   }
 
@@ -175,7 +182,7 @@ export default class VoteManager extends Component {
     } else {
       selectedDelegates.push(delegate.username);
     }
-    this.setState({ selectedDelegates });
+    this.setState({ selectedDelegates }, this.updateSelectedSets);
   }
 
   toggleDelegates(delegateUsernames, key) {
@@ -230,20 +237,31 @@ export default class VoteManager extends Component {
     this.setState({ selectedDelegates: [] });
   }
 
-  getFilterData() {
-    return [
-      { title: 'Lisk Builders', set: 'builders' },
-      { title: 'GDT', set: 'gdt' },
-      { title: 'Elite', set: 'elite'},
-      { title: 'Sherwood', set: 'sherwood' },
-    ];
+  updateSelectedSets() {
+    let selectedSet = this.state.selectedSet;
+    Object.keys(delegateSet).forEach(set => {
+      const foundVotes = this.state.selectedDelegates.reduce((acc, iv) => {
+        if (delegateSet[set].find(username => username === iv)) {
+          acc.push(iv);
+          return acc;
+        } else {
+          return acc;
+        }
+      }, []);
+      if (foundVotes.length === delegateSet[set].length) {
+        selectedSet.push(set);
+      } else {
+        selectedSet = selectedSet.filter(entry => entry !== set);
+      }
+    });
+    this.setState({ selectedSet });
   }
 
   renderFilters() {
-    return this.getFilterData().map(({ title, set }, i) => (
+    return VoteManager.getFilterData().map(({ title, set }, i) => (
       <div className="col-6" key={i}>
         <label className="form-switch">
-          <input type="checkbox" onChange={() => this.selectPreset(set)} />
+          <input type="checkbox" checked={this.state.selectedSet.includes(set)} onChange={() => this.selectPreset(set)} />
           <i className="form-icon"></i> { title }
           <button className="btn btn-primary" onClick={() => this.showGroup(set)}>{ this.state.groupIsShown === set ? 'Hide' : 'Show' }</button>
         </label>
