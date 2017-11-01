@@ -5,9 +5,7 @@ import Slack from './Slack';
 import Container from './Container';
 import liskbuilders from '../data/delegates.json';
 import groups from '../data/groups.json';
-import { listDiff, debounce } from './utils';
-
-const url = 'https://node01.lisk.io';
+import { listDiff, debounce, getUrl } from './utils';
 
 const delegateSet = {
   builders: liskbuilders.map(dg => dg.delegateName),
@@ -65,7 +63,7 @@ export default class VoteManager extends Component {
   }
 
   getVotesForAddress(address) {
-    return axios.get(`${url}/api/accounts/delegates/?address=${address}`).then(res => {
+    return axios.get(`${getUrl()}/api/accounts/delegates/?address=${address}`).then(res => {
       if (res.data.success) {
         const initialVotes = res.data.delegates.map(dg => dg.username);
         this.setState({ selectedDelegates: initialVotes, initialVotes }, this.updateSelectedSets);
@@ -104,7 +102,7 @@ export default class VoteManager extends Component {
 
   search(qs) {
     if (qs) {
-      axios.get(`${url}/api/delegates/search?q=${qs}&orderBy=username:asc`)
+      axios.get(`${getUrl()}/api/delegates/search?q=${qs}&orderBy=username:asc`)
         .then(res => {
           if (res.data.success) {
             this.setState({ data: res.data.delegates });
@@ -146,7 +144,7 @@ export default class VoteManager extends Component {
   getPage(page) {
     const existingPage = this.state.pages.find(pg => pg.id === page);
     if (!existingPage) {
-      return axios.get(`${url}/api/delegates?limit=101&offset=${(page - 1) * 101}`)
+      return axios.get(`${getUrl()}/api/delegates?limit=101&offset=${(page - 1) * 101}`)
       .then(res => {
         const totalPages = 1 + Math.floor((res.data.totalCount - 1) / 101);
         this.setState({
@@ -225,7 +223,7 @@ export default class VoteManager extends Component {
   showGroup(key) {
     if (this.state.groupIsShown !== key) {
       this.searchInPages(delegateSet[key])
-      //Promise.all(delegateSet[key].map(username => axios.get(`${url}/api/delegates/get?username=${username}`)))
+      //Promise.all(delegateSet[key].map(username => axios.get(`${getUrl()}/api/delegates/get?username=${username}`)))
       .then(res => this.setState({ data: res, groupIsShown: key }))
       .catch(err => console.warn(err));
     } else {
