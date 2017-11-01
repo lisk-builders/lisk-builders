@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import axios from 'axios';
 import Slack from './Slack';
@@ -146,14 +147,14 @@ export default class VoteManager extends Component {
   toggleDelegates(delegateUsernames, key) {
     const delegateDiff = this.getDelegatesDiff(delegateUsernames, key);
     const currentSelectedDelegates = [...this.state.selectedDelegates];
-    const delegates = delegateDiff.length > 0 ?  delegateDiff : delegateUsernames;
+    const delegates = delegateDiff.length > 0 ? delegateDiff : delegateUsernames;
     if (this.state.selectedSet.indexOf(key) === -1) {
       this.setState({
         selectedDelegates: currentSelectedDelegates.filter(el => delegates.indexOf(el) === -1)
       });
     } else {
       this.setState({
-        selectedDelegates: [...currentSelectedDelegates, ...delegates]
+        selectedDelegates: _.uniq([...currentSelectedDelegates, ...delegates])
       });
     }
   }
