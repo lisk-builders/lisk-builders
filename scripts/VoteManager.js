@@ -234,7 +234,7 @@ export default class VoteManager extends Component {
   }
 
   resetSelectedDelegates() {
-    this.setState({ selectedDelegates: [] });
+    this.setState({ selectedDelegates: [] }, this.updateSelectedSets);
   }
 
   updateSelectedSets() {
@@ -301,6 +301,7 @@ export default class VoteManager extends Component {
               { this.renderFilters() }
             </div>
             <div className="divider"></div>
+            <button className="btn btn-primary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
             <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el;}}>
               <span className={`label label-${this.state.selectedDelegates.length > 101 ? 'error' : 'primary'}`}>
                 {this.state.selectedDelegates.length}/101 Votes
