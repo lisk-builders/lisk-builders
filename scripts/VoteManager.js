@@ -118,8 +118,22 @@ export default class VoteManager extends Component {
     this.debouncedSearch(event.target.value);
   }
 
-  searchInPages(delegates) {
-
+  async searchInPages(delegates) {
+    let foundDelegates = [];
+    for (let i = 1; i <= this.state.totalPages; i += 1) {
+      const page = await this.getPage(i);
+      foundDelegates = [...foundDelegates, ...page.reduce((acc, dg) => {
+        if (delegates.find(username => dg.username === username)) {
+          acc.push(dg);
+          return acc;
+        }
+        return acc;
+      }, [])];
+      if (foundDelegates.length === delegates.length) {
+        break;
+      }
+    }
+    return foundDelegates;
   }
 
   getPage(page) {
@@ -203,8 +217,9 @@ export default class VoteManager extends Component {
 
   showGroup(key) {
     if (this.state.groupIsShown !== key) {
-      Promise.all(delegateSet[key].map(username => axios.get(`${url}/api/delegates/get?username=${username}`)))
-      .then(res => this.setState({ data: res.map(d => d.data.delegate), groupIsShown: key }))
+      this.searchInPages(delegateSet[key])
+      //Promise.all(delegateSet[key].map(username => axios.get(`${url}/api/delegates/get?username=${username}`)))
+      .then(res => this.setState({ data: res, groupIsShown: key }))
       .catch(err => console.warn(err));
     } else {
       this.navigate(this.state.selectedPage);
