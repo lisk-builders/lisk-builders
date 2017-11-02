@@ -86,12 +86,12 @@ export default class VoteManager extends Component {
   }
 
   getVoteUnvoteList() {
-    const { initialVotes } = this.state;
-    const voteList = this.state.selectedDelegates.join(',');
+    const { initialVotes, selectedDelegates } = this.state;
+    const voteList = listDiff(selectedDelegates, initialVotes).join(',');
     let unvoteList = [];
     if (initialVotes) {
       unvoteList = initialVotes.filter(iv =>
-        !this.state.selectedDelegates.find(dg => dg === iv)
+        !selectedDelegates.find(dg => dg === iv)
       );
     }
     return {
@@ -261,8 +261,8 @@ export default class VoteManager extends Component {
         <label className="form-switch">
           <input type="checkbox" checked={this.state.selectedSet.includes(set)} onChange={() => this.selectPreset(set)} />
           <i className="form-icon"></i> { title }
-          <button className="btn btn-primary" onClick={() => this.showGroup(set)}>{ this.state.groupIsShown === set ? 'Hide' : 'Show' }</button>
         </label>
+        <button className="btn btn-link btn-sm" onClick={() => this.showGroup(set)}>{ this.state.groupIsShown === set ? 'Hide' : 'Show' }</button>
       </div>
     ));
   };
@@ -300,6 +300,10 @@ export default class VoteManager extends Component {
             </div>
             <div className="divider"></div>
             <button className="btn btn-primary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
+            { (voteList || unvoteList) &&
+                <lisk-button-vote votes={voteList} unvotes={unvoteList}>
+                </lisk-button-vote>
+            }
             <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el;}}>
               <span className={`label label-${this.state.selectedDelegates.length > 101 ? 'error' : 'primary'}`}>
                 {this.state.selectedDelegates.length}/101 Votes
