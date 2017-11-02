@@ -28,19 +28,21 @@ class VoteManagerLogin extends Component {
     return (
       <div>
         <Container>
-          <form onSubmit={this.handleSubmit}>
-            <div className="form-horizontal col-12">
-              <div className="form-group">
-                <div className="col-3">
-                  <label className="form-label" htmlFor="input-example-1">Fill in your address to continue:</label>
-                </div>
-                <div className="col-9">
-                  <input className="form-input" value={this.state.address} onChange={this.handleChange} type="text" id="input-example-1" placeholder="Address" />
-                </div>
+          <div className="column">
+            <div className="panel">
+              <div className="panel-header"> </div>
+              <div className="panel-body">
+                <form onSubmit={this.handleSubmit} className="col-8 centered">
+                  <div className="form-group">
+                      <label className="form-label" htmlFor="input-example-1">Fill in your address to continue:</label>
+                      <input className="form-input" value={this.state.address} onChange={this.handleChange} type="text" id="input-example-1" placeholder="Address" />
+                  </div>
+                  <button type="submit" className="btn btn-primary btn-block">Continue</button>
+                </form>
               </div>
-              <button type="submit" className="btn btn-primary">Continue</button>
+              <div className="panel-footer"></div>
             </div>
-          </form>
+          </div>
         </Container>
         <Container>
           <Slack />
