@@ -7,11 +7,12 @@ import Slack from './Slack';
 import Container from './Container';
 import delegates from '../data/delegates.json';
 import notes from '../data/notes.json';
+import { getUrl } from './utils';
 
 const getDelegateData = delegate =>
 axios
     .get(
-        `https://node01.lisk.io/api/delegates/get?username=${delegate.delegateName}`,
+        `${getUrl()}/api/delegates/get?username=${delegate.delegateName}`,
     )
     .then(
         res => {

@@ -3,6 +3,12 @@ import BigNumber from 'bignumber.js';
 
 BigNumber.config({ ERRORS: false });
 
+const getRandomArbitrary = (minV, maxV) => {
+  const min = Math.ceil(minV);
+  const max = Math.floor(maxV);
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+
 export const rankClassNames = rank =>
     classnames('label float-right', {
       'label-success': rank < 102,
@@ -31,3 +37,6 @@ export const debounce = (fn, delay) => {
 
 export const listDiff = (a, b) => a.filter(el => b.indexOf(el) === -1);
 
+export const getUrl = () => {
+  return `https://node0${getRandomArbitrary(1, 8)}.lisk.io`;
+};
