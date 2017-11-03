@@ -29,8 +29,7 @@ export default class VoteManager extends Component {
       { title: 'GDT', set: 'gdt', tooltip: 'More info: https://pool.liskgdt.net' },
       { title: 'Elite', set: 'elite', tooltip: 'Requires verifying yourself on https://liskelite.com' },
       { title: 'Sherwood', set: 'sherwood', tooltip: 'More info: http://robinhood.liskpro.com' },
-      { title: 'alepop & 5an1ty', set: 'alepop5an1ty', tooltip: 'The creators of this site ;-)' },
-      { title: 'Optimized', set: 'optimized', tooltip: 'Delegates that share the most' },
+      { title: 'alepop & 5an1ty', set: 'alepop5an1ty', tooltip: 'The creators of this site ;-)' }
     ];
   }
 
@@ -305,6 +304,10 @@ export default class VoteManager extends Component {
     this.setState({ selectedSet });
   }
 
+  setSelectedToOptimized() {
+    this.setState({ selectedDelegates: delegateSet.optimized }, this.updateSelectedSets);
+  }
+
   renderFilters() {
     return VoteManager.getFilterData().map(({ title, set, tooltip }, i) => (
       <div className="column col-4" key={i}>
@@ -376,8 +379,12 @@ export default class VoteManager extends Component {
             <div className="btn-group btn-group-block">
               <button className="btn btn-secondary" onClick={() => this.resetSelectedDelegates()}>Restore</button>
               <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Unvote All</button>
+              <button className="btn btn-secondary tooltip" data-tooltip="Set your delegate selection for the highest payout" onClick={() => this.setSelectedToOptimized()}>Payout Optimized Selection</button>
               <button className="btn btn-secondary" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
               <button className="btn btn-secondary" onClick={() => this.deselectCurrentPage()}>Deselect Current Page</button>
+            </div>
+            <div className="divider" />
+            <div className="btn-group btn-group-block">
               <button className="btn btn-secondary" onClick={() => this.openModal('import')}>Import Votes</button>
               <button className="btn btn-secondary" onClick={() => this.openModal('export')}>Export Votes</button>
             </div>
