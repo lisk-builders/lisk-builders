@@ -16,7 +16,7 @@ const delegateSet = {
   elite: groups.elite,
   sherwood: groups.shw,
   alepop5an1ty: ['alepop', '5an1ty'],
-  optimized: _.uniq([...groups.gdt, ...groups.elite, ...groups.shw, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'stellardynamic', 'bitbanksy', 'communitypool', 'phoenix1969', 'samuray', 'vega'])
+  payoutoptimized: _.uniq([...groups.gdt, ...groups.elite, ...groups.shw, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'stellardynamic', 'bitbanksy', 'communitypool', 'phoenix1969', 'samuray', 'vega'])
 };
 
 const toastText = 'Do you like this tool? vote alepop & 5an1ty!';
@@ -305,7 +305,7 @@ export default class VoteManager extends Component {
   }
 
   setSelectedToOptimized() {
-    this.setState({ selectedDelegates: delegateSet.optimized }, this.updateSelectedSets);
+    this.setState({ selectedDelegates: delegateSet.payoutoptimized }, this.updateSelectedSets);
   }
 
   renderFilters() {
@@ -351,6 +351,7 @@ export default class VoteManager extends Component {
                 </span>)) : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.`
           }
         </div>
+        { this.state.selectedSet.includes('elite') ? <span><br />Warning: You have voted for Elite, you must verify your address on the Elite <a target="_blank" href="https://liskelite.com">website</a> to make sure you receive your payout.</span> : '' }
         <div className="divider" />
       </div>
     );
