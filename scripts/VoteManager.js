@@ -365,7 +365,7 @@ export default class VoteManager extends Component {
             </div>
             <div className="divider"></div>
             <div className="btn-group btn-group-block">
-              <button className="btn btn-primary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
+              <button className="btn btn-secondary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
               <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Wipe Selection</button>
               <button className="btn btn-secondary" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
               <button className="btn btn-secondary" onClick={() => this.openModal('import')}>Import Votes</button>
