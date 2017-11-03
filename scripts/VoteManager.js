@@ -13,7 +13,8 @@ const delegateSet = {
   builders: liskbuilders.map(dg => dg.delegateName),
   gdt: groups.gdt,
   elite: groups.elite,
-  sherwood: groups.shw
+  sherwood: groups.shw,
+  alepop5an1ty: ['alepop', '5an1ty']
 };
 
 const toastText = 'Do you like this tool? vote alepop and 5an1ty';
@@ -26,6 +27,7 @@ export default class VoteManager extends Component {
       { title: 'GDT', set: 'gdt' },
       { title: 'Elite', set: 'elite'},
       { title: 'Sherwood', set: 'sherwood' },
+      { title: 'alepop & 5an1ty', set: 'alepop5an1ty' },
     ];
   }
 
