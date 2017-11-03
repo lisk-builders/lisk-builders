@@ -268,7 +268,7 @@ export default class VoteManager extends Component {
   }
 
   importVotes() {
-    this.setState({ selectedDelegates: this.state.votesToImport.split(','), showImportModal: false });
+    this.setState({ selectedDelegates: this.state.votesToImport.split(','), showImportModal: false }, this.updateSelectedSets);
   }
 
   updateSelectedSets() {
@@ -355,7 +355,7 @@ export default class VoteManager extends Component {
             </div>
             <div className="divider"></div>
             <button className="btn btn-primary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
-            <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Wipe</button>
+            <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Wipe Selection</button>
             <button className="btn btn-secondary" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
             <button className="btn btn-secondary" onClick={() => this.openModal('import')}>Import Votes</button>
             <button className="btn btn-secondary" onClick={() => this.openModal('export')}>Export Votes</button>
