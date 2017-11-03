@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import 'regenerator-runtime/runtime';
 import React, { Component } from 'react';
 import axios from 'axios';
 import Slack from './Slack';
