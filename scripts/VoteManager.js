@@ -17,7 +17,7 @@ const delegateSet = {
   alepop5an1ty: ['alepop', '5an1ty']
 };
 
-const toastText = 'Do you like this tool? vote alepop & 5an1ty';
+const toastText = 'Do you like this tool? vote alepop & 5an1ty!';
 
 export default class VoteManager extends Component {
 
@@ -326,7 +326,7 @@ export default class VoteManager extends Component {
       groups.map(el => el.name).join(',');
     return (
       <div>
-        When finished, submit your changes to Lisk Nano:<br />
+        When finished, submit your changes to Lisk Nano:<br /><br />
         <div className="tooltip" data-tooltip={`${consts.votingFee} LSK transaction fee per batch of ${consts.maxVotesInOneBatch} votes`}>
           {
             this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
