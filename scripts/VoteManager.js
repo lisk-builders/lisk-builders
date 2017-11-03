@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Slack from './Slack';
 import Container from './Container';
+import Toast from './Toast';
 import liskbuilders from '../data/delegates.json';
 import groups from '../data/groups.json';
 import { listDiff, debounce, getUrl } from './utils';
@@ -13,6 +14,8 @@ const delegateSet = {
   elite: groups.elite,
   sherwood: groups.shw
 };
+
+const toastText = 'Do you like this tool? vote alepop and 5an1ty';
 
 export default class VoteManager extends Component {
 
@@ -292,6 +295,7 @@ export default class VoteManager extends Component {
             .map((group, i) => (
               <span style={{marginRight: 4}} key={i}>
               <lisk-button-vote votes={group.vote ? getNames(group.vote) : ''}
+                onClick={() => alert('lol')}
                 unvotes={group.unvote ? getNames(group.unvote) : ''}></lisk-button-vote>
             </span>))
         }
@@ -304,6 +308,7 @@ export default class VoteManager extends Component {
     const voteData = this.getVoteUnvoteList();
     return (
       <div>
+        <Toast text={toastText} timer={5000} />
         <Container>
           <div className="form-horizontal col-12">
             <div className="form-group">
