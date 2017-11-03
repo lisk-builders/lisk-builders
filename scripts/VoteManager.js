@@ -324,7 +324,6 @@ export default class VoteManager extends Component {
       groups.map(el => el.name).join(',');
     return (
       <div>
-        <div className="divider"></div>
         When you are finished submit your votes here:<br/>
         {
           this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
@@ -360,11 +359,14 @@ export default class VoteManager extends Component {
               { this.renderFilters() }
             </div>
             <div className="divider"></div>
-            <button className="btn btn-primary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
-            <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Wipe Selection</button>
-            <button className="btn btn-secondary" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
-            <button className="btn btn-secondary" onClick={() => this.openModal('import')}>Import Votes</button>
-            <button className="btn btn-secondary" onClick={() => this.openModal('export')}>Export Votes</button>
+            <div className="btn-group btn-group-block">
+              <button className="btn btn-primary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
+              <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Wipe Selection</button>
+              <button className="btn btn-secondary" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
+              <button className="btn btn-secondary" onClick={() => this.openModal('import')}>Import Votes</button>
+              <button className="btn btn-secondary" onClick={() => this.openModal('export')}>Export Votes</button>
+            </div>
+            <div className="divider"></div>
             { !!voteData.length && this.renderVoteButtons(voteData) }
             <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el;}}>
               <span className={`label label-${this.state.selectedDelegates.length > consts.maxAllowedVotes ? 'error' : 'primary'}`}>
