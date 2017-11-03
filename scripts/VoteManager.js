@@ -310,13 +310,13 @@ export default class VoteManager extends Component {
 
   renderFilters() {
     return VoteManager.getFilterData().map(({ title, set, tooltip }, i) => (
-      <div className="column col-4" key={i}>
+      <div className="column col-4 col-xs-6" key={i}>
         <label className={`form-switch ${tooltip ? 'tooltip' : ''}`} data-tooltip={tooltip}>
           <input type="checkbox" checked={this.state.selectedSet.includes(set)} onChange={() => this.selectPreset(set)} />
           <i className="form-icon"></i> { title }
         </label>
         <button className="btn btn-link btn-sm" onClick={() => this.showGroup(set)}>{ this.state.groupIsShown === set ? 'Hide' : 'Show' }</button>
-    </div>
+      </div>
     ));
   };
 
@@ -364,7 +364,7 @@ export default class VoteManager extends Component {
       <div>
         <Toast text={toastText} timer={10000} />
         <Container>
-          <div className="form-horizontal col-12">
+          <div className="form-horizontal">
             <div className="form-group">
               <div className="col-3">
                 <label className="form-label" htmlFor="input-example-1">Search for a delegate:</label>
