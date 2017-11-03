@@ -298,13 +298,13 @@ export default class VoteManager extends Component {
 
   renderFilters() {
     return VoteManager.getFilterData().map(({ title, set }, i) => (
-      <div className="col-6" key={i}>
+      <div className="column col-4" key={i}>
         <label className="form-switch">
           <input type="checkbox" checked={this.state.selectedSet.includes(set)} onChange={() => this.selectPreset(set)} />
           <i className="form-icon"></i> { title }
         </label>
         <button className="btn btn-link btn-sm" onClick={() => this.showGroup(set)}>{ this.state.groupIsShown === set ? 'Hide' : 'Show' }</button>
-      </div>
+    </div>
     ));
   };
 
@@ -360,7 +360,7 @@ export default class VoteManager extends Component {
               </div>
             </div>
             <div className="divider"></div>
-            <div className="form-group">
+            <div className="columns">
               { this.renderFilters() }
             </div>
             <div className="divider"></div>
