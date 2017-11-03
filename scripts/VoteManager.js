@@ -17,7 +17,7 @@ const delegateSet = {
   alepop5an1ty: ['alepop', '5an1ty']
 };
 
-const toastText = 'Do you like this tool? vote alepop and 5an1ty';
+const toastText = 'Do you like this tool? vote alepop & 5an1ty';
 
 export default class VoteManager extends Component {
 
@@ -200,11 +200,11 @@ export default class VoteManager extends Component {
     if (this.state.selectedSet.indexOf(key) === -1) {
       this.setState({
         selectedDelegates: currentSelectedDelegates.filter(el => delegates.indexOf(el) === -1)
-      });
+      }, this.updateSelectedSets);
     } else {
       this.setState({
         selectedDelegates: _.uniq([...currentSelectedDelegates, ...delegates])
-      });
+      }, this.updateSelectedSets);
     }
   }
 
@@ -326,7 +326,7 @@ export default class VoteManager extends Component {
       groups.map(el => el.name).join(',');
     return (
       <div>
-        Submit your changes to Lisk Nano:<br />
+        When finished, submit your changes to Lisk Nano:<br />
         <div className="tooltip" data-tooltip={`${consts.votingFee} LSK transaction fee per batch of ${consts.maxVotesInOneBatch} votes`}>
           {
             this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
@@ -365,7 +365,7 @@ export default class VoteManager extends Component {
             </div>
             <div className="divider"></div>
             <div className="btn-group btn-group-block">
-              <button className="btn btn-primary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
+              <button className="btn btn-secondary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
               <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Wipe Selection</button>
               <button className="btn btn-secondary" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
               <button className="btn btn-secondary" onClick={() => this.openModal('import')}>Import Votes</button>
