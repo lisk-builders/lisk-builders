@@ -17,7 +17,7 @@ const delegateSet = {
   alepop5an1ty: ['alepop', '5an1ty']
 };
 
-const toastText = 'Do you like this tool? vote alepop and 5an1ty';
+const toastText = 'Do you like this tool? vote alepop & 5an1ty';
 
 export default class VoteManager extends Component {
 
