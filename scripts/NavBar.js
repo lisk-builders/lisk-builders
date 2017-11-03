@@ -12,9 +12,23 @@ export default () => (
             <Link to="/" className="navbar-brand mr-10">{ title }</Link>
           </section>
           <section className="navbar-section">
-            <Link to="/" className="btn btn-link">Builders</Link>
-            <Link to="/contributions" className="btn btn-link">Contributions</Link>
-            <Link to="/votemanager" className="btn btn-link">Vote Manager</Link>
+            <div className="hide-sm">
+              <Link to="/" className="btn btn-link">Builders</Link>
+              <Link to="/contributions" className="btn btn-link">Contributions</Link>
+              <Link to="/votemanager" className="btn btn-link">Vote Manager</Link>
+            </div>
+            <div className="show-sm">
+              <div className="dropdown dropdown-right">
+                <a href="#menu" className="btn btn-link dropdown-toggle" tabIndex="0">
+                  Menu <i className="icon icon-caret" />
+                </a>
+                <ul className="menu">
+                  <li><Link to="/" className="btn btn-link">Builders</Link></li>
+                  <li><Link to="/contributions" className="btn btn-link">Contributions</Link></li>
+                  <li><Link to="/votemanager" className="btn btn-link">Vote Manager</Link></li>
+                </ul>
+              </div>
+            </div>
           </section>
         </header>
       </div>

@@ -328,7 +328,7 @@ export default class VoteManager extends Component {
       </td>
       <td>{delegate.rank}</td>
       <td>{delegate.username}</td>
-      <td>{`${delegate.productivity}%`}</td>
+      <td className="hide-sm">{`${delegate.productivity}%`}</td>
       <td>{`${delegate.approval}%`}</td>
     </tr>
   );
@@ -338,7 +338,8 @@ export default class VoteManager extends Component {
       groups.map(el => el.name).join(',');
     return (
       <div>
-        When finished, submit your changes to Lisk Nano by clicking the buttons below in sequence:<br /><br />
+        When finished, send your changes to Lisk Nano by clicking the buttons below in sequence.<br />
+        You will get an overview of the votes you are sending in Nano before you actually submit the votes:<br /><br />
         <div className="tooltip" data-tooltip={`${consts.votingFee} LSK transaction fee per batch of ${consts.maxVotesInOneBatch} votes`}>
           {
             this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
@@ -406,7 +407,7 @@ export default class VoteManager extends Component {
                 <th />
                 <th>rank</th>
                 <th>username</th>
-                <th>productivity</th>
+                <th className="hide-sm">productivity</th>
                 <th>approval</th>
               </tr>
             </thead>
