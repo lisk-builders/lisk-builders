@@ -254,6 +254,12 @@ export default class VoteManager extends Component {
       ...this.state.data.map(dg => dg.username)]) }, this.updateSelectedSets);
   }
 
+  deselectCurrentPage() {
+    const filtered = this.state.selectedDelegates.filter(username =>
+      !this.state.data.find(dg => dg.username === username));
+    this.setState({ selectedDelegates: filtered }, this.updateSelectedSets);
+  }
+
   openModal(modal) {
     if (modal === 'export') {
       this.setState({ showExportModal: true });
@@ -334,7 +340,11 @@ export default class VoteManager extends Component {
                 <span style={{ marginRight: 4 }} key={i}>
                   <lisk-button-vote
                     votes={group.vote ? getNames(group.vote) : ''} unvotes={group.unvote ? getNames(group.unvote) : ''}
-                    title={`Vote Batch ${i + 1}`}
+                    title={`
+                      ${group.unvote ? `Unvote: ${group.unvote.length}` : ''}
+                      ${group.vote && group.unvote ? `, Vote: ${group.vote.length}` : ''}
+                      ${group.vote && !group.unvote ? `Vote: ${group.vote.length}` : ''}
+                    `}
                   />
                 </span>)) : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.`
           }
@@ -359,15 +369,16 @@ export default class VoteManager extends Component {
                 <input className="form-input" type="text" id="input-example-1" placeholder="Delegate" onKeyUp={this.handleSearch} />
               </div>
             </div>
-            <div className="divider"></div>
+            <div className="divider" />
             <div className="columns">
               { this.renderFilters() }
             </div>
-            <div className="divider"></div>
+            <div className="divider" />
             <div className="btn-group btn-group-block">
               <button className="btn btn-secondary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
               <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Wipe Selection</button>
               <button className="btn btn-secondary" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
+              <button className="btn btn-secondary" onClick={() => this.deselectCurrentPage()}>Deselect Current Page</button>
               <button className="btn btn-secondary" onClick={() => this.openModal('import')}>Import Votes</button>
               <button className="btn btn-secondary" onClick={() => this.openModal('export')}>Export Votes</button>
             </div>
