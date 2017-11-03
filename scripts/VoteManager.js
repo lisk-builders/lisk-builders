@@ -326,7 +326,7 @@ export default class VoteManager extends Component {
       <div>
         <div className="divider" />
         Submit your changes to Lisk Nano:<br />
-        <div className="tooltip" data-tooltip={`${consts.votingFee} LSK Transaction fee per batch of ${consts.maxVotesInOneBatch} votes`}>
+        <div className="tooltip" data-tooltip={`${consts.votingFee} LSK transaction fee per batch of ${consts.maxVotesInOneBatch} votes`}>
           {
             this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
               .map((group, i) => (

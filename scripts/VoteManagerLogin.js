@@ -15,7 +15,6 @@ class VoteManagerLogin extends Component {
   }
 
   handleChange(event) {
-    console.log(event);
     this.setState({ address: event.target.value });
   }
 
