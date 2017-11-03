@@ -15,7 +15,8 @@ const delegateSet = {
   gdt: groups.gdt,
   elite: groups.elite,
   sherwood: groups.shw,
-  alepop5an1ty: ['alepop', '5an1ty']
+  alepop5an1ty: ['alepop', '5an1ty'],
+  optimized: _.uniq([...groups.gdt, ...groups.elite, ...groups.shw, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'stellardynamic', 'bitbanksy', 'communitypool', 'phoenix1969', 'samuray', 'vega'])
 };
 
 const toastText = 'Do you like this tool? vote alepop & 5an1ty!';
@@ -24,11 +25,12 @@ export default class VoteManager extends Component {
 
   static getFilterData() {
     return [
-      { title: 'Lisk Builders', set: 'builders' },
-      { title: 'GDT', set: 'gdt' },
-      { title: 'Elite', set: 'elite'},
-      { title: 'Sherwood', set: 'sherwood' },
-      { title: 'alepop & 5an1ty', set: 'alepop5an1ty' },
+      { title: 'Lisk Builders', set: 'builders', tooltip: 'Active contributors to lisk' },
+      { title: 'GDT', set: 'gdt', tooltip: 'More info: https://pool.liskgdt.net' },
+      { title: 'Elite', set: 'elite', tooltip: 'Requires verifying yourself on https://liskelite.com' },
+      { title: 'Sherwood', set: 'sherwood', tooltip: 'More info: http://robinhood.liskpro.com' },
+      { title: 'alepop & 5an1ty', set: 'alepop5an1ty', tooltip: 'The creators of this site ;-)' },
+      { title: 'Optimized', set: 'optimized', tooltip: 'Delegates that share the most' },
     ];
   }
 
@@ -304,9 +306,9 @@ export default class VoteManager extends Component {
   }
 
   renderFilters() {
-    return VoteManager.getFilterData().map(({ title, set }, i) => (
+    return VoteManager.getFilterData().map(({ title, set, tooltip }, i) => (
       <div className="column col-4" key={i}>
-        <label className="form-switch">
+        <label className={`form-switch ${tooltip ? 'tooltip' : ''}`} data-tooltip={tooltip}>
           <input type="checkbox" checked={this.state.selectedSet.includes(set)} onChange={() => this.selectPreset(set)} />
           <i className="form-icon"></i> { title }
         </label>
@@ -333,7 +335,7 @@ export default class VoteManager extends Component {
       groups.map(el => el.name).join(',');
     return (
       <div>
-        When finished, submit your changes to Lisk Nano:<br /><br />
+        When finished, submit your changes to Lisk Nano by clicking the buttons below in sequence:<br /><br />
         <div className="tooltip" data-tooltip={`${consts.votingFee} LSK transaction fee per batch of ${consts.maxVotesInOneBatch} votes`}>
           {
             this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
@@ -341,7 +343,7 @@ export default class VoteManager extends Component {
                 <span style={{ marginRight: 4 }} key={i}>
                   <lisk-button-vote
                     votes={group.vote ? getNames(group.vote) : ''} unvotes={group.unvote ? getNames(group.unvote) : ''}
-                    title={`${group.unvote ? `Unvotes: ${group.unvote.length}` : ''}${group.vote && group.unvote ? `, Votes: ${group.vote.length}` : ''}${group.vote && !group.unvote ? `Votes: ${group.vote.length}` : ''}`}
+                    title={`Step ${i + 1}: ${group.unvote ? `-${group.unvote.length}` : ''}${group.vote && group.unvote ? `, +${group.vote.length}` : ''}${group.vote && !group.unvote ? `+${group.vote.length}` : ''}`}
                   />
                 </span>)) : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.`
           }
@@ -372,8 +374,8 @@ export default class VoteManager extends Component {
             </div>
             <div className="divider" />
             <div className="btn-group btn-group-block">
-              <button className="btn btn-secondary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
-              <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Wipe Selection</button>
+              <button className="btn btn-secondary" onClick={() => this.resetSelectedDelegates()}>Restore</button>
+              <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Unvote All</button>
               <button className="btn btn-secondary" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
               <button className="btn btn-secondary" onClick={() => this.deselectCurrentPage()}>Deselect Current Page</button>
               <button className="btn btn-secondary" onClick={() => this.openModal('import')}>Import Votes</button>
