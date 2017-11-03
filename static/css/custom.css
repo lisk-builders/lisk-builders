@@ -175,3 +175,38 @@
 .empty-help {
   background: white;
 }
+
+.sticky {
+  position: fixed;
+  top: 16px;
+  z-index: 300;
+  transform: translate(-50%,0);
+  left: 50%;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+.snackbar {
+  visibility: hidden;
+  position: fixed;
+  z-index: 1;
+  bottom: 30px;
+  right: 30px;
+}
+
+.snackbar.show {
+  visibility: visible;
+  animation: fadein 0.5s;
+}
+
+.toast .btn-clear {
+  margin: 2px -2px 4px 4px;
+}

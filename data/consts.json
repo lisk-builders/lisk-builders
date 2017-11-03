@@ -1,0 +1,5 @@
+{
+  "maxAllowedVotes": 101,
+  "votingFee": 1,
+  "maxVotesInOneBatch": 33
+}
