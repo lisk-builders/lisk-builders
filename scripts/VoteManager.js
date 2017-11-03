@@ -340,11 +340,7 @@ export default class VoteManager extends Component {
                 <span style={{ marginRight: 4 }} key={i}>
                   <lisk-button-vote
                     votes={group.vote ? getNames(group.vote) : ''} unvotes={group.unvote ? getNames(group.unvote) : ''}
-                    title={`
-                      ${group.unvote ? `Unvote: ${group.unvote.length}` : ''}
-                      ${group.vote && group.unvote ? `, Vote: ${group.vote.length}` : ''}
-                      ${group.vote && !group.unvote ? `Vote: ${group.vote.length}` : ''}
-                    `}
+                    title={`${group.unvote ? `Unvotes: ${group.unvote.length}` : ''}${group.vote && group.unvote ? `, Votes: ${group.vote.length}` : ''}${group.vote && !group.unvote ? `Votes: ${group.vote.length}` : ''}`}
                   />
                 </span>)) : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.`
           }
