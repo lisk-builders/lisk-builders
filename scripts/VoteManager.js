@@ -321,17 +321,21 @@ export default class VoteManager extends Component {
       groups.map(el => el.name).join(',');
     return (
       <div>
-        <div className="divider"></div>
-        When you are finished submit your votes here:<br/>
-        {
-          this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
-            .map((group, i) => (
-              <span style={{marginRight: 4}} key={i}>
-              <lisk-button-vote votes={group.vote ? getNames(group.vote) : ''}
-                unvotes={group.unvote ? getNames(group.unvote) : ''}></lisk-button-vote>
-            </span>)) : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.`
-        }
-        <div className="divider"></div>
+        <div className="divider" />
+        Submit your changes to Lisk Nano:<br/>
+        <div className="tooltip" data-tooltip={`${consts.votingFee} LSK Transaction fee per batch of ${consts.maxVotesInOneBatch} votes`}>
+          {
+            this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
+              .map((group, i) => (
+                <span style={{ marginRight: 4 }} key={i}>
+                  <lisk-button-vote
+                    votes={group.vote ? getNames(group.vote) : ''} unvotes={group.unvote ? getNames(group.unvote) : ''}
+                    title={`Vote Batch ${i + 1}`}
+                  />
+                </span>)) : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.`
+          }
+        </div>
+        <div className="divider" />
       </div>
     );
   }
