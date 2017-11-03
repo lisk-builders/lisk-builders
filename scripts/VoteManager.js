@@ -7,6 +7,7 @@ import Toast from './Toast';
 import liskbuilders from '../data/delegates.json';
 import groups from '../data/groups.json';
 import { listDiff, debounce, getUrl } from './utils';
+import * as consts from '../data/consts.json';
 
 const delegateSet = {
   builders: liskbuilders.map(dg => dg.delegateName),
@@ -40,7 +41,10 @@ export default class VoteManager extends Component {
       totalPages: 1,
       selectedSet: [],
       isSticky: false,
-      groupIsShown: null
+      groupIsShown: null,
+      showExportModal: false,
+      showImportModal: false,
+      votesToImport: ''
     };
     this.debouncedSearch = debounce(this.search.bind(this), 400).bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -148,9 +152,9 @@ export default class VoteManager extends Component {
   getPage(page) {
     const existingPage = this.state.pages.find(pg => pg.id === page);
     if (!existingPage) {
-      return axios.get(`${getUrl()}/api/delegates?limit=101&offset=${(page - 1) * 101}`)
+      return axios.get(`${getUrl()}/api/delegates?limit=${consts.maxAllowedVotes}&offset=${(page - 1) * consts.maxAllowedVotes}`)
       .then(res => {
-        const totalPages = 1 + Math.floor((res.data.totalCount - 1) / 101);
+        const totalPages = 1 + Math.floor((res.data.totalCount - 1) / consts.maxAllowedVotes);
         this.setState({
           pages: [...this.state.pages, { id: page, delegates: res.data.delegates }],
           totalPages: page === 1 ? totalPages : this.state.totalPages,
@@ -239,6 +243,37 @@ export default class VoteManager extends Component {
     this.setState({ selectedDelegates: this.state.initialVotes }, this.updateSelectedSets);
   }
 
+  wipeSelectedDelegates() {
+    this.setState({ selectedDelegates: [] }, this.updateSelectedSets);
+  }
+
+  selectCurrentPage() {
+    this.setState({ selectedDelegates: _.uniq([...this.state.selectedDelegates,
+      ...this.state.data.map(dg => dg.username)]) }, this.updateSelectedSets);
+  }
+
+  openModal(modal) {
+    if (modal === 'export') {
+      this.setState({ showExportModal: true });
+    }
+    if (modal === 'import') {
+      this.setState({ showImportModal: true });
+    }
+  }
+
+  closeModal(modal) {
+    if (modal === 'export') {
+      this.setState({ showExportModal: false });
+    }
+    if (modal === 'import') {
+      this.setState({ showImportModal: false });
+    }
+  }
+
+  importVotes() {
+    this.setState({ selectedDelegates: this.state.votesToImport.split(','), showImportModal: false }, this.updateSelectedSets);
+  }
+
   updateSelectedSets() {
     let selectedSet = this.state.selectedSet;
     Object.keys(delegateSet).forEach(set => {
@@ -290,14 +325,15 @@ export default class VoteManager extends Component {
     return (
       <div>
         <div className="divider"></div>
+        When you are finished submit your votes here:<br/>
         {
-          data.map(votes => _.groupBy(votes, 'type'))
+          this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
             .map((group, i) => (
               <span style={{marginRight: 4}} key={i}>
               <lisk-button-vote votes={group.vote ? getNames(group.vote) : ''}
                 onClick={() => alert('lol')}
                 unvotes={group.unvote ? getNames(group.unvote) : ''}></lisk-button-vote>
-            </span>))
+            </span>)) : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.`
         }
         <div className="divider"></div>
       </div>
@@ -325,10 +361,14 @@ export default class VoteManager extends Component {
             </div>
             <div className="divider"></div>
             <button className="btn btn-primary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
+            <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Wipe Selection</button>
+            <button className="btn btn-secondary" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
+            <button className="btn btn-secondary" onClick={() => this.openModal('import')}>Import Votes</button>
+            <button className="btn btn-secondary" onClick={() => this.openModal('export')}>Export Votes</button>
             { !!voteData.length && this.renderVoteButtons(voteData) }
             <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el;}}>
-              <span className={`label label-${this.state.selectedDelegates.length > 101 ? 'error' : 'primary'}`}>
-                {this.state.selectedDelegates.length}/101 Votes
+              <span className={`label label-${this.state.selectedDelegates.length > consts.maxAllowedVotes ? 'error' : 'primary'}`}>
+                {this.state.selectedDelegates.length}/{consts.maxAllowedVotes} Votes
               </span>
             </div>
           </div>
@@ -385,6 +425,41 @@ export default class VoteManager extends Component {
         <Container>
           <Slack />
         </Container>
+        <div className={`modal ${this.state.showExportModal ? 'active' : ''}`}>
+          <div className="modal-overlay"></div>
+          <div className="modal-container">
+            <div className="modal-header">
+              <button className="btn btn-clear float-right" onClick={() => this.closeModal('export')}></button>
+              <div className="modal-title h5">Export</div>
+            </div>
+            <div className="modal-body">
+              <div className="content">
+                <div className="form-group">
+                  <label className="form-label" htmlFor="input-example-3">Votes</label>
+                  <textarea className="form-input" readOnly id="input-example-3" placeholder="Votes" rows="8" cols="50" value={this.state.selectedDelegates} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={`modal ${this.state.showImportModal ? 'active' : ''}`}>
+          <div className="modal-overlay"></div>
+          <div className="modal-container">
+            <div className="modal-header">
+              <button className="btn btn-clear float-right" onClick={() => this.closeModal('import')}></button>
+              <div className="modal-title h5">Import</div>
+            </div>
+            <div className="modal-body">
+              <div className="content">
+                <div className="form-group">
+                  <label className="form-label" htmlFor="input-example-3">Votes</label>
+                  <textarea className="form-input" id="input-example-3" placeholder="Votes" rows="8" cols="50" onChange={(e) => this.setState({ votesToImport: e.target.value }) } />
+                  <button className="btn btn-secondary" onClick={() => this.importVotes()}>Import</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
