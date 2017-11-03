@@ -38,7 +38,10 @@ export default class VoteManager extends Component {
       totalPages: 1,
       selectedSet: [],
       isSticky: false,
-      groupIsShown: null
+      groupIsShown: null,
+      showExportModal: false,
+      showImportModal: false,
+      votesToImport: ''
     };
     this.debouncedSearch = debounce(this.search.bind(this), 400).bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -246,6 +249,28 @@ export default class VoteManager extends Component {
       ...this.state.data.map(dg => dg.username)]) }, this.updateSelectedSets);
   }
 
+  openModal(modal) {
+    if (modal === 'export') {
+      this.setState({ showExportModal: true });
+    }
+    if (modal === 'import') {
+      this.setState({ showImportModal: true });
+    }
+  }
+
+  closeModal(modal) {
+    if (modal === 'export') {
+      this.setState({ showExportModal: false });
+    }
+    if (modal === 'import') {
+      this.setState({ showImportModal: false });
+    }
+  }
+
+  importVotes() {
+    this.setState({ selectedDelegates: this.state.votesToImport.split(','), showImportModal: false });
+  }
+
   updateSelectedSets() {
     let selectedSet = this.state.selectedSet;
     Object.keys(delegateSet).forEach(set => {
@@ -332,6 +357,8 @@ export default class VoteManager extends Component {
             <button className="btn btn-primary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
             <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Wipe</button>
             <button className="btn btn-secondary" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
+            <button className="btn btn-secondary" onClick={() => this.openModal('import')}>Import Votes</button>
+            <button className="btn btn-secondary" onClick={() => this.openModal('export')}>Export Votes</button>
             { !!voteData.length && this.renderVoteButtons(voteData) }
             <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el;}}>
               <span className={`label label-${this.state.selectedDelegates.length > consts.maxAllowedVotes ? 'error' : 'primary'}`}>
@@ -392,6 +419,41 @@ export default class VoteManager extends Component {
         <Container>
           <Slack />
         </Container>
+        <div className={`modal ${this.state.showExportModal ? 'active' : ''}`}>
+          <div className="modal-overlay"></div>
+          <div className="modal-container">
+            <div className="modal-header">
+              <button className="btn btn-clear float-right" onClick={() => this.closeModal('export')}></button>
+              <div className="modal-title h5">Export</div>
+            </div>
+            <div className="modal-body">
+              <div className="content">
+                <div className="form-group">
+                  <label className="form-label" htmlFor="input-example-3">Votes</label>
+                  <textarea className="form-input" readOnly id="input-example-3" placeholder="Votes" rows="8" cols="50" value={this.state.selectedDelegates} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={`modal ${this.state.showImportModal ? 'active' : ''}`}>
+          <div className="modal-overlay"></div>
+          <div className="modal-container">
+            <div className="modal-header">
+              <button className="btn btn-clear float-right" onClick={() => this.closeModal('import')}></button>
+              <div className="modal-title h5">Import</div>
+            </div>
+            <div className="modal-body">
+              <div className="content">
+                <div className="form-group">
+                  <label className="form-label" htmlFor="input-example-3">Votes</label>
+                  <textarea className="form-input" id="input-example-3" placeholder="Votes" rows="8" cols="50" onChange={(e) => this.setState({ votesToImport: e.target.value }) } />
+                  <button className="btn btn-secondary" onClick={() => this.importVotes()}>Import</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
