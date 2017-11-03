@@ -324,17 +324,20 @@ export default class VoteManager extends Component {
       groups.map(el => el.name).join(',');
     return (
       <div>
-        When you are finished submit your votes here:<br/>
-        {
-          this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
-            .map((group, i) => (
-              <span style={{marginRight: 4}} key={i}>
-              <lisk-button-vote votes={group.vote ? getNames(group.vote) : ''}
-                onClick={() => alert('lol')}
-                unvotes={group.unvote ? getNames(group.unvote) : ''}></lisk-button-vote>
-            </span>)) : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.`
-        }
-        <div className="divider"></div>
+        Submit your changes to Lisk Nano:<br />
+        <div className="tooltip" data-tooltip={`${consts.votingFee} LSK Transaction fee per batch of ${consts.maxVotesInOneBatch} votes`}>
+          {
+            this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
+              .map((group, i) => (
+                <span style={{ marginRight: 4 }} key={i}>
+                  <lisk-button-vote
+                    votes={group.vote ? getNames(group.vote) : ''} unvotes={group.unvote ? getNames(group.unvote) : ''}
+                    title={`Vote Batch ${i + 1}`}
+                  />
+                </span>)) : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.`
+          }
+        </div>
+        <div className="divider" />
       </div>
     );
   }
@@ -343,7 +346,7 @@ export default class VoteManager extends Component {
     const voteData = this.getVoteUnvoteList();
     return (
       <div>
-        <Toast text={toastText} timer={5000} />
+        <Toast text={toastText} timer={10000} />
         <Container>
           <div className="form-horizontal col-12">
             <div className="form-group">
@@ -456,6 +459,8 @@ export default class VoteManager extends Component {
                 <div className="form-group">
                   <label className="form-label" htmlFor="input-example-3">Votes</label>
                   <textarea className="form-input" id="input-example-3" placeholder="Votes" rows="8" cols="50" onChange={(e) => this.setState({ votesToImport: e.target.value }) } />
+                </div>
+                <div className="form-group">
                   <button className="btn btn-secondary" onClick={() => this.importVotes()}>Import</button>
                 </div>
               </div>
