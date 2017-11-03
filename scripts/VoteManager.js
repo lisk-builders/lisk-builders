@@ -362,7 +362,7 @@ export default class VoteManager extends Component {
     const voteData = this.getVoteUnvoteList();
     return (
       <div>
-        <Toast text={toastText} timer={10000} />
+        <Toast text={toastText} timer={4000} />
         <Container>
           <div className="form-horizontal">
             <div className="form-group">
