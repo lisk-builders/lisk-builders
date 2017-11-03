@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import axios from 'axios';
+import Banner from './Banner';
 import Note from './Note';
 import Panel from './Panel';
 import Slack from './Slack';
@@ -57,6 +58,7 @@ export default class Builders extends Component {
     const sortedData = _.sortBy(this.state.data, ['rank']).reverse();
     return (
       <div>
+        <Banner />
         <div className="bg-gray">
           <Container>
             <Note {...notes.note1} />

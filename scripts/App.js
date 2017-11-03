@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Banner from './Banner';
 import Builders from './Builders';
 import Contributions from './Contributions';
 import VoteManagerLogin from './VoteManagerLogin';
@@ -12,13 +11,14 @@ export default class App extends Component {
     return (
       <div>
         <NavBar />
-        <Banner />
-        <Switch>
-          <Route exact path="/" render={() => <Builders />} />
-          <Route exact path="/contributions" render={() => <Contributions />} />
-          <Route exact path="/votemanager" render={() => <VoteManagerLogin />} />
-          <Route path="/votemanager/:address" component={VoteManager} />
-        </Switch>
+        <div className="nav-bar-padding">
+          <Switch>
+            <Route exact path="/" render={() => <Builders />} />
+            <Route exact path="/contributions" render={() => <Contributions />} />
+            <Route exact path="/votemanager" render={() => <VoteManagerLogin />} />
+            <Route path="/votemanager/:address" component={VoteManager} />
+          </Switch>
+        </div>
       </div>
     );
   }
