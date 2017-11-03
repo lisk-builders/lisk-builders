@@ -322,6 +322,7 @@ export default class VoteManager extends Component {
     return (
       <div>
         <div className="divider"></div>
+        When you are finished submit your votes here:<br/>
         {
           this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
             .map((group, i) => (
