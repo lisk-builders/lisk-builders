@@ -87,17 +87,18 @@ export default class VoteManager extends Component {
 
   getVoteUnvoteList() {
     const { initialVotes, selectedDelegates } = this.state;
-    const voteList = listDiff(selectedDelegates, initialVotes).join(',');
+    const voteList = listDiff(selectedDelegates, initialVotes);
     let unvoteList = [];
     if (initialVotes) {
       unvoteList = initialVotes.filter(iv =>
         !selectedDelegates.find(dg => dg === iv)
       );
     }
-    return {
-      voteList,
-      unvoteList: unvoteList.join(',')
-    };
+    const data = [
+      ...unvoteList.map(name => ({ type: 'unvote', name })),
+      ...voteList.map(name => ({ type: 'vote', name }))
+    ];
+    return _.chunk(data, 33);
   }
 
   search(qs) {
@@ -232,7 +233,7 @@ export default class VoteManager extends Component {
   }
 
   resetSelectedDelegates() {
-    this.setState({ selectedDelegates: [] }, this.updateSelectedSets);
+    this.setState({ selectedDelegates: this.state.initialVotes }, this.updateSelectedSets);
   }
 
   updateSelectedSets() {
@@ -280,8 +281,27 @@ export default class VoteManager extends Component {
     </tr>
   );
 
+  renderVoteButtons = (data) => {
+    const getNames = (groups) =>
+      groups.map(el => el.name).join(',');
+    return (
+      <div>
+        <div className="divider"></div>
+        {
+          data.map(votes => _.groupBy(votes, 'type'))
+            .map((group, i) => (
+              <span style={{marginRight: 4}} key={i}>
+              <lisk-button-vote votes={group.vote ? getNames(group.vote) : ''}
+                unvotes={group.unvote ? getNames(group.unvote) : ''}></lisk-button-vote>
+            </span>))
+        }
+        <div className="divider"></div>
+      </div>
+    );
+  }
+
   render() {
-    const { voteList, unvoteList } = this.getVoteUnvoteList();
+    const voteData = this.getVoteUnvoteList();
     return (
       <div>
         <Container>
@@ -300,10 +320,7 @@ export default class VoteManager extends Component {
             </div>
             <div className="divider"></div>
             <button className="btn btn-primary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
-            { (voteList || unvoteList) &&
-                <lisk-button-vote votes={voteList} unvotes={unvoteList}>
-                </lisk-button-vote>
-            }
+            { !!voteData.length && this.renderVoteButtons(voteData) }
             <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el;}}>
               <span className={`label label-${this.state.selectedDelegates.length > 101 ? 'error' : 'primary'}`}>
                 {this.state.selectedDelegates.length}/101 Votes
