@@ -326,7 +326,6 @@ export default class VoteManager extends Component {
       groups.map(el => el.name).join(',');
     return (
       <div>
-        <div className="divider" />
         Submit your changes to Lisk Nano:<br />
         <div className="tooltip" data-tooltip={`${consts.votingFee} LSK transaction fee per batch of ${consts.maxVotesInOneBatch} votes`}>
           {
@@ -349,7 +348,7 @@ export default class VoteManager extends Component {
     const voteData = this.getVoteUnvoteList();
     return (
       <div>
-        <Toast text={toastText} timer={5000} />
+        <Toast text={toastText} timer={10000} />
         <Container>
           <div className="form-horizontal col-12">
             <div className="form-group">
@@ -365,11 +364,14 @@ export default class VoteManager extends Component {
               { this.renderFilters() }
             </div>
             <div className="divider"></div>
-            <button className="btn btn-primary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
-            <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Wipe Selection</button>
-            <button className="btn btn-secondary" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
-            <button className="btn btn-secondary" onClick={() => this.openModal('import')}>Import Votes</button>
-            <button className="btn btn-secondary" onClick={() => this.openModal('export')}>Export Votes</button>
+            <div className="btn-group btn-group-block">
+              <button className="btn btn-primary" onClick={() => this.resetSelectedDelegates()}>Reset</button>
+              <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Wipe Selection</button>
+              <button className="btn btn-secondary" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
+              <button className="btn btn-secondary" onClick={() => this.openModal('import')}>Import Votes</button>
+              <button className="btn btn-secondary" onClick={() => this.openModal('export')}>Export Votes</button>
+            </div>
+            <div className="divider"></div>
             { !!voteData.length && this.renderVoteButtons(voteData) }
             <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el;}}>
               <span className={`label label-${this.state.selectedDelegates.length > consts.maxAllowedVotes ? 'error' : 'primary'}`}>
@@ -459,6 +461,8 @@ export default class VoteManager extends Component {
                 <div className="form-group">
                   <label className="form-label" htmlFor="input-example-3">Votes</label>
                   <textarea className="form-input" id="input-example-3" placeholder="Votes" rows="8" cols="50" onChange={(e) => this.setState({ votesToImport: e.target.value }) } />
+                </div>
+                <div className="form-group">
                   <button className="btn btn-secondary" onClick={() => this.importVotes()}>Import</button>
                 </div>
               </div>
