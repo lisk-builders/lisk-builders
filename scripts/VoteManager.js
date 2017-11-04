@@ -36,7 +36,14 @@ export default class VoteManager extends Component {
 
   constructor(props) {
     super(props);
+    let canUseLocalStorage = true;
+    try {
+      localStorage.getItem('localStorageTest');
+    } catch (e) {
+      canUseLocalStorage = false;
+    }
     this.state = {
+      canUseLocalStorage,
       loaded: false,
       data: [],
       selectedDelegates: [],
@@ -50,7 +57,7 @@ export default class VoteManager extends Component {
       showExportModal: false,
       showImportModal: false,
       votesToImport: '',
-      runIntro: localStorage.getItem('voteManagerIntroDone') !== 'true',
+      runIntro: canUseLocalStorage ? localStorage.getItem('voteManagerIntroDone') !== 'true' : false,
       introType: 'continuous',
       introSkipButton: true,
       introDisableOverlay: true,
@@ -241,7 +248,9 @@ export default class VoteManager extends Component {
   handleIntroChange(data) {
     if (data.type === 'finished') {
       window.scrollTo(0, 0);
-      localStorage.setItem('voteManagerIntroDone', 'true');
+      if (this.state.canUseLocalStorage) {
+        localStorage.setItem('voteManagerIntroDone', 'true');
+      }
     }
   }
 
