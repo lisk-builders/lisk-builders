@@ -52,6 +52,8 @@ export default class VoteManager extends Component {
       votesToImport: '',
       runIntro: localStorage.getItem('voteManagerIntroDone') !== 'true',
       introType: 'continuous',
+      introSkipButton: true,
+      introDisableOverlay: true,
       introSteps: [
         {
           selector: '#intro-starter',
@@ -425,6 +427,8 @@ export default class VoteManager extends Component {
           run={this.state.runIntro}
           autoStart={this.state.runIntro}
           showOverlay={() => true}
+          showSkipButton={this.state.introSkipButton}
+          disableOverlay={this.state.introDisableOverlay}
           steps={this.state.introSteps}
           callback={(p) => this.handleIntroChange(p)}
         />
