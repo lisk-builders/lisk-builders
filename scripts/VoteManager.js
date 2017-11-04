@@ -561,6 +561,9 @@ export default class VoteManager extends Component {
                   <label className="form-label" htmlFor="input-example-3">Votes</label>
                   <textarea className="form-input" readOnly id="input-example-3" placeholder="Votes" rows="8" cols="50" value={this.state.selectedDelegates} />
                 </div>
+                <div className="form-group">
+                  <a href={`mailto:?subject=Hey, I found a couple of delegates to vote for that you might find interesting&body=${this.state.selectedDelegates}`} className="btn btn-primary">Send via email</a>
+                </div>
               </div>
             </div>
           </div>
