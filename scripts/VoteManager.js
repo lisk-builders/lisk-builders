@@ -239,6 +239,10 @@ export default class VoteManager extends Component {
         {
           element: '#intro-vote-btn',
           intro: 'After making changes to your votes, you will see clickable buttons here to send your votes to Lisk Nano in batches of 33 changes / button.'
+        },
+        {
+          element: '#intro-vote-btn',
+          intro: 'Do not hesitate to click the vote buttons, Lisk Nano will ask you to confirm before sending the transaction.'
         }
       ]
     });
@@ -451,11 +455,11 @@ export default class VoteManager extends Component {
               <button className="btn btn-secondary" id="intro-export-btn" onClick={() => this.openModal('export')}>Export Votes</button>
             </div>
             <div className="divider"></div>
-            When finished, send your changes to Lisk Nano by clicking the buttons below in sequence.<br />
-            You will get an overview of the votes you are sending in Nano before you actually submit the votes:<br /><br />
+            <p>When finished, send your changes to Lisk Nano by clicking the buttons below in sequence.
+            You will get an overview of the votes you are sending in Nano before you actually submit the votes:</p>
             { !voteData.length && (<button className="btn btn-secondary" disabled id="intro-vote-btn">Step 1: -0, +0</button>) }
             { !!voteData.length && this.renderVoteButtons(voteData) }
-            { this.state.selectedSet.includes('elite') ? <span><br />Warning: You have voted for Elite, you must verify your address on the Elite <a target="_blank" href="https://liskelite.com">website</a> to make sure you receive your payout.</span> : '' }
+            { this.state.selectedSet.includes('elite') ? <p><br />Warning: You have voted for Elite, you must verify your address on the Elite <a target="_blank" href="https://liskelite.com">website</a> to make sure you receive your payout.</p> : '' }
             <div className="divider"></div>
             <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el;}}>
               <span className={`label label-${this.state.selectedDelegates.length > consts.maxAllowedVotes ? 'error' : 'primary'}`}>
