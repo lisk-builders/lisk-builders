@@ -476,7 +476,9 @@ export default class VoteManager extends Component {
             You will get an overview of the votes you are sending in Nano before you actually submit the votes:</p>
             { !voteData.length && (<button className="btn btn-secondary" disabled id="intro-vote-btn">Step 1: -0, +0</button>) }
             { !!voteData.length && this.renderVoteButtons(voteData) }
-            { this.state.selectedSet.includes('elite') ? <p><br />Warning: You have voted for Elite, you must verify your address on the Elite <a target="_blank" href="https://liskelite.com">website</a> to make sure you receive your payout.</p> : '' }
+            <p><br />Status:&nbsp;
+            { this.state.selectedSet.includes('elite') ? <span><strong>Warning!</strong> You have voted for Elite, you must verify your address on the Elite <a target="_blank" href="https://liskelite.com">website</a> to make sure you receive your payout.</span> : 'Everything ok!' }
+            </p>
             <div className="divider"></div>
             <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el;}}>
               <span className={`label label-${this.state.selectedDelegates.length > consts.maxAllowedVotes ? 'error' : 'primary'}`}>
