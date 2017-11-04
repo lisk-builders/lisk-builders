@@ -2,6 +2,7 @@ import _ from 'lodash';
 import 'regenerator-runtime/runtime';
 import React, { Component } from 'react';
 import axios from 'axios';
+import Joyride from 'react-joyride';
 import Slack from './Slack';
 import Container from './Container';
 import Toast from './Toast';
@@ -48,7 +49,59 @@ export default class VoteManager extends Component {
       groupIsShown: null,
       showExportModal: false,
       showImportModal: false,
-      votesToImport: ''
+      votesToImport: '',
+      runIntro: localStorage.getItem('voteManagerIntroDone') !== 'true',
+      introType: 'continuous',
+      introSteps: [
+        {
+          selector: '#intro-starter',
+          text: 'Welcome to our vote manager tool, let\'s take a tour...'
+        },
+        {
+          selector: '#input-search',
+          text: 'You can search for a specific delegate here.'
+        },
+        {
+          selector: '#intro-filters-block',
+          text: 'These are toggles to select / deselect entire groups.'
+        },
+        {
+          selector: '#intro-restore-btn',
+          text: 'Restore the tool to your original votes.'
+        },
+        {
+          selector: '#intro-unvote-btn',
+          text: 'Unvote all delegates you currently vote for.'
+        },
+        {
+          selector: '#intro-optimize-btn',
+          text: 'Select a payment optimized set of delegates.'
+        },
+        {
+          selector: '#intro-selectpage-btn',
+          text: 'Select all delegates on the current page.'
+        },
+        {
+          selector: '#intro-deselectpage-btn',
+          text: 'Deselect all delegates on the current page.'
+        },
+        {
+          selector: '#intro-import-btn',
+          text: 'Import a comma seperated list of delegates to start from a template.'
+        },
+        {
+          selector: '#intro-export-btn',
+          text: 'Export a comma seperated list of delegates.'
+        },
+        {
+          selector: '#intro-vote-btn',
+          text: 'After making changes to your votes, you will see clickable buttons here to send your votes to Lisk Nano in batches of 33 changes / button.'
+        },
+        {
+          selector: '#intro-vote-section',
+          text: 'Do not hesitate to click the vote buttons, Lisk Nano will ask you to confirm before sending the transaction.'
+        }
+      ]
     };
     this.debouncedSearch = debounce(this.search.bind(this), 400).bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -183,89 +236,11 @@ export default class VoteManager extends Component {
     });
   }
 
-  intro() {
-    const tour = new Tour({
-      orphan: true,
-      steps: [
-        {
-          content: 'Welcome to our vote manager tool, let\'s take a tour...',
-          placement: 'auto',
-          backdrop: true
-        },
-        {
-          element: '#intro-search-block',
-          content: 'You can search for a specific delegate here.',
-          placement: 'auto',
-          backdrop: true,
-          backdropPadding: 8
-        },
-        {
-          element: '#intro-filters-block',
-          content: 'These are toggles to select / deselect entire groups.',
-          placement: 'auto',
-          backdrop: true
-        },
-        {
-          element: '#intro-restore-btn',
-          content: 'Restore the tool to your original votes.',
-          placement: 'auto',
-          backdrop: true
-        },
-        {
-          element: '#intro-unvote-btn',
-          content: 'Unvote all delegates you currently vote for.',
-          placement: 'auto',
-          backdrop: true
-        },
-        {
-          element: '#intro-optimize-btn',
-          content: 'Select a payment optimized set of delegates.',
-          placement: 'auto',
-          backdrop: true
-        },
-        {
-          element: '#intro-selectpage-btn',
-          content: 'Select all delegates on the current page.',
-          placement: 'auto',
-          backdrop: true
-        },
-        {
-          element: '#intro-deselectpage-btn',
-          content: 'Deselect all delegates on the current page.',
-          placement: 'auto',
-          backdrop: true
-        },
-        {
-          element: '#intro-import-btn',
-          content: 'Import a comma seperated list of delegates to start from a template.',
-          placement: 'bottom',
-          backdrop: true
-        },
-        {
-          element: '#intro-export-btn',
-          content: 'Export a comma seperated list of delegates.',
-          placement: 'bottom',
-          backdrop: true
-        },
-        {
-          element: '#intro-vote-btn',
-          content: 'After making changes to your votes, you will see clickable buttons here to send your votes to Lisk Nano in batches of 33 changes / button.',
-          placement: 'right',
-          backdrop: true
-        },
-        {
-          element: '#intro-vote-btn',
-          content: 'Do not hesitate to click the vote buttons, Lisk Nano will ask you to confirm before sending the transaction.',
-          placement: 'right',
-          backdrop: true
-        }
-      ] });
-
-    // Initialize the tour
-    tour.init();
-
-    // Start the tour
-    tour.start();
+  handleIntroChange(data) {
+    if (data.type === 'finished') {
+      window.scrollTo(0, 0);
+      localStorage.setItem('voteManagerIntroDone', 'true');
+    }
   }
 
   toggleDelegate = (delegate) => {
@@ -443,15 +418,25 @@ export default class VoteManager extends Component {
     const voteData = this.getVoteUnvoteList();
     return (
       <div>
+        <Joyride
+          ref={() => 'joyride'}
+          scrollOffset={54}
+          type={this.state.introType}
+          run={this.state.runIntro}
+          autoStart={this.state.runIntro}
+          showOverlay={() => true}
+          steps={this.state.introSteps}
+          callback={(p) => this.handleIntroChange(p)}
+        />
         <Toast text={toastText} timer={5000} />
         <Container>
           <div className="form-horizontal">
-            <div className="form-group" id="intro-search-block">
+            <div className="form-group" id="intro-starter">
               <div className="col-3">
-                <label className="form-label" htmlFor="input-example-1">Search for a delegate:</label>
+                <label className="form-label" htmlFor="input-search">Search for a delegate:</label>
               </div>
               <div className="col-9">
-                <input className="form-input" type="text" id="input-example-1" placeholder="Delegate" onKeyUp={this.handleSearch} />
+                <input className="form-input" type="text" id="input-search" placeholder="Delegate" onKeyUp={this.handleSearch} />
               </div>
             </div>
             <div className="divider" />
@@ -474,8 +459,10 @@ export default class VoteManager extends Component {
             <div className="divider"></div>
             <p>When finished, send your changes to Lisk Nano by clicking the buttons below in sequence.
             You will get an overview of the votes you are sending in Nano before you actually submit the votes:</p>
-            { !voteData.length && (<button className="btn btn-secondary" disabled id="intro-vote-btn">Step 1: -0, +0</button>) }
-            { !!voteData.length && this.renderVoteButtons(voteData) }
+            <div id="intro-vote-section">
+              { !voteData.length && (<button className="btn btn-secondary" disabled id="intro-vote-btn">Step 1: -0, +0</button>) }
+              { !!voteData.length && this.renderVoteButtons(voteData) }
+            </div>
             <p><br />Status:&nbsp;
             { this.state.selectedSet.includes('elite') ? <span><strong>Warning!</strong> You have voted for Elite, you must verify your address on the Elite <a target="_blank" href="https://liskelite.com">website</a> to make sure you receive your payout.</span> : 'Everything ok!' }
             </p>
