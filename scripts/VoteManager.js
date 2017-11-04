@@ -56,6 +56,7 @@ export default class VoteManager extends Component {
       groupIsShown: null,
       showExportModal: false,
       showImportModal: false,
+      showSummaryModal: false,
       votesToImport: '',
       runIntro: canUseLocalStorage ? localStorage.getItem('voteManagerIntroDone') !== 'true' : false,
       introType: 'continuous',
@@ -105,6 +106,10 @@ export default class VoteManager extends Component {
         {
           selector: '#intro-vote-btn',
           text: 'After making changes to your votes, you will see clickable buttons here to send your votes to Lisk Nano in batches of 33 changes / button.'
+        },
+        {
+          selector: '#intro-summary-btn',
+          text: 'See a summary of all the changes to your votes.'
         },
         {
           selector: '#intro-vote-section',
@@ -340,6 +345,9 @@ export default class VoteManager extends Component {
     if (modal === 'import') {
       this.setState({ showImportModal: true });
     }
+    if (modal === 'summary') {
+      this.setState({ showSummaryModal: true });
+    }
   }
 
   closeModal(modal) {
@@ -348,6 +356,9 @@ export default class VoteManager extends Component {
     }
     if (modal === 'import') {
       this.setState({ showImportModal: false });
+    }
+    if (modal === 'summary') {
+      this.setState({ showSummaryModal: false });
     }
   }
 
@@ -410,6 +421,7 @@ export default class VoteManager extends Component {
     return (
       <div>
         <div className="tooltip" data-tooltip={`${consts.votingFee} LSK transaction fee per batch of ${consts.maxVotesInOneBatch} votes`}>
+          { !data.length && (<button style={{ marginRight: 4 }} className="btn btn-secondary" disabled id="intro-vote-btn">Step 1: -0, +0</button>) }
           {
             this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
               .map((group, i) => (
@@ -420,6 +432,7 @@ export default class VoteManager extends Component {
                   />
                 </span>)) : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.`
           }
+          <button className="btn btn-secondary" disabled={!data.length} id="intro-summary-btn" onClick={() => this.openModal('summary')}>Summary</button>
         </div>
       </div>
     );
@@ -427,6 +440,7 @@ export default class VoteManager extends Component {
 
   render() {
     const voteData = this.getVoteUnvoteList();
+    const flatVoteData = [].concat(...voteData);
     return (
       <div>
         <Joyride
@@ -469,18 +483,16 @@ export default class VoteManager extends Component {
               <button className="btn btn-secondary" id="intro-import-btn" onClick={() => this.openModal('import')}>Import Votes</button>
               <button className="btn btn-secondary" id="intro-export-btn" onClick={() => this.openModal('export')}>Export Votes</button>
             </div>
-            <div className="divider"></div>
-            <p>When finished, send your changes to Lisk Nano by clicking the buttons below in sequence.
-            You will get an overview of the votes you are sending in Nano before you actually submit the votes:</p>
+            <div className="divider" />
+            <p>When finished, send your changes to Lisk Nano by clicking the buttons below in sequence. You will get an overview of the votes you are sending in Nano before you actually submit the votes:</p>
             <div id="intro-vote-section">
-              { !voteData.length && (<button className="btn btn-secondary" disabled id="intro-vote-btn">Step 1: -0, +0</button>) }
-              { !!voteData.length && this.renderVoteButtons(voteData) }
+              { this.renderVoteButtons(voteData) }
             </div>
             <p><br />Status:&nbsp;
-            { this.state.selectedSet.includes('elite') ? <span><strong>Warning!</strong> You have voted for Elite, you must verify your address on the Elite <a target="_blank" href="https://liskelite.com">website</a> to make sure you receive your payout.</span> : 'Everything ok!' }
+            { this.state.selectedSet.includes('elite') ? <span><strong>Warning!</strong> You have voted for Elite, you must verify your address on the Elite <a target="_blank" rel="noopener noreferrer" href="https://liskelite.com">website</a> to make sure you receive your payout.</span> : 'Everything ok!' }
             </p>
-            <div className="divider"></div>
-            <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el;}}>
+            <div className="divider" />
+            <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el; }}>
               <span className={`label label-${this.state.selectedDelegates.length > consts.maxAllowedVotes ? 'error' : 'primary'}`}>
                 {this.state.selectedDelegates.length}/{consts.maxAllowedVotes} Votes
               </span>
@@ -514,7 +526,7 @@ export default class VoteManager extends Component {
                 </li>
               }
               <li className="page-item active">
-                <a href="#scroll" onClick={() => this.navigate(this.state.selectedPage )}>{ this.state.selectedPage }</a>
+                <a href="#scroll" onClick={() => this.navigate(this.state.selectedPage)}>{ this.state.selectedPage }</a>
               </li>
               { this.state.selectedPage + 1 <= this.state.totalPages &&
                 <li className="page-item">
@@ -528,22 +540,19 @@ export default class VoteManager extends Component {
                 <a href="#scroll" onClick={() => this.navigate(this.state.totalPages)}>{this.state.totalPages}</a>
               </li>
               <li className="page-item">
-                <a href="#scroll" disabled={this.state.selectedPage >= this.state.totalPages} onClick={(e) => this.navigate(this.state.selectedPage + 1)}>Next</a>
+                <a href="#scroll" disabled={this.state.selectedPage >= this.state.totalPages} onClick={() => this.navigate(this.state.selectedPage + 1)}>Next</a>
               </li>
             </ul>
           </div>
-          {
-            // @alepop the button to submit the votes should probably be here towards the bottom and should be disabled if selectedDelegates > 101
-          }
         </Container>
         <Container>
           <Slack />
         </Container>
-        <div className={`modal ${this.state.showExportModal ? 'active' : ''}`}>
-          <div className="modal-overlay"></div>
+        <div className={`modal ${this.state.showExportModal ? 'active' : ''} modal-sm`}>
+          <div className="modal-overlay" />
           <div className="modal-container">
             <div className="modal-header">
-              <button className="btn btn-clear float-right" onClick={() => this.closeModal('export')}></button>
+              <button className="btn btn-clear float-right" onClick={() => this.closeModal('export')} />
               <div className="modal-title h5">Export</div>
             </div>
             <div className="modal-body">
@@ -556,22 +565,41 @@ export default class VoteManager extends Component {
             </div>
           </div>
         </div>
-        <div className={`modal ${this.state.showImportModal ? 'active' : ''}`}>
-          <div className="modal-overlay"></div>
+        <div className={`modal ${this.state.showImportModal ? 'active' : ''} modal-sm`}>
+          <div className="modal-overlay" />
           <div className="modal-container">
             <div className="modal-header">
-              <button className="btn btn-clear float-right" onClick={() => this.closeModal('import')}></button>
+              <button className="btn btn-clear float-right" onClick={() => this.closeModal('import')} />
               <div className="modal-title h5">Import</div>
             </div>
             <div className="modal-body">
               <div className="content">
                 <div className="form-group">
                   <label className="form-label" htmlFor="input-example-3">Votes</label>
-                  <textarea className="form-input" id="input-example-3" placeholder="Votes" rows="8" cols="50" onChange={(e) => this.setState({ votesToImport: e.target.value }) } />
+                  <textarea className="form-input" id="input-example-3" placeholder="Votes" rows="8" cols="50" onChange={(e) => this.setState({ votesToImport: e.target.value })} />
                 </div>
                 <div className="form-group">
                   <button className="btn btn-secondary" onClick={() => this.importVotes()}>Import</button>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={`modal ${this.state.showSummaryModal ? 'active' : ''} modal-sm`}>
+          <div className="modal-overlay" />
+          <div className="modal-container">
+            <div className="modal-header">
+              <button className="btn btn-clear float-right" onClick={() => this.closeModal('summary')} />
+              <div className="modal-title h5">Summary</div>
+            </div>
+            <div className="modal-body">
+              <div className="content">
+                <p>
+                  <strong>Added votes:</strong> {flatVoteData.filter(v => v.type === 'vote').map(v => v.name).join(' ')}
+                </p>
+                <p>
+                  <strong>Removed votes:</strong> {flatVoteData.filter(v => v.type === 'unvote').map(v => v.name).join(' ')}
+                </p>
               </div>
             </div>
           </div>
