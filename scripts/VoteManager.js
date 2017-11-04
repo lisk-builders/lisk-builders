@@ -561,6 +561,9 @@ export default class VoteManager extends Component {
                   <label className="form-label" htmlFor="input-example-3">Votes</label>
                   <textarea className="form-input" readOnly id="input-example-3" placeholder="Votes" rows="8" cols="50" value={this.state.selectedDelegates} />
                 </div>
+                <div className="form-group">
+                  <a href={`mailto:?subject=Hey, Here's a list with great Lisk delegates you can vote for!&body=You can use the lisk.builders vote manager to easily manage your votes (https://lisk.builders/votemanager). Press the import button and paste this list: %0D%0A%0D%0A${this.state.selectedDelegates}`} className="btn btn-primary">Send via email</a>
+                </div>
               </div>
             </div>
           </div>
