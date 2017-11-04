@@ -602,6 +602,7 @@ export default class VoteManager extends Component {
                 </p>
               </div>
             </div>
+            <div className="modal-footer"></div>
           </div>
         </div>
       </div>
