@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/css/spectre.min.css?v=<%= htmlWebpackPlugin.options.version %>">
     <link rel="stylesheet" href="/static/css/custom.css?v=<%= htmlWebpackPlugin.options.version %>">
-    <link rel="stylesheet" href="/static/intro.js/intro.min.css?v=<%= htmlWebpackPlugin.options.version %>">
+    <link rel="stylesheet" href="/static/bootstrap-tour/bootstrap-tour-standalone.min.css?v=<%= htmlWebpackPlugin.options.version %>">
     <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
     <!-- Start Single Page Apps for GitHub Pages -->
     <script type="text/javascript">
@@ -44,7 +44,8 @@
     <div id='root'>
       <div class="loading"></div>
     </div>
-    <script src="/static/intro.js/intro.min.js?v=<%= htmlWebpackPlugin.options.version %>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/static/bootstrap-tour/bootstrap-tour-standalone.min.js?v=<%= htmlWebpackPlugin.options.version %>"></script>
     <script src='https://unpkg.com/@lisk-builders/lisk-buttons@0.6.0/dist/liskbuttons.js'></script>
     <script src="/static/bundle.js?v=<%= htmlWebpackPlugin.options.version %>"></script>
 </body>

@@ -48,8 +48,7 @@ export default class VoteManager extends Component {
       groupIsShown: null,
       showExportModal: false,
       showImportModal: false,
-      votesToImport: '',
-      introDone: localStorage.getItem('completedVoteManagerIntro') === 'true'
+      votesToImport: ''
     };
     this.debouncedSearch = debounce(this.search.bind(this), 400).bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -185,70 +184,88 @@ export default class VoteManager extends Component {
   }
 
   intro() {
-    var intro = introJs();
-    intro.oncomplete(() => {
-      localStorage.setItem('completedVoteManagerIntro', 'true');
-      this.setState({ introDone: true });
-    });
-    intro.setOptions({
-      showStepNumbers: false,
-      exitOnOverlayClick: false,
-      disableInteraction: true,
-      hidePrev: true,
-      hideNext: true,
+    const tour = new Tour({
+      orphan: true,
       steps: [
         {
-          intro: 'Welcome to our vote manager tool, let\'s take a tour...'
+          content: 'Welcome to our vote manager tool, let\'s take a tour...',
+          placement: 'auto',
+          backdrop: true
         },
         {
           element: '#intro-search-block',
-          intro: 'You can search for a specific delegate here.'
+          content: 'You can search for a specific delegate here.',
+          placement: 'auto',
+          backdrop: true,
+          backdropPadding: 8
         },
         {
           element: '#intro-filters-block',
-          intro: 'These are toggles to select / deselect entire groups.'
+          content: 'These are toggles to select / deselect entire groups.',
+          placement: 'auto',
+          backdrop: true
         },
         {
           element: '#intro-restore-btn',
-          intro: 'Restore the tool to your original votes.'
+          content: 'Restore the tool to your original votes.',
+          placement: 'auto',
+          backdrop: true
         },
         {
           element: '#intro-unvote-btn',
-          intro: 'Unvote all delegates you currently vote for.'
+          content: 'Unvote all delegates you currently vote for.',
+          placement: 'auto',
+          backdrop: true
         },
         {
           element: '#intro-optimize-btn',
-          intro: 'Select a payment optimized set of delegates.'
+          content: 'Select a payment optimized set of delegates.',
+          placement: 'auto',
+          backdrop: true
         },
         {
           element: '#intro-selectpage-btn',
-          intro: 'Select all delegates on the current page.'
+          content: 'Select all delegates on the current page.',
+          placement: 'auto',
+          backdrop: true
         },
         {
           element: '#intro-deselectpage-btn',
-          intro: 'Deselect all delegates on the current page.'
+          content: 'Deselect all delegates on the current page.',
+          placement: 'auto',
+          backdrop: true
         },
         {
           element: '#intro-import-btn',
-          intro: 'Import a comma seperated list of delegates to start from a template.'
+          content: 'Import a comma seperated list of delegates to start from a template.',
+          placement: 'bottom',
+          backdrop: true
         },
         {
           element: '#intro-export-btn',
-          intro: 'Export a comma seperated list of delegates.'
+          content: 'Export a comma seperated list of delegates.',
+          placement: 'bottom',
+          backdrop: true
         },
         {
           element: '#intro-vote-btn',
-          intro: 'After making changes to your votes, you will see clickable buttons here to send your votes to Lisk Nano in batches of 33 changes / button.'
+          content: 'After making changes to your votes, you will see clickable buttons here to send your votes to Lisk Nano in batches of 33 changes / button.',
+          placement: 'right',
+          backdrop: true
         },
         {
           element: '#intro-vote-btn',
-          intro: 'Do not hesitate to click the vote buttons, Lisk Nano will ask you to confirm before sending the transaction.'
+          content: 'Do not hesitate to click the vote buttons, Lisk Nano will ask you to confirm before sending the transaction.',
+          placement: 'right',
+          backdrop: true
         }
-      ]
-    });
-    if (!this.state.introDone) {
-      intro.start();
-    }
+      ] });
+
+    // Initialize the tour
+    tour.init();
+
+    // Start the tour
+    tour.start();
   }
 
   toggleDelegate = (delegate) => {

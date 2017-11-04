@@ -36,7 +36,7 @@ class VoteManagerLogin extends Component {
         <Container>
           <div className="column">
             <div className="panel">
-              <div className="panel-header"> </div>
+              <div className="panel-header" />
               <div className="panel-body">
                 <form onSubmit={this.handleSubmit} className="col-8 centered">
                   <div className="form-group">
