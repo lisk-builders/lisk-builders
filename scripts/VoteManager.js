@@ -48,7 +48,8 @@ export default class VoteManager extends Component {
       groupIsShown: null,
       showExportModal: false,
       showImportModal: false,
-      votesToImport: ''
+      votesToImport: '',
+      introDone: localStorage.getItem('completedVoteManagerIntro') === 'true'
     };
     this.debouncedSearch = debounce(this.search.bind(this), 400).bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -177,10 +178,73 @@ export default class VoteManager extends Component {
         data,
         loaded: true,
         groupIsShown: null
-      });
+      }, this.intro);
     }).catch(res => {
       console.warn(res);
     });
+  }
+
+  intro() {
+    var intro = introJs();
+    intro.oncomplete(() => {
+      localStorage.setItem('completedVoteManagerIntro', 'true');
+      this.setState({ introDone: true });
+    });
+    intro.setOptions({
+      showStepNumbers: false,
+      exitOnOverlayClick: false,
+      disableInteraction: true,
+      hidePrev: true,
+      hideNext: true,
+      steps: [
+        {
+          intro: 'Welcome to our vote manager tool, let\'s take a tour...'
+        },
+        {
+          element: '#intro-search-block',
+          intro: 'You can search for a specific delegate here.'
+        },
+        {
+          element: '#intro-filters-block',
+          intro: 'These are toggles to select / deselect entire groups.'
+        },
+        {
+          element: '#intro-restore-btn',
+          intro: 'Restore the tool to your original votes.'
+        },
+        {
+          element: '#intro-unvote-btn',
+          intro: 'Unvote all delegates you currently vote for.'
+        },
+        {
+          element: '#intro-optimize-btn',
+          intro: 'Select a payment optimized set of delegates.'
+        },
+        {
+          element: '#intro-selectpage-btn',
+          intro: 'Select all delegates on the current page.'
+        },
+        {
+          element: '#intro-deselectpage-btn',
+          intro: 'Deselect all delegates on the current page.'
+        },
+        {
+          element: '#intro-import-btn',
+          intro: 'Import a comma seperated list of delegates to start from a template.'
+        },
+        {
+          element: '#intro-export-btn',
+          intro: 'Export a comma seperated list of delegates.'
+        },
+        {
+          element: '#intro-vote-btn',
+          intro: 'After making changes to your votes, you will see clickable buttons here to send your votes to Lisk Nano in batches of 33 changes / button.'
+        }
+      ]
+    });
+    if (!this.state.introDone) {
+      intro.start();
+    }
   }
 
   toggleDelegate = (delegate) => {
@@ -338,8 +402,6 @@ export default class VoteManager extends Component {
       groups.map(el => el.name).join(',');
     return (
       <div>
-        When finished, send your changes to Lisk Nano by clicking the buttons below in sequence.<br />
-        You will get an overview of the votes you are sending in Nano before you actually submit the votes:<br /><br />
         <div className="tooltip" data-tooltip={`${consts.votingFee} LSK transaction fee per batch of ${consts.maxVotesInOneBatch} votes`}>
           {
             this.state.selectedDelegates.length <= consts.maxAllowedVotes ? data.map(votes => _.groupBy(votes, 'type'))
@@ -352,8 +414,6 @@ export default class VoteManager extends Component {
                 </span>)) : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.`
           }
         </div>
-        { this.state.selectedSet.includes('elite') ? <span><br />Warning: You have voted for Elite, you must verify your address on the Elite <a target="_blank" href="https://liskelite.com">website</a> to make sure you receive your payout.</span> : '' }
-        <div className="divider" />
       </div>
     );
   }
@@ -362,10 +422,10 @@ export default class VoteManager extends Component {
     const voteData = this.getVoteUnvoteList();
     return (
       <div>
-        <Toast text={toastText} timer={4000} />
+        <Toast text={toastText} timer={5000} />
         <Container>
           <div className="form-horizontal">
-            <div className="form-group">
+            <div className="form-group" id="intro-search-block">
               <div className="col-3">
                 <label className="form-label" htmlFor="input-example-1">Search for a delegate:</label>
               </div>
@@ -374,24 +434,29 @@ export default class VoteManager extends Component {
               </div>
             </div>
             <div className="divider" />
-            <div className="columns">
+            <div className="columns" id="intro-filters-block">
               { this.renderFilters() }
             </div>
             <div className="divider" />
             <div className="btn-group btn-group-block">
-              <button className="btn btn-secondary" onClick={() => this.resetSelectedDelegates()}>Restore</button>
-              <button className="btn btn-secondary" onClick={() => this.wipeSelectedDelegates()}>Unvote All</button>
-              <button className="btn btn-secondary tooltip" data-tooltip="Set your delegate selection for the highest payout" onClick={() => this.setSelectedToOptimized()}>Payout Optimized Selection</button>
-              <button className="btn btn-secondary" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
-              <button className="btn btn-secondary" onClick={() => this.deselectCurrentPage()}>Deselect Current Page</button>
+              <button className="btn btn-secondary" id="intro-restore-btn" onClick={() => this.resetSelectedDelegates()}>Restore</button>
+              <button className="btn btn-secondary" id="intro-unvote-btn" onClick={() => this.wipeSelectedDelegates()}>Unvote All</button>
+              <button className="btn btn-secondary tooltip" id="intro-optimize-btn" data-tooltip="Set your delegate selection for the highest payout" onClick={() => this.setSelectedToOptimized()}>Payout Optimized Selection</button>
+              <button className="btn btn-secondary" id="intro-selectpage-btn" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
+              <button className="btn btn-secondary" id="intro-deselectpage-btn" onClick={() => this.deselectCurrentPage()}>Deselect Current Page</button>
             </div>
             <div className="divider" />
             <div className="btn-group btn-group-block">
-              <button className="btn btn-secondary" onClick={() => this.openModal('import')}>Import Votes</button>
-              <button className="btn btn-secondary" onClick={() => this.openModal('export')}>Export Votes</button>
+              <button className="btn btn-secondary" id="intro-import-btn" onClick={() => this.openModal('import')}>Import Votes</button>
+              <button className="btn btn-secondary" id="intro-export-btn" onClick={() => this.openModal('export')}>Export Votes</button>
             </div>
             <div className="divider"></div>
+            When finished, send your changes to Lisk Nano by clicking the buttons below in sequence.<br />
+            You will get an overview of the votes you are sending in Nano before you actually submit the votes:<br /><br />
+            { !voteData.length && (<button className="btn btn-secondary" disabled id="intro-vote-btn">Step 1: -0, +0</button>) }
             { !!voteData.length && this.renderVoteButtons(voteData) }
+            { this.state.selectedSet.includes('elite') ? <span><br />Warning: You have voted for Elite, you must verify your address on the Elite <a target="_blank" href="https://liskelite.com">website</a> to make sure you receive your payout.</span> : '' }
+            <div className="divider"></div>
             <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el;}}>
               <span className={`label label-${this.state.selectedDelegates.length > consts.maxAllowedVotes ? 'error' : 'primary'}`}>
                 {this.state.selectedDelegates.length}/{consts.maxAllowedVotes} Votes

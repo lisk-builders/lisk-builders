@@ -26,5 +26,15 @@
     "p": [
     "Making Lisk better block by block is not just a catchphrase, we actually strive for that! lisk.builders is an organisation on GitHub where we group all projects that we work on as a team.","Below you can find a list of those projects with a little clarification."
     ]
+  },
+  "note5": {
+    "p": [
+      "This tool requires Lisk Nano to be installed. If you have not yet installed Nano, please do this first."
+    ]
+  },
+  "note6": {
+    "p": [
+      "Lisk.builders Voting Manager is brought to you by 5an1ty (GDT) & Alepop!"
+    ]
   }
 }

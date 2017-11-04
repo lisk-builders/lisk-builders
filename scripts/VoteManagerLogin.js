@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import notes from '../data/notes.json';
+import Note from './Note';
 import Slack from './Slack';
 import Container from './Container';
 
@@ -26,6 +28,11 @@ class VoteManagerLogin extends Component {
   render() {
     return (
       <div>
+        <div className="bg-gray">
+          <Container>
+            <Note {...notes.note5} />
+          </Container>
+        </div>
         <Container>
           <div className="column">
             <div className="panel">
@@ -43,6 +50,11 @@ class VoteManagerLogin extends Component {
             </div>
           </div>
         </Container>
+        <div className="bg-gray">
+          <Container>
+            <Note {...notes.note6} />
+          </Container>
+        </div>
         <Container>
           <Slack />
         </Container>
