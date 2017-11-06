@@ -17,6 +17,7 @@ const delegateSet = {
   elite: groups.elite,
   sherwood: groups.shw,
   alepop5an1ty: ['alepop', '5an1ty'],
+  dutchpool: groups.dutchpool,
   payoutoptimized: _.uniq([...groups.gdt, ...groups.elite, ...groups.shw, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'stellardynamic', 'bitbanksy', 'communitypool', 'phoenix1969', 'samuray', 'vega'])
 };
 
@@ -30,7 +31,8 @@ export default class VoteManager extends Component {
       { title: 'GDT', set: 'gdt', tooltip: 'More info: https://pool.liskgdt.net' },
       { title: 'Elite', set: 'elite', tooltip: 'Requires verifying yourself on https://liskelite.com' },
       { title: 'Sherwood', set: 'sherwood', tooltip: 'More info: http://robinhood.liskpro.com' },
-      { title: 'alepop & 5an1ty', set: 'alepop5an1ty', tooltip: 'The creators of this site ;-)' }
+      { title: 'alepop & 5an1ty', set: 'alepop5an1ty', tooltip: 'The creators of this site ;-)' },
+      { title: 'Dutch Pool', set: 'dutchpool', tooltip: 'More info: http://lisk.dutchpool.io/' }
     ];
   }
 
