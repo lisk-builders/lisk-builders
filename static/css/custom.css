@@ -1,7 +1,7 @@
 .header {
   /*margin-bottom: 4rem;*/
   width: 100%;
-  min-height: 28rem;
+  min-height: 17.5rem;
   background: #454d5d;
   overflow: hidden;
 }
@@ -167,6 +167,10 @@
   border-bottom: 1px solid #f0f1f4;
 }
 
+header.navbar {
+  height: 53px;
+}
+
 .btn-stats {
   margin-left: 5px;
 }
@@ -209,8 +213,4 @@
 .snackbar.show {
   visibility: visible;
   animation: fadein 0.5s;
-}
-
-.toast .btn-clear {
-  margin: 2px -2px 4px 4px;
 }

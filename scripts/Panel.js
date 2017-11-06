@@ -25,8 +25,8 @@ const Panel = ({
     required,
     featured
 }) =>
-    <div key={rank} className="column col-xs-12 col-sm-12 col-md-6 col-4">
-        <div className="panel rel">
+    <div key={rank} className="column col-xs-12 col-sm-12 col-md-6 col-4 my-2">
+        <div className="panel relative">
             { featured && <Ribbon text='featured'/> }
             <div className="panel-header text-center">
                 <figure
