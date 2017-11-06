@@ -242,5 +242,21 @@
     "poolMember": false,
     "required": false,
     "featured": false
+  },
+  {
+    "delegateName": "endro",
+    "delegateAddress": "9096358076943957197L",
+    "proposal": "",
+    "githubUsername": "tomploem",
+    "poolPercentage": {
+      "P": "40",
+      "O": "60"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "endro",
+    "pool": "",
+    "poolMember": false,
+    "required": false,
+    "featured": false
   }
 ]
