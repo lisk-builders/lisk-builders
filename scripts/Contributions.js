@@ -9,8 +9,8 @@ import notes from '../data/notes.json';
 const url = 'https://api.github.com/orgs/lisk-builders/repos';
 
 const renderProject = ({ id, name, description, language, updated_at, html_url, open_issues }) => (
-  <div key={id} className="column col-xs-12 col-sm-12 col-md-6 col-4">
-    <div className="panel rel">
+  <div key={id} className="column col-xs-12 col-sm-12 col-md-6 col-4 my-2">
+    <div className="panel relative">
       <div className="panel-header">
         <div className="panel-title mt-10">{ name } </div>
         <div className="panel-subtitle">{ description }</div>
