@@ -10,8 +10,8 @@
   },
   "note2": {
     "p":[
-      "To get yourself added to the list you can submit a PR that edits data/delegates.json to the following GitHub repository: 5an1ty/lisk-builders.",
-      "This list is maintained by 5an1ty, Isabella and alepop."
+      "To get yourself added to the list you can submit a PR that edits data/delegates.json to the following GitHub repository: lisk-builders/lisk-builders. After that your proposal will be reviewed amongst all current members and approved / rejected based on what the majority decides.",
+      "This list is maintained by 5an1ty and alepop."
     ]
   },
   "note3": {
