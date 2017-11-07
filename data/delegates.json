@@ -249,8 +249,8 @@
     "proposal": "",
     "githubUsername": "tomploem",
     "poolPercentage": {
-      "P": "40",
-      "O": "60"
+      "D": "60",
+      "O": "40"
     },
     "affiliation": "Freelance",
     "liskChat": "endro",
