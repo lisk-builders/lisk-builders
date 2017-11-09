@@ -476,7 +476,7 @@ export default class VoteManager extends Component {
             <div className="btn-group btn-group-block">
               <button className="btn btn-secondary" id="intro-restore-btn" onClick={() => this.resetSelectedDelegates()}>Restore</button>
               <button className="btn btn-secondary" id="intro-unvote-btn" onClick={() => this.wipeSelectedDelegates()}>Unvote All</button>
-              <button className="btn btn-secondary tooltip" id="intro-optimize-btn" data-tooltip="Set your delegate selection for the highest payout" onClick={() => this.setSelectedToOptimized()}>Payout Optimized Selection</button>
+              <button className="btn btn-secondary tooltip" id="intro-optimize-btn" data-tooltip="Vote for the highest paying delegates" onClick={() => this.setSelectedToOptimized()}>Vote For Maximum Payouts</button>
               <button className="btn btn-secondary" id="intro-selectpage-btn" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
               <button className="btn btn-secondary" id="intro-deselectpage-btn" onClick={() => this.deselectCurrentPage()}>Deselect Current Page</button>
             </div>
