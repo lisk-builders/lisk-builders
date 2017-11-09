@@ -18,7 +18,7 @@ const delegateSet = {
   sherwood: groups.shw,
   alepop5an1ty: ['alepop', '5an1ty'],
   dutchpool: groups.dutchpool,
-  payoutoptimized: _.uniq([...groups.gdt, ...groups.elite, ...groups.shw, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'vega', 'stellardynamic', 'bitbanksy'])
+  payoutoptimized: _.uniq([...groups.gdt, ...groups.elite, ...groups.shw, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'vega', 'phoenix1969', 'bitbanksy']) // 'stellardynamic'
 };
 
 const toastText = 'Do you like this tool? vote alepop & 5an1ty!';
