@@ -12,13 +12,13 @@ import { listDiff, debounce, getUrl } from './utils';
 import * as consts from '../data/consts.json';
 
 const delegateSet = {
-  builders: liskbuilders.map(dg => dg.delegateName),
-  gdt: groups.gdt,
-  elite: groups.elite,
-  sherwood: groups.shw,
+  builders: groups.builders.data,
+  gdt: groups.gdt.data,
+  elite: groups.elite.data,
+  sherwood: groups.shw.data,
+  dutchpool: groups.dutchpool.data,
   alepop5an1ty: ['alepop', '5an1ty'],
-  dutchpool: groups.dutchpool,
-  payoutoptimized: _.uniq([...groups.gdt, ...groups.elite, ...groups.shw, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'vega', 'phoenix1969', 'bitbanksy']) // 'stellardynamic'
+  payoutoptimized: _.uniq([...groups.gdt, ...groups.elite, ...groups.shw, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'vega', 'phoenix1969']) // 'bitbanksy', 'stellardynamic'
 };
 
 const toastText = 'Do you like this tool? vote alepop & 5an1ty!';
@@ -142,6 +142,21 @@ export default class VoteManager extends Component {
     document.removeEventListener('scroll', this.stickyCounter);
   }
 
+  setData(data, cb) {
+    const newData = data.map(d => {
+      const newDelegate = { ...d };
+      newDelegate.groups = [];
+      Object.keys(groups).forEach(ds => {
+        const found = groups[ds].data.find(username => username === d.username);
+        if (found) {
+          newDelegate.groups.push(ds);
+        }
+      });
+      return newDelegate;
+    });
+    this.setState({ data: newData }, cb);
+  }
+
   getVotesForAddress(address) {
     return axios.get(`${getUrl()}/api/accounts/delegates/?address=${address}`).then(res => {
       if (res.data.success) {
@@ -186,7 +201,7 @@ export default class VoteManager extends Component {
       axios.get(`${getUrl()}/api/delegates/search?q=${qs}&orderBy=username:asc`)
         .then(res => {
           if (res.data.success) {
-            this.setState({ data: res.data.delegates });
+            this.setData(res.data.delegates);
             return true;
           } else {
             return false;
@@ -241,12 +256,13 @@ export default class VoteManager extends Component {
 
   navigate(page) {
     this.getPage(page).then(data => {
-      return this.setState({
-        selectedPage: page,
-        data,
-        loaded: true,
-        groupIsShown: null
-      }, this.intro);
+      return this.setData(data, () => {
+        this.setState({
+          selectedPage: page,
+          loaded: true,
+          groupIsShown: null
+        }, this.intro);
+      });
     }).catch(res => {
       console.warn(res);
     });
@@ -314,7 +330,7 @@ export default class VoteManager extends Component {
     if (this.state.groupIsShown !== key) {
       this.searchInPages(delegateSet[key])
       //Promise.all(delegateSet[key].map(username => axios.get(`${getUrl()}/api/delegates/get?username=${username}`)))
-      .then(res => this.setState({ data: res, groupIsShown: key }))
+      .then(res => this.setData(res, () => this.setState({ groupIsShown: key })))
       .catch(err => console.warn(err));
     } else {
       this.navigate(this.state.selectedPage);
@@ -412,6 +428,11 @@ export default class VoteManager extends Component {
       </td>
       <td>{delegate.rank}</td>
       <td>{delegate.username}</td>
+      <td>{ 
+        delegate.groups.map((gp, i) => {
+          return (<span key={i} className={`chip ${groups[gp].color}`}>{groups[gp].fullname}</span>);
+        })
+      }</td>
       <td className="hide-sm">{`${delegate.productivity}%`}</td>
       <td>{`${delegate.approval}%`}</td>
     </tr>
@@ -509,6 +530,7 @@ export default class VoteManager extends Component {
                 <th />
                 <th>rank</th>
                 <th>username</th>
+                <th>groups</th>
                 <th className="hide-sm">productivity</th>
                 <th>approval</th>
               </tr>

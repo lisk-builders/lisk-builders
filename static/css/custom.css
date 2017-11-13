@@ -167,6 +167,34 @@
   border-bottom: 1px solid #f0f1f4;
 }
 
+.bg-red {
+  background: #EF476F    
+}
+
+.bg-yellow {
+  background: #FFD166
+}
+
+.bg-green {
+  background: #06D6A0
+}
+
+.bg-blue {
+  background: #4D9DE0
+}
+
+.bg-dark {
+  background: #577590
+}
+
+.bg-vanilla {
+  background: #C0BDA5
+}
+
+.bg-orange {
+  background: #F79256
+}
+
 header.navbar {
   height: 53px;
 }
