@@ -30,7 +30,7 @@ class VoteManagerLogin extends Component {
       <div>
         <div className="bg-gray">
           <Container>
-            <Note {...notes.note5} />
+            <Note note={notes.note5} centered />
           </Container>
         </div>
         <Container>
@@ -52,7 +52,7 @@ class VoteManagerLogin extends Component {
         </Container>
         <div className="bg-gray">
           <Container>
-            <Note {...notes.note6} />
+            <Note note={notes.note6} centered />
           </Container>
         </div>
         <Container>

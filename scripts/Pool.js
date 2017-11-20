@@ -181,7 +181,7 @@ class Pool extends Component {
         </div>
         <div className="bg-gray">
           <Container>
-            <Note {...notes.note3} />
+            <Note note={notes.note3} />
           </Container>
         </div>
         <Container>

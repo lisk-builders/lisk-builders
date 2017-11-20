@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Note = note =>
-    <section className="empty text-justify">
+const Note = ({ note, centered, action}) =>
+    <section className={`empty col-12 text-${centered ? "center" : "justify"} my-2`}>
         {note.title && <h4 className="empty-title">{note.title}</h4>}
         {note.p.map((text, i) =>
             <p className="empty-subtitle" key={i}>{text}</p>,
         )}
-        {note.action &&
+        {action &&
             <div className="empty-action">
                 <a
                     className="btn btn-primary"

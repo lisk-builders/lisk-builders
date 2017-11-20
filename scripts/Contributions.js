@@ -73,7 +73,7 @@ export default class Contributions extends Component {
       <div>
         <div className="bg-gray">
           <Container>
-            <Note {...notes.note4} />
+            <Note note={notes.note4} />
           </Container>
         </div>
         <Container>

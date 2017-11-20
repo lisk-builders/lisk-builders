@@ -61,7 +61,7 @@ export default class Builders extends Component {
         <Banner />
         <div className="bg-gray">
           <Container>
-            <Note {...notes.note1} />
+            <Note note={notes.note1} />
           </Container>
         </div>
         <Container>
@@ -72,7 +72,7 @@ export default class Builders extends Component {
         </Container>
         <div className="bg-gray">
           <Container>
-            <Note {...notes.note2} action="test" />
+            <Note note={notes.note2} action />
           </Container>
         </div>
       </div>

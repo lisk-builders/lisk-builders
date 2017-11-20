@@ -168,7 +168,7 @@
 }
 
 .bg-red {
-  background: #EF476F    
+  background: #EF476F
 }
 
 .bg-yellow {
@@ -241,4 +241,11 @@ header.navbar {
 .snackbar.show {
   visibility: visible;
   animation: fadein 0.5s;
+}
+@media (max-width: 600px) {
+  .table-scroll {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }

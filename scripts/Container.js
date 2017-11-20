@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Container = props =>
-    <div className="container grid-lg">
+    <div className="container grid-lg my-2">
         <div className="columns">
             {props.children}
         </div>

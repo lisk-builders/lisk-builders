@@ -434,7 +434,7 @@ export default class VoteManager extends Component {
       <td>{delegate.rank}</td>
       <td>{delegate.username}</td>
       <td>
-      { 
+      {
         delegate.groups.length > 0 ? delegate.groups.map((gp, i) => {
           return (<span key={i} className={`chip ${groups[gp].color}`}>{groups[gp].fullname}</span>);
         }) : (<span key={0} className={'chip'}>Freelance</span>)
@@ -443,7 +443,7 @@ export default class VoteManager extends Component {
       <td>
         { delegate.percentage ? `${delegate.percentage}%` : null }
       </td>
-      <td className="hide-sm">{`${delegate.productivity}%`}</td>
+      <td>{`${delegate.productivity}%`}</td>
       <td>{`${delegate.approval}%`}</td>
     </tr>
   );
@@ -490,12 +490,12 @@ export default class VoteManager extends Component {
         />
         <Toast text={toastText} timer={5000} />
         <Container>
-          <div className="form-horizontal">
+          <div className="form-horizontal my-2">
             <div className="form-group" id="intro-starter">
-              <div className="col-3">
+              <div className="col-3 col-xs-6">
                 <label className="form-label" htmlFor="input-search">Search for a delegate:</label>
               </div>
-              <div className="col-9">
+              <div className="col-9 col-xs-6">
                 <input className="form-input" type="text" id="input-search" placeholder="Delegate" onKeyUp={this.handleSearch} />
               </div>
             </div>
@@ -531,7 +531,7 @@ export default class VoteManager extends Component {
         </Container>
         <Container>
           { !this.state.loaded ? <div className="loading" /> : null }
-          <table className="table table-striped table-hover col-12">
+          <table className="table table-scroll table-striped table-hover col-12">
             <thead>
               <tr>
                 <th />
@@ -539,7 +539,7 @@ export default class VoteManager extends Component {
                 <th>username</th>
                 <th>groups</th>
                 <th>share</th>
-                <th className="hide-sm">productivity</th>
+                <th>productivity</th>
                 <th>approval</th>
               </tr>
             </thead>
