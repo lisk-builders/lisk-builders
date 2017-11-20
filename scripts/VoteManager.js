@@ -11,6 +11,8 @@ import dposdata from '../dpos-tools-data/lisk/pools.json';
 import groups from '../data/groups.json';
 import { listDiff, debounce, getUrl } from './utils';
 import * as consts from '../data/consts.json';
+import Note from './Note';
+import notes from '../data/notes.json';
 
 const delegateSet = {
   builders: groups.builders.data,
@@ -580,6 +582,9 @@ export default class VoteManager extends Component {
         <Container>
           <Slack />
         </Container>
+        <div className="bg-gray">
+          <Note note={notes.note7} />
+        </div>
         <div className={`modal ${this.state.showExportModal ? 'active' : ''} modal-sm`}>
           <div className="modal-overlay" />
           <div className="modal-container">
@@ -637,7 +642,7 @@ export default class VoteManager extends Component {
                 </p>
               </div>
             </div>
-            <div className="modal-footer"></div>
+            <div className="modal-footer" />
           </div>
         </div>
       </div>

@@ -180,9 +180,7 @@ class Pool extends Component {
             </div>
         </div>
         <div className="bg-gray">
-          <Container>
-            <Note note={notes.note3} />
-          </Container>
+          <Note note={notes.note3} />
         </div>
         <Container>
           <div className="column col-12">
