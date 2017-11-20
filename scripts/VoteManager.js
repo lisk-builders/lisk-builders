@@ -7,6 +7,7 @@ import Slack from './Slack';
 import Container from './Container';
 import Toast from './Toast';
 import liskbuilders from '../data/delegates.json';
+import dposdata from '../dpos-tools-data/lisk/pools.json';
 import groups from '../data/groups.json';
 import { listDiff, debounce, getUrl } from './utils';
 import * as consts from '../data/consts.json';
@@ -28,11 +29,11 @@ export default class VoteManager extends Component {
   static getFilterData() {
     return [
       { title: 'Lisk Builders', set: 'builders', tooltip: 'Active contributors to lisk' },
-      { title: 'GDT', set: 'gdt', tooltip: 'More info: https://pool.liskgdt.net' },
-      { title: 'Elite', set: 'elite', tooltip: 'Requires verifying yourself on https://liskelite.com' },
-      { title: 'Sherwood', set: 'sherwood', tooltip: 'More info: http://robinhood.liskpro.com' },
+      { title: 'GDT', set: 'gdt', tooltip: 'https://pool.liskgdt.net' },
+      { title: 'Elite', set: 'elite', tooltip: 'https://liskelite.com' },
+      { title: 'Sherwood', set: 'sherwood', tooltip: 'http://robinhood.liskpro.com' },
       { title: 'alepop & 5an1ty', set: 'alepop5an1ty', tooltip: 'The creators of this site ;-)' },
-      { title: 'Dutch Pool', set: 'dutchpool', tooltip: 'More info: http://lisk.dutchpool.io/' }
+      { title: 'Dutch Pool', set: 'dutchpool', tooltip: 'http://lisk.dutchpool.io/' }
     ];
   }
 
@@ -132,6 +133,8 @@ export default class VoteManager extends Component {
     if (this.props.match.params.address) {
       this.getVotesForAddress(this.props.match.params.address).then(res => {
         this.navigate(1);
+      }).catch(err => {
+        console.log(`Fatal: ${err}`);
       });
     } else {
       this.navigate(1);
@@ -145,6 +148,8 @@ export default class VoteManager extends Component {
   setData(data, cb) {
     const newData = data.map(d => {
       const newDelegate = { ...d };
+      const dposFound = dposdata.find(dd => dd.delegate === newDelegate.username);
+      newDelegate.percentage = dposFound ? dposFound.share : null;
       newDelegate.groups = [];
       Object.keys(groups).forEach(ds => {
         const found = groups[ds].data.find(username => username === d.username);
@@ -428,11 +433,16 @@ export default class VoteManager extends Component {
       </td>
       <td>{delegate.rank}</td>
       <td>{delegate.username}</td>
-      <td>{ 
-        delegate.groups.map((gp, i) => {
+      <td>
+      { 
+        delegate.groups.length > 0 ? delegate.groups.map((gp, i) => {
           return (<span key={i} className={`chip ${groups[gp].color}`}>{groups[gp].fullname}</span>);
-        })
-      }</td>
+        }) : (<span key={0} className={'chip'}>Freelance</span>)
+      }
+      </td>
+      <td>
+        { delegate.percentage ? `${delegate.percentage}%` : null }
+      </td>
       <td className="hide-sm">{`${delegate.productivity}%`}</td>
       <td>{`${delegate.approval}%`}</td>
     </tr>
@@ -511,9 +521,6 @@ export default class VoteManager extends Component {
             <div id="intro-vote-section">
               { this.renderVoteButtons(voteData) }
             </div>
-            <p><br />Status:&nbsp;
-            { this.state.selectedSet.includes('elite') ? <span><strong>Warning!</strong> You have voted for Elite, you must verify your address on the Elite <a target="_blank" rel="noopener noreferrer" href="https://liskelite.com">website</a> to make sure you receive your payout.</span> : 'Everything ok!' }
-            </p>
             <div className="divider" />
             <div className={`text-center ${this.state.isSticky ? 'sticky' : ''}`} ref={el => { this.delegateCountRef = el; }}>
               <span className={`label label-${this.state.selectedDelegates.length > consts.maxAllowedVotes ? 'error' : 'primary'}`}>
@@ -531,6 +538,7 @@ export default class VoteManager extends Component {
                 <th>rank</th>
                 <th>username</th>
                 <th>groups</th>
+                <th>share</th>
                 <th className="hide-sm">productivity</th>
                 <th>approval</th>
               </tr>
