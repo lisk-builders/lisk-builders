@@ -533,6 +533,7 @@ export default class VoteManager extends Component {
         </Container>
         <Container>
           { !this.state.loaded ? <div className="loading" /> : null }
+          <div className="table-wrapper">
           <table className="table table-scroll table-striped table-hover col-12">
             <thead>
               <tr>
@@ -549,6 +550,7 @@ export default class VoteManager extends Component {
               { this.state.loaded ? this.state.data.map(this.renderRow) : null }
             </tbody>
           </table>
+        </div>
           <div className="centered">
             <ul className="pagination">
               <li className="page-item">
