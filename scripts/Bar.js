@@ -24,17 +24,17 @@ const Bar = data =>
         {Object.keys(data)
             .sort((a, b) => (order.indexOf(a) > order.indexOf(b) ? 1 : -1))
             .map((key, i) => {
-                return (
-                    <div
-                        key={i}
-                        className="bar-item"
-                        role="progressbar"
-                        style={{
-                            width: `${data[key]}%`,
-                            backgroundColor: colors[key],
-                        }}
-                    />
-                );
+              return (
+                <div
+                  key={i}
+                  className="bar-item"
+                  role="progressbar"
+                  style={{
+                    width: `${data[key]}%`,
+                    backgroundColor: colors[key],
+                  }}
+                />
+              );
             })}
     </div>;
 

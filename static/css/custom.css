@@ -195,6 +195,10 @@
   background: #F79256
 }
 
+.bg-gray {
+  background: #96939B
+}
+
 header.navbar {
   height: 53px;
 }

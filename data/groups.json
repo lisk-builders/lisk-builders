@@ -1,6 +1,7 @@
 {
   "elite": {
     "fullname": "Elite",
+    "bonus": 0,
     "color": "bg-yellow text-light",
     "data": [
       "luiz",
@@ -62,6 +63,7 @@
   },
   "aft": {
     "fullname": "AFT",
+    "bonus": 0,
     "color": "bg-red text-light",
     "data": [
       "atreides",
@@ -94,6 +96,7 @@
   },
   "gdt": {
     "fullname": "GDT",
+    "bonus": 6.25,
     "color": "bg-dark text-light",
     "data": [
       "gdtpool",
@@ -132,21 +135,25 @@
   },
   "shw": {
     "fullname": "SHW",
+    "bonus": 0,
     "color": "bg-vanilla text-light",
     "data": ["robinhood", "liberspirita", "liskpro.com"]
   },
   "lig": {
     "fullname": "LIG",
+    "bonus": 0,
     "color": "bg-green text-light",
     "data": ["dakk", "liskit", "anamix", "corsaro", "splatters", "redsn0w", "gregorst", "ondin", "vekexasia", "fulig"]
   },
   "dutchpool": {
     "fullname": "Dutch",
+    "bonus": 0,
     "color": "bg-orange text-light",
     "data": ["dutch_pool", "kippers", "thamar", "fnoufnou", "st3v3n"]
   },
   "builders": {
     "fullname": "Builders",
+    "bonus": 0,
     "color": "bg-blue  text-light",
     "data": ["liskit", "dakk", "vekexasia", "5an1ty", "cc001", "gr33ndrag0n", "mrv", "alepop", "4fryn", "carbonara", "liskpro.com", "joo5ty", "thepool", "bioly", "philhellmuth", "endro"]
   }

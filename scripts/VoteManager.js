@@ -6,7 +6,6 @@ import Joyride from 'react-joyride';
 import Slack from './Slack';
 import Container from './Container';
 import Toast from './Toast';
-import liskbuilders from '../data/delegates.json';
 import dposdata from '../dpos-tools-data/lisk/pools.json';
 import groups from '../data/groups.json';
 import { listDiff, debounce, getUrl } from './utils';
@@ -151,12 +150,12 @@ export default class VoteManager extends Component {
     const newData = data.map(d => {
       const newDelegate = { ...d };
       const dposFound = dposdata.find(dd => dd.delegate === newDelegate.username);
-      newDelegate.percentage = dposFound ? dposFound.share : null;
+      newDelegate.percentage = dposFound ? dposFound.share : 0;
       newDelegate.groups = [];
       Object.keys(groups).forEach(ds => {
         const found = groups[ds].data.find(username => username === d.username);
         if (found) {
-          newDelegate.groups.push(ds);
+          newDelegate.groups.push({ group: ds, bonus: groups[ds].bonus });
         }
       });
       return newDelegate;
@@ -438,12 +437,16 @@ export default class VoteManager extends Component {
       <td>
       {
         delegate.groups.length > 0 ? delegate.groups.map((gp, i) => {
-          return (<span key={i} className={`chip ${groups[gp].color}`}>{groups[gp].fullname}</span>);
-        }) : (<span key={0} className={'chip'}>Freelance</span>)
+          return (<span key={i} className={`chip ${groups[gp.group].color}`}>{groups[gp.group].fullname}</span>);
+        }) : (<span key={0} className={'chip bg-gray text-light'}>Freelance</span>)
       }
       </td>
       <td>
-        { delegate.percentage ? `${delegate.percentage}%` : null }
+        <div className="bar tooltip" data-tooltip={`Share ${delegate.percentage}% / Groups ${delegate.groups.reduce((mem, gp) => mem + gp.bonus, 0)}% / Self ${100 - delegate.groups.reduce((mem, gp) => mem + gp.bonus, 0) - delegate.percentage}%`}>
+          <div className="bar-item" style={{ width: `${delegate.percentage}%`, backgroundColor: '#5764c6' }} />
+          <div className="bar-item" style={{ width: `${delegate.groups.reduce((mem, gp) => mem + gp.bonus, 0)}%`, backgroundColor: '#818bd5' }} />
+          <div className="bar-item" style={{ width: `${100 - delegate.groups.reduce((mem, gp) => mem + gp.bonus, 0) - delegate.percentage}%`, backgroundColor: '#abb1e2' }} />
+        </div>
       </td>
       <td>{`${delegate.productivity}%`}</td>
       <td>{`${delegate.approval}%`}</td>
