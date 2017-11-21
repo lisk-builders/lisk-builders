@@ -531,7 +531,7 @@ export default class VoteManager extends Component {
             </div>
           </div>
         </Container>
-        <Container>
+        <Container withMargin>
           { !this.state.loaded ? <div className="loading" /> : null }
           <div className="table-wrapper">
           <table className="table table-scroll table-striped table-hover col-12">
@@ -581,11 +581,13 @@ export default class VoteManager extends Component {
             </ul>
           </div>
         </Container>
-        <Container>
+        <Container withMargin>
           <Slack />
         </Container>
         <div className="bg-gray">
-          <Note note={notes.note7} />
+          <Container>
+            <Note note={notes.note7} />
+          </Container>
         </div>
         <div className={`modal ${this.state.showExportModal ? 'active' : ''} modal-sm`}>
           <div className="modal-overlay" />

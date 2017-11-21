@@ -29,9 +29,11 @@ class VoteManagerLogin extends Component {
     return (
       <div>
         <div className="bg-gray">
-          <Note note={notes.note5} centered />
+          <Container>
+            <Note note={notes.note5} centered />
+          </Container>
         </div>
-        <Container>
+        <Container withMargin>
           <div className="column">
             <div className="panel">
               <div className="panel-header" />
@@ -48,11 +50,13 @@ class VoteManagerLogin extends Component {
             </div>
           </div>
         </Container>
-        <Container>
+        <Container withMargin>
           <Slack />
         </Container>
         <div className="bg-gray">
-          <Note note={notes.note6} centered />
+          <Container>
+            <Note note={notes.note6} centered />
+          </Container>
         </div>
       </div>
     );

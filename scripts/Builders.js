@@ -60,16 +60,20 @@ export default class Builders extends Component {
       <div>
         <Banner />
         <div className="bg-gray">
-          <Note note={notes.note1} />
+          <Container>
+            <Note note={notes.note1} />
+          </Container>
         </div>
         <Container>
           {_.map(sortedData, Panel)}
         </Container>
-        <Container>
+        <Container withMargin>
           <Slack />
         </Container>
         <div className="bg-gray">
-          <Note note={notes.note2} action />
+          <Container>
+            <Note note={notes.note2} action />
+          </Container>
         </div>
       </div>
     );

@@ -72,16 +72,18 @@ export default class Contributions extends Component {
     return (
       <div>
         <div className="bg-gray">
-          <Note note={notes.note4} />
+          <Container>
+            <Note note={notes.note4} />
+          </Container>
         </div>
-        <Container>
+        <Container withMargin>
           {
             !this.state.loaded ?
               <div className="loading"></div> :
               this.state.data.map(renderProject)
           }
         </Container>
-        <Container>
+        <Container withMargin>
           <Slack />
         </Container>
       </div>
