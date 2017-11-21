@@ -118,9 +118,9 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?t=1526",
     "githubUsername": "alepop",
     "poolPercentage": {
-      "P": "40",
-      "D": "0",
-      "O": "60"
+      "P": "25",
+      "D": "5",
+      "O": "70"
     },
     "affiliation": "GDT",
     "liskChat": "alepop",
