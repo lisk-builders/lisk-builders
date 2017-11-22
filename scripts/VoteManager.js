@@ -2,7 +2,6 @@ import _ from 'lodash';
 import 'regenerator-runtime/runtime';
 import React, { Component } from 'react';
 import axios from 'axios';
-import Joyride from 'react-joyride';
 import Slack from './Slack';
 import Container from './Container';
 import Toast from './Toast';
@@ -11,6 +10,9 @@ import groups from '../data/groups.json';
 import { listDiff, debounce, getUrl } from './utils';
 import * as consts from '../data/consts.json';
 import Note from './Note';
+import VoteManagerTable from './VoteManagerTable';
+import VoteManagerControls from './VoteManagerControls';
+import VoteManagerIntro from './VoteManagerIntro';
 import notes from '../data/notes.json';
 
 const delegateSet = {
@@ -27,27 +29,9 @@ const toastText = 'Do you like this tool? vote alepop & 5an1ty!';
 
 export default class VoteManager extends Component {
 
-  static getFilterData() {
-    return [
-      { title: 'Lisk Builders', set: 'builders', tooltip: 'Active contributors to lisk' },
-      { title: 'GDT', set: 'gdt', tooltip: 'https://pool.liskgdt.net' },
-      { title: 'Elite', set: 'elite', tooltip: 'https://liskelite.com' },
-      { title: 'Sherwood', set: 'sherwood', tooltip: 'http://robinhood.liskpro.com' },
-      { title: 'alepop & 5an1ty', set: 'alepop5an1ty', tooltip: 'The creators of this site ;-)' },
-      { title: 'Dutch Pool', set: 'dutchpool', tooltip: 'http://lisk.dutchpool.io/' }
-    ];
-  }
-
   constructor(props) {
     super(props);
-    let canUseLocalStorage = true;
-    try {
-      localStorage.getItem('localStorageTest');
-    } catch (e) {
-      canUseLocalStorage = false;
-    }
     this.state = {
-      canUseLocalStorage,
       loaded: false,
       data: [],
       selectedDelegates: [],
@@ -61,70 +45,16 @@ export default class VoteManager extends Component {
       showExportModal: false,
       showImportModal: false,
       showSummaryModal: false,
-      votesToImport: '',
-      runIntro: canUseLocalStorage ? localStorage.getItem('voteManagerIntroDone') !== 'true' : false,
-      introType: 'continuous',
-      introSkipButton: true,
-      introDisableOverlay: true,
-      introSteps: [
-        {
-          selector: '#intro-starter',
-          text: 'Welcome to our vote manager tool, let\'s take a tour...'
-        },
-        {
-          selector: '#input-search',
-          text: 'You can search for a specific delegate here.'
-        },
-        {
-          selector: '#intro-filters-block',
-          text: 'These are toggles to select / deselect entire groups.'
-        },
-        {
-          selector: '#intro-restore-btn',
-          text: 'Restore the tool to your original votes.'
-        },
-        {
-          selector: '#intro-unvote-btn',
-          text: 'Unvote all delegates you currently vote for.'
-        },
-        {
-          selector: '#intro-optimize-btn',
-          text: 'Select a payment optimized set of delegates.'
-        },
-        {
-          selector: '#intro-selectpage-btn',
-          text: 'Select all delegates on the current page.'
-        },
-        {
-          selector: '#intro-deselectpage-btn',
-          text: 'Deselect all delegates on the current page.'
-        },
-        {
-          selector: '#intro-import-btn',
-          text: 'Import a comma seperated list of delegates to start from a template.'
-        },
-        {
-          selector: '#intro-export-btn',
-          text: 'Export a comma seperated list of delegates.'
-        },
-        {
-          selector: '#intro-vote-btn',
-          text: 'After making changes to your votes, you will see clickable buttons here to send your votes to Lisk Nano in batches of 33 changes / button.'
-        },
-        {
-          selector: '#intro-summary-btn',
-          text: 'See a summary of all the changes to your votes.'
-        },
-        {
-          selector: '#intro-vote-section',
-          text: 'Do not hesitate to click the vote buttons, Lisk Nano will ask you to confirm before sending the transaction.'
-        }
-      ]
+      votesToImport: ''
     };
     this.debouncedSearch = debounce(this.search.bind(this), 400).bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.stickyCounter = this.stickyCounter.bind(this);
-    this.getVoteUnvoteList = this.getVoteUnvoteList.bind(this)
+    this.getVoteUnvoteList = this.getVoteUnvoteList.bind(this);
+    this.searchInPages = this.searchInPages.bind(this);
+    this.setVoteManagerState = this.setVoteManagerState.bind(this);
+    this.navigate = this.navigate.bind(this);
+    this.setData = this.setData.bind(this);
     this.offsetTop = null;
   }
 
@@ -144,6 +74,10 @@ export default class VoteManager extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('scroll', this.stickyCounter);
+  }
+
+  setVoteManagerState(state, cb) {
+    this.setState(state, cb);
   }
 
   setData(data, cb) {
@@ -260,27 +194,18 @@ export default class VoteManager extends Component {
     }
   }
 
-  navigate(page) {
+  navigate(page, cb) {
     this.getPage(page).then(data => {
       return this.setData(data, () => {
         this.setState({
           selectedPage: page,
           loaded: true,
           groupIsShown: null
-        }, this.intro);
+        }, cb);
       });
     }).catch(res => {
       console.warn(res);
     });
-  }
-
-  handleIntroChange(data) {
-    if (data.type === 'finished') {
-      window.scrollTo(0, 0);
-      if (this.state.canUseLocalStorage) {
-        localStorage.setItem('voteManagerIntroDone', 'true');
-      }
-    }
   }
 
   toggleDelegate = (delegate) => {
@@ -293,73 +218,6 @@ export default class VoteManager extends Component {
       selectedDelegates.push(delegate.username);
     }
     this.setState({ selectedDelegates }, this.updateSelectedSets);
-  }
-
-  toggleDelegates(delegateUsernames, key) {
-    const delegateDiff = this.getDelegatesDiff(delegateUsernames, key);
-    const currentSelectedDelegates = [...this.state.selectedDelegates];
-    const delegates = delegateDiff.length > 0 ? delegateDiff : delegateUsernames;
-    if (this.state.selectedSet.indexOf(key) === -1) {
-      this.setState({
-        selectedDelegates: currentSelectedDelegates.filter(el => delegates.indexOf(el) === -1)
-      }, this.updateSelectedSets);
-    } else {
-      this.setState({
-        selectedDelegates: _.uniq([...currentSelectedDelegates, ...delegates])
-      }, this.updateSelectedSets);
-    }
-  }
-
-  getDelegatesDiff(delegateUsernames, key) {
-    const selectedGroups = this.state.selectedSet
-      .filter(k => k !== key)
-      .map(k => delegateSet[k])
-      .reduce((acc, group) => listDiff(acc, group), delegateUsernames);
-    return selectedGroups;
-  }
-
-  isSelected(delegateUsername) {
-    return this.state.selectedDelegates
-      .find(username => username === delegateUsername) !== undefined;
-  }
-
-  selectPreset(key) {
-    const delegates = delegateSet[key];
-    this.setState(
-      { selectedSet: this.state.selectedSet.includes(key) ?
-        this.state.selectedSet.filter(el => el !== key) :
-        [...this.state.selectedSet, key]
-      }, this.toggleDelegates.bind(this, delegates, key));
-  }
-
-  showGroup(key) {
-    if (this.state.groupIsShown !== key) {
-      this.searchInPages(delegateSet[key])
-      //Promise.all(delegateSet[key].map(username => axios.get(`${getUrl()}/api/delegates/get?username=${username}`)))
-      .then(res => this.setData(res, () => this.setState({ groupIsShown: key })))
-      .catch(err => console.warn(err));
-    } else {
-      this.navigate(this.state.selectedPage);
-    }
-  }
-
-  resetSelectedDelegates() {
-    this.setState({ selectedDelegates: this.state.initialVotes }, this.updateSelectedSets);
-  }
-
-  wipeSelectedDelegates() {
-    this.setState({ selectedDelegates: [] }, this.updateSelectedSets);
-  }
-
-  selectCurrentPage() {
-    this.setState({ selectedDelegates: _.uniq([...this.state.selectedDelegates,
-      ...this.state.data.map(dg => dg.username)]) }, this.updateSelectedSets);
-  }
-
-  deselectCurrentPage() {
-    const filtered = this.state.selectedDelegates.filter(username =>
-      !this.state.data.find(dg => dg.username === username));
-    this.setState({ selectedDelegates: filtered }, this.updateSelectedSets);
   }
 
   openModal(modal) {
@@ -410,55 +268,6 @@ export default class VoteManager extends Component {
     this.setState({ selectedSet });
   }
 
-  setSelectedToOptimized() {
-    this.setState({ selectedDelegates: delegateSet.payoutoptimized }, this.updateSelectedSets);
-  }
-
-  renderFilters() {
-    return VoteManager.getFilterData().map(({ title, set, tooltip }, i) => (
-      <div className="column col-4 col-xs-6" key={i}>
-        <label className={`form-switch ${tooltip ? 'tooltip' : ''}`} data-tooltip={tooltip}>
-          <input type="checkbox" checked={this.state.selectedSet.includes(set)} onChange={() => this.selectPreset(set)} />
-          <i className="form-icon"></i> { title }
-        </label>
-        <button className="btn btn-link btn-sm" onClick={() => this.showGroup(set)}>{ this.state.groupIsShown === set ? 'Hide' : 'Show' }</button>
-      </div>
-    ));
-  };
-
-  renderRow = (delegate) => {
-    const bonus = delegate.groups.reduce((mem, gp) => {
-      return gp.nobonus.find(username => username === delegate.username) ? 0 : mem + gp.bonus;
-    }, 0);
-    const own = 100 - bonus - delegate.percentage;
-    return (
-      <tr key={delegate.rank} className={this.isSelected(delegate.username) ? 'active' : null} onClick={() => this.toggleDelegate(delegate)}>
-        <td>
-          <input type="checkbox" checked={this.isSelected(delegate.username)} onChange={() => true} />
-          <i className="form-icon" />
-        </td>
-        <td>{delegate.rank}</td>
-        <td>{delegate.username}</td>
-        <td>
-        {
-          delegate.groups.length > 0 ? delegate.groups.map((gp, i) => {
-            return (<span key={i} className={`chip ${groups[gp.group].color}`}>{groups[gp.group].fullname}</span>);
-          }) : (<span key={0} className={'chip bg-darkgray text-light'}>Freelance</span>)
-        }
-        </td>
-        <td>
-          <div className="bar tooltip" data-tooltip={`Share ${delegate.percentage}% / Groups ${bonus}% / Self ${own}%`}>
-            <div className="bar-item" style={{ width: `${delegate.percentage}%`, backgroundColor: '#5764c6' }} />
-            <div className="bar-item" style={{ width: `${bonus}%`, backgroundColor: '#818bd5' }} />
-            <div className="bar-item" style={{ width: `${own}%`, backgroundColor: '#abb1e2' }} />
-          </div>
-        </td>
-        <td>{`${delegate.productivity}%`}</td>
-        <td>{`${delegate.approval}%`}</td>
-      </tr>
-    );
-  };
-
   renderVoteButtons = (data) => {
     const getNames = (groups) =>
       groups.map(el => el.name).join(',');
@@ -487,18 +296,7 @@ export default class VoteManager extends Component {
     const flatVoteData = [].concat(...voteData);
     return (
       <div>
-        <Joyride
-          ref={() => 'joyride'}
-          scrollOffset={54}
-          type={this.state.introType}
-          run={this.state.runIntro}
-          autoStart={this.state.runIntro}
-          showOverlay={() => true}
-          showSkipButton={this.state.introSkipButton}
-          disableOverlay={this.state.introDisableOverlay}
-          steps={this.state.introSteps}
-          callback={(p) => this.handleIntroChange(p)}
-        />
+        <VoteManagerIntro />
         <Toast text={toastText} timer={5000} />
         <Container>
           <div className="form-horizontal my-2">
@@ -511,17 +309,19 @@ export default class VoteManager extends Component {
               </div>
             </div>
             <div className="divider" />
-            <div className="columns" id="intro-filters-block">
-              { this.renderFilters() }
-            </div>
-            <div className="divider" />
-            <div className="btn-group btn-group-block">
-              <button className="btn btn-secondary" id="intro-restore-btn" onClick={() => this.resetSelectedDelegates()}>Restore</button>
-              <button className="btn btn-secondary" id="intro-unvote-btn" onClick={() => this.wipeSelectedDelegates()}>Unvote All</button>
-              <button className="btn btn-secondary tooltip" id="intro-optimize-btn" data-tooltip="Vote for the highest paying delegates" onClick={() => this.setSelectedToOptimized()}>Vote For Maximum Payouts</button>
-              <button className="btn btn-secondary" id="intro-selectpage-btn" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
-              <button className="btn btn-secondary" id="intro-deselectpage-btn" onClick={() => this.deselectCurrentPage()}>Deselect Current Page</button>
-            </div>
+            <VoteManagerControls
+              data={this.state.data}
+              selectedDelegates={this.state.selectedDelegates}
+              selectedSet={this.state.selectedSet}
+              groupIsShown={this.state.groupIsShown}
+              selectedPage={this.state.selectedPage}
+              initialVotes={this.state.initialVotes}
+              navigate={this.navigate}
+              updateSelectedSets={this.updateSelectedSets}
+              setVoteManagerState={this.setVoteManagerState}
+              searchInPages={this.searchInPages}
+              setData={this.setData}
+            />
             <div className="divider" />
             <div className="btn-group btn-group-block">
               <button className="btn btn-secondary" id="intro-import-btn" onClick={() => this.openModal('import')}>Import Votes</button>
@@ -543,23 +343,14 @@ export default class VoteManager extends Component {
         <Container withMargin>
           { !this.state.loaded ? <div className="loading" /> : null }
           <div className="table-wrapper">
-          <table className="table table-scroll table-striped table-hover col-12">
-            <thead>
-              <tr>
-                <th />
-                <th>rank</th>
-                <th>username</th>
-                <th>groups</th>
-                <th>share</th>
-                <th>productivity</th>
-                <th>approval</th>
-              </tr>
-            </thead>
-            <tbody>
-              { this.state.loaded ? this.state.data.map(this.renderRow) : null }
-            </tbody>
-          </table>
-        </div>
+            { this.state.loaded ? (
+              <VoteManagerTable
+                data={this.state.data}
+                selectedDelegates={this.state.selectedDelegates}
+                toggleDelegate={this.toggleDelegate}
+              />
+              ) : null }
+          </div>
           <div className="centered">
             <ul className="pagination">
               <li className="page-item">
