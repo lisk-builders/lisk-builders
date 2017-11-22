@@ -155,7 +155,7 @@ export default class VoteManager extends Component {
       Object.keys(groups).forEach(ds => {
         const found = groups[ds].data.find(username => username === d.username);
         if (found) {
-          newDelegate.groups.push({ group: ds, bonus: groups[ds].bonus });
+          newDelegate.groups.push({ group: ds, nobonus: groups[ds].nobonus, bonus: groups[ds].bonus });
         }
       });
       return newDelegate;
@@ -426,32 +426,38 @@ export default class VoteManager extends Component {
     ));
   };
 
-  renderRow = (delegate) => (
-    <tr key={delegate.rank} className={this.isSelected(delegate.username) ? 'active' : null} onClick={() => this.toggleDelegate(delegate)}>
-      <td>
-        <input type="checkbox" checked={this.isSelected(delegate.username)} onChange={() => true} />
-        <i className="form-icon"></i>
-      </td>
-      <td>{delegate.rank}</td>
-      <td>{delegate.username}</td>
-      <td>
-      {
-        delegate.groups.length > 0 ? delegate.groups.map((gp, i) => {
-          return (<span key={i} className={`chip ${groups[gp.group].color}`}>{groups[gp.group].fullname}</span>);
-        }) : (<span key={0} className={'chip bg-darkgray text-light'}>Freelance</span>)
-      }
-      </td>
-      <td>
-        <div className="bar tooltip" data-tooltip={`Share ${delegate.percentage}% / Groups ${delegate.groups.reduce((mem, gp) => mem + gp.bonus, 0)}% / Self ${100 - delegate.groups.reduce((mem, gp) => mem + gp.bonus, 0) - delegate.percentage}%`}>
-          <div className="bar-item" style={{ width: `${delegate.percentage}%`, backgroundColor: '#5764c6' }} />
-          <div className="bar-item" style={{ width: `${delegate.groups.reduce((mem, gp) => mem + gp.bonus, 0)}%`, backgroundColor: '#818bd5' }} />
-          <div className="bar-item" style={{ width: `${100 - delegate.groups.reduce((mem, gp) => mem + gp.bonus, 0) - delegate.percentage}%`, backgroundColor: '#abb1e2' }} />
-        </div>
-      </td>
-      <td>{`${delegate.productivity}%`}</td>
-      <td>{`${delegate.approval}%`}</td>
-    </tr>
-  );
+  renderRow = (delegate) => {
+    const bonus = delegate.groups.reduce((mem, gp) => {
+      return gp.nobonus.find(username => username === delegate.username) ? 0 : mem + gp.bonus;
+    }, 0);
+    const own = 100 - bonus - delegate.percentage;
+    return (
+      <tr key={delegate.rank} className={this.isSelected(delegate.username) ? 'active' : null} onClick={() => this.toggleDelegate(delegate)}>
+        <td>
+          <input type="checkbox" checked={this.isSelected(delegate.username)} onChange={() => true} />
+          <i className="form-icon" />
+        </td>
+        <td>{delegate.rank}</td>
+        <td>{delegate.username}</td>
+        <td>
+        {
+          delegate.groups.length > 0 ? delegate.groups.map((gp, i) => {
+            return (<span key={i} className={`chip ${groups[gp.group].color}`}>{groups[gp.group].fullname}</span>);
+          }) : (<span key={0} className={'chip bg-darkgray text-light'}>Freelance</span>)
+        }
+        </td>
+        <td>
+          <div className="bar tooltip" data-tooltip={`Share ${delegate.percentage}% / Groups ${bonus}% / Self ${own}%`}>
+            <div className="bar-item" style={{ width: `${delegate.percentage}%`, backgroundColor: '#5764c6' }} />
+            <div className="bar-item" style={{ width: `${bonus}%`, backgroundColor: '#818bd5' }} />
+            <div className="bar-item" style={{ width: `${own}%`, backgroundColor: '#abb1e2' }} />
+          </div>
+        </td>
+        <td>{`${delegate.productivity}%`}</td>
+        <td>{`${delegate.approval}%`}</td>
+      </tr>
+    );
+  };
 
   renderVoteButtons = (data) => {
     const getNames = (groups) =>
