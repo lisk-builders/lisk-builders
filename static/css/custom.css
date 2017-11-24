@@ -250,6 +250,10 @@ header.navbar {
   width: 100%;
   overflow-x: auto;
 }
+
+.modal-body .form-group {
+  display: block;
+}
 @media screen and (max-width: 600px) {
   .table-scroll {
     display: block;
