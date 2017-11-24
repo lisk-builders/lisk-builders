@@ -12,13 +12,25 @@ export default class VoteManagerTable extends Component {
       .find(username => username === delegateUsername) !== undefined;
   }
 
+  toggleDelegate = (delegate) => {
+    let selectedDelegates = [...this.props.selectedDelegates];
+    if (selectedDelegates.find(username => username === delegate.username)) {
+      selectedDelegates = selectedDelegates.filter(dg =>
+        dg !== delegate.username
+      );
+    } else {
+      selectedDelegates.push(delegate.username);
+    }
+    this.props.setVoteManagerState({ selectedDelegates }, this.props.updateSelectedSets);
+  }
+
   renderRow = (delegate) => {
     const bonus = delegate.groups.reduce((mem, gp) => {
       return gp.nobonus.find(username => username === delegate.username) ? 0 : mem + gp.bonus;
     }, 0);
     const own = 100 - bonus - delegate.percentage;
     return (
-      <tr key={delegate.rank} className={this.isSelected(delegate.username) ? 'active' : null} onClick={() => this.props.toggleDelegate(delegate)}>
+      <tr key={delegate.rank} className={this.isSelected(delegate.username) ? 'active' : null} onClick={() => this.toggleDelegate(delegate)}>
         <td>
           <input type="checkbox" checked={this.isSelected(delegate.username)} onChange={() => true} />
           <i className="form-icon" />
@@ -28,7 +40,7 @@ export default class VoteManagerTable extends Component {
         <td>
         {
           delegate.groups.length > 0 ? delegate.groups.map((gp, i) => {
-            return (<span key={i} className={`chip ${groups[gp.group].color}`}>{groups[gp.group].fullname}</span>);
+            return (<span key={i} className={`chip ${groups[gp.group].color}`}>{groups[gp.group].tag}</span>);
           }) : (<span key={0} className={'chip bg-darkgray text-light'}>Freelance</span>)
         }
         </td>

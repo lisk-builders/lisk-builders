@@ -15,16 +15,6 @@ import VoteManagerControls from './VoteManagerControls';
 import VoteManagerIntro from './VoteManagerIntro';
 import notes from '../data/notes.json';
 
-const delegateSet = {
-  builders: groups.builders.data,
-  gdt: groups.gdt.data,
-  elite: groups.elite.data,
-  sherwood: groups.shw.data,
-  dutchpool: groups.dutchpool.data,
-  alepop5an1ty: ['alepop', '5an1ty'],
-  payoutoptimized: _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'stellardynamic']) // 'bitbanksy', 'stellardynamic'
-};
-
 const toastText = 'Do you like this tool? vote alepop & 5an1ty!';
 
 export default class VoteManager extends Component {
@@ -87,9 +77,11 @@ export default class VoteManager extends Component {
       newDelegate.percentage = dposFound ? dposFound.share : 0;
       newDelegate.groups = [];
       Object.keys(groups).forEach(ds => {
-        const found = groups[ds].data.find(username => username === d.username);
-        if (found) {
-          newDelegate.groups.push({ group: ds, nobonus: groups[ds].nobonus, bonus: groups[ds].bonus });
+        if (groups[ds].tag) {
+          const found = groups[ds].data.find(username => username === d.username);
+          if (found) {
+            newDelegate.groups.push({ group: ds, nobonus: groups[ds].nobonus, bonus: groups[ds].bonus });
+          }
         }
       });
       return newDelegate;
@@ -208,18 +200,6 @@ export default class VoteManager extends Component {
     });
   }
 
-  toggleDelegate = (delegate) => {
-    let selectedDelegates = [...this.state.selectedDelegates];
-    if (selectedDelegates.find(username => username === delegate.username)) {
-      selectedDelegates = selectedDelegates.filter(dg =>
-        dg !== delegate.username
-      );
-    } else {
-      selectedDelegates.push(delegate.username);
-    }
-    this.setState({ selectedDelegates }, this.updateSelectedSets);
-  }
-
   openModal(modal) {
     if (modal === 'export') {
       this.setState({ showExportModal: true });
@@ -250,16 +230,16 @@ export default class VoteManager extends Component {
 
   updateSelectedSets() {
     let selectedSet = this.state.selectedSet;
-    Object.keys(delegateSet).forEach(set => {
+    Object.keys(groups).forEach(set => {
       const foundVotes = this.state.selectedDelegates.reduce((acc, iv) => {
-        if (delegateSet[set].find(username => username === iv)) {
+        if (groups[set].data.find(username => username === iv)) {
           acc.push(iv);
           return acc;
         } else {
           return acc;
         }
       }, []);
-      if (foundVotes.length === delegateSet[set].length) {
+      if (foundVotes.length === groups[set].data.length) {
         selectedSet.push(set);
       } else {
         selectedSet = selectedSet.filter(entry => entry !== set);
@@ -283,9 +263,9 @@ export default class VoteManager extends Component {
                     votes={group.vote ? getNames(group.vote) : ''} unvotes={group.unvote ? getNames(group.unvote) : ''}
                     title={`Step ${i + 1}: ${group.unvote ? `-${group.unvote.length}` : ''}${group.vote && group.unvote ? `, +${group.vote.length}` : ''}${group.vote && !group.unvote ? `+${group.vote.length}` : ''}`}
                   />
-                </span>)) : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.`
+                </span>)) : null
           }
-          <button className="btn btn-secondary" disabled={!data.length} id="intro-summary-btn" onClick={() => this.openModal('summary')}>Summary</button>
+          { this.state.selectedDelegates.length <= consts.maxAllowedVotes ? <button className="btn btn-secondary" disabled={!data.length} id="intro-summary-btn" onClick={() => this.openModal('summary')}>Summary</button> : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.` }
         </div>
       </div>
     );
@@ -347,7 +327,8 @@ export default class VoteManager extends Component {
               <VoteManagerTable
                 data={this.state.data}
                 selectedDelegates={this.state.selectedDelegates}
-                toggleDelegate={this.toggleDelegate}
+                updateSelectedSets={this.updateSelectedSets}
+                setVoteManagerState={this.setVoteManagerState}
               />
               ) : null }
           </div>
