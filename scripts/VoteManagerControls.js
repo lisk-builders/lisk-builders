@@ -9,7 +9,7 @@ const delegateSet = {
   sherwood: groups.shw.data,
   dutchpool: groups.dutchpool.data,
   alepop5an1ty: ['alepop', '5an1ty'],
-  payoutoptimized: _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'phoenix1969', 'stellardynamic']) // 'bitbanksy', 'stellardynamic'
+  payoutoptimized: _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'stellardynamic']) // 'bitbanksy', 'stellardynamic'
 };
 
 export default class VoteManagerControls extends Component {
