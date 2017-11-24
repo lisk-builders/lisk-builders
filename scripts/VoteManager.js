@@ -13,6 +13,8 @@ import Note from './Note';
 import VoteManagerTable from './VoteManagerTable';
 import VoteManagerControls from './VoteManagerControls';
 import VoteManagerIntro from './VoteManagerIntro';
+import VoteManagerImportExport from './VoteManagerImportExport';
+import VoteManagerSummary from './VoteManagerSummary';
 import notes from '../data/notes.json';
 
 const toastText = 'Do you like this tool? vote alepop & 5an1ty!';
@@ -31,11 +33,7 @@ export default class VoteManager extends Component {
       totalPages: 1,
       selectedSet: [],
       isSticky: false,
-      groupIsShown: null,
-      showExportModal: false,
-      showImportModal: false,
-      showSummaryModal: false,
-      votesToImport: ''
+      groupIsShown: null
     };
     this.debouncedSearch = debounce(this.search.bind(this), 400).bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -200,34 +198,6 @@ export default class VoteManager extends Component {
     });
   }
 
-  openModal(modal) {
-    if (modal === 'export') {
-      this.setState({ showExportModal: true });
-    }
-    if (modal === 'import') {
-      this.setState({ showImportModal: true });
-    }
-    if (modal === 'summary') {
-      this.setState({ showSummaryModal: true });
-    }
-  }
-
-  closeModal(modal) {
-    if (modal === 'export') {
-      this.setState({ showExportModal: false });
-    }
-    if (modal === 'import') {
-      this.setState({ showImportModal: false });
-    }
-    if (modal === 'summary') {
-      this.setState({ showSummaryModal: false });
-    }
-  }
-
-  importVotes() {
-    this.setState({ selectedDelegates: this.state.votesToImport.split(','), showImportModal: false }, this.updateSelectedSets);
-  }
-
   updateSelectedSets() {
     let selectedSet = this.state.selectedSet;
     Object.keys(groups).forEach(set => {
@@ -265,7 +235,7 @@ export default class VoteManager extends Component {
                   />
                 </span>)) : null
           }
-          { this.state.selectedDelegates.length <= consts.maxAllowedVotes ? <button className="btn btn-secondary" disabled={!data.length} id="intro-summary-btn" onClick={() => this.openModal('summary')}>Summary</button> : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.` }
+          { this.state.selectedDelegates.length <= consts.maxAllowedVotes ? <VoteManagerSummary getVoteUnvoteList={this.getVoteUnvoteList} enabled={data.length > 0} /> : `You cannot vote for more than ${consts.maxAllowedVotes} delegates, please reduce your selection.` }
         </div>
       </div>
     );
@@ -273,7 +243,6 @@ export default class VoteManager extends Component {
 
   render() {
     const voteData = this.getVoteUnvoteList();
-    const flatVoteData = [].concat(...voteData);
     return (
       <div>
         <VoteManagerIntro />
@@ -303,10 +272,13 @@ export default class VoteManager extends Component {
               setData={this.setData}
             />
             <div className="divider" />
-            <div className="btn-group btn-group-block">
-              <button className="btn btn-secondary" id="intro-import-btn" onClick={() => this.openModal('import')}>Import Votes</button>
-              <button className="btn btn-secondary" id="intro-export-btn" onClick={() => this.openModal('export')}>Export Votes</button>
-            </div>
+            <VoteManagerImportExport
+              initialVotes={this.state.initialVotes}
+              selectedDelegates={this.state.selectedDelegates}
+              getVoteUnvoteList={this.getVoteUnvoteList}
+              setVoteManagerState={this.setVoteManagerState}
+              updateSelectedSets={this.updateSelectedSets}
+            />
             <div className="divider" />
             <p>When finished, send your changes to Lisk Nano by clicking the buttons below in sequence. You will get an overview of the votes you are sending in Nano before you actually submit the votes:</p>
             <div id="intro-vote-section">
@@ -369,66 +341,6 @@ export default class VoteManager extends Component {
           <Container>
             <Note note={notes.note7} />
           </Container>
-        </div>
-        <div className={`modal ${this.state.showExportModal ? 'active' : ''} modal-sm`}>
-          <div className="modal-overlay" />
-          <div className="modal-container">
-            <div className="modal-header">
-              <button className="btn btn-clear float-right" onClick={() => this.closeModal('export')} />
-              <div className="modal-title h5">Export</div>
-            </div>
-            <div className="modal-body">
-              <div className="content">
-                <div className="form-group">
-                  <label className="form-label" htmlFor="input-example-3">Votes</label>
-                  <textarea className="form-input" readOnly id="input-example-3" placeholder="Votes" rows="8" cols="50" value={this.state.selectedDelegates} />
-                </div>
-                <div className="form-group">
-                  <a href={`mailto:?subject=Hey, Here's a list with great Lisk delegates you can vote for!&body=You can use the lisk.builders vote manager to easily manage your votes (https://lisk.builders/votemanager). Press the import button and paste this list: %0D%0A%0D%0A${this.state.selectedDelegates}`} className="btn btn-primary">Send via email</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={`modal ${this.state.showImportModal ? 'active' : ''} modal-sm`}>
-          <div className="modal-overlay" />
-          <div className="modal-container">
-            <div className="modal-header">
-              <button className="btn btn-clear float-right" onClick={() => this.closeModal('import')} />
-              <div className="modal-title h5">Import</div>
-            </div>
-            <div className="modal-body">
-              <div className="content">
-                <div className="form-group">
-                  <label className="form-label" htmlFor="input-example-3">Votes</label>
-                  <textarea className="form-input" id="input-example-3" placeholder="Votes" rows="8" cols="50" onChange={(e) => this.setState({ votesToImport: e.target.value })} />
-                </div>
-                <div className="form-group">
-                  <button className="btn btn-secondary" onClick={() => this.importVotes()}>Import</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={`modal ${this.state.showSummaryModal ? 'active' : ''} modal-sm`}>
-          <div className="modal-overlay" />
-          <div className="modal-container">
-            <div className="modal-header">
-              <button className="btn btn-clear float-right" onClick={() => this.closeModal('summary')} />
-              <div className="modal-title h5">Summary</div>
-            </div>
-            <div className="modal-body">
-              <div className="content">
-                <p>
-                  <strong>Added votes:</strong> {flatVoteData.filter(v => v.type === 'vote').map(v => v.name).join(' ')}
-                </p>
-                <p>
-                  <strong>Removed votes:</strong> {flatVoteData.filter(v => v.type === 'unvote').map(v => v.name).join(' ')}
-                </p>
-              </div>
-            </div>
-            <div className="modal-footer" />
-          </div>
         </div>
       </div>
     );
