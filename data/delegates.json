@@ -258,5 +258,22 @@
     "poolMember": false,
     "required": false,
     "featured": false
+  },
+  {
+    "delegateName": "elevate",
+    "delegateAddress": "17890508407355636952L",
+    "proposal": "",
+    "githubUsername": "tobiaslins",
+    "poolPercentage": {
+      "P": "30",
+      "D": "30",
+      "O": "40"
+    },
+    "affiliation": "Individual",
+    "liskChat": "tobiaslins",
+    "pool": "",
+    "poolMember": false,
+    "required": false,
+    "featured": false
   }
 ]
