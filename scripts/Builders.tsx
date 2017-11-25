@@ -1,13 +1,14 @@
-import _ from 'lodash';
-import React, { Component } from 'react';
+import * as _ from 'lodash';
+import * as React from 'react';
+import { Component } from 'react';
 import axios from 'axios';
 import Banner from './Banner';
 import Note from './Note';
 import Panel from './Panel';
 import Slack from './Slack';
 import Container from './Container';
-import delegates from '../data/delegates.json';
-import notes from '../data/notes.json';
+import * as delegates from '../data/delegates.json';
+import * as notes from '../data/notes.json';
 import { getUrl } from './utils';
 
 const getDelegateData = delegate =>
@@ -38,7 +39,7 @@ axios
     )
     .catch(res => delegate);
 
-export default class Builders extends Component {
+export default class Builders extends Component<any, any> {
 
   constructor(props) {
     super(props);

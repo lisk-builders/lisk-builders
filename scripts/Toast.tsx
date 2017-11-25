@@ -1,16 +1,24 @@
-import React, { Component } from 'react';
-import classnames from 'classnames';
+import * as React from 'react';
+import { Component } from 'react';
+import * as classnames from 'classnames';
 
-export default class Toast extends Component {
-  constructor() {
-    super();
+export default class Toast extends Component<any, any> {
+
+  timeout;
+
+  constructor(props) {
+    super(props);
     this.state = {
       show: false
     };
   }
 
   componentDidMount() {
-    setTimeout(() => this.setState({ show: true }), this.props.timer);
+    this.timeout = setTimeout(() => this.setState({ show: true }), this.props.timer);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
   }
 
   getStyles = () =>

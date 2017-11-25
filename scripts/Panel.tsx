@@ -1,5 +1,5 @@
-import React from 'react';
-import classnames from 'classnames';
+import * as React from 'react';
+import * as classnames from 'classnames';
 import Bar from './Bar';
 import Ribbon from './Ribbon';
 import { GitHub } from './Icons';
@@ -68,9 +68,8 @@ const Panel = ({
                 <div className="tile tile-centered">
                     <div className="tile-content">
                         <a
-                            className="btn btn-sm btn-block"
+                            className={`btn btn-sm btn-block ${!pool ? 'disabled' : ''}`}
                             target="_blank"
-                            disabled={!pool}
                             href={pool}>
                             Pool
                         </a>
@@ -80,9 +79,8 @@ const Panel = ({
                 <div className="tile tile-centered">
                     <div className="tile-content">
                         <a
-                            className="btn btn-sm btn-block"
+                            className={`btn btn-sm btn-block ${!proposal ? 'disabled' : ''}`}
                             target="_blank"
-                            disabled={!proposal}
                             href={proposal}>
                             Proposal
                         </a>

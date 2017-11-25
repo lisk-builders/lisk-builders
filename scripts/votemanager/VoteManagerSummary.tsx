@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 
-export default class VoteManagerModals extends Component {
+export default class VoteManagerModals extends Component<any, any> {
 
   constructor(props) {
     super(props);

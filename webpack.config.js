@@ -49,33 +49,42 @@ const path = require('path');
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://localhost:5000',
-    'webpack/hot/dev-server',
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
     './scripts/index'
   ],
+  devServer: {
+    hot: true,
+    historyApiFallback: true,
+    contentBase: path.resolve(__dirname),
+    publicPath: '/static/'
+  },
   output: {
-    path: __dirname,
+    path: path.resolve(__dirname, 'static'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },
+  target: 'web',
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
+    // Fix webpack's default behavior to not load packages with jsnext:main module
+    // https://github.com/Microsoft/TypeScript/issues/11677
+    mainFields: ['browser', 'main']
   },
-  devtool: 'eval-source-map',
+  devtool: 'cheap-module-eval-source-map',
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
-        loaders: ['babel'],
-        include: path.join(__dirname, 'scripts')
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
+        test: /\.tsx?$/,
+        use: [
+          'react-hot-loader/webpack',
+          'awesome-typescript-loader'
+        ],
+        exclude: /node_modules/
       }
     ]
   }

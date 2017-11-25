@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 
-export default class VoteManagerModals extends Component {
+export default class VoteManagerModals extends Component<any, any> {
 
   constructor(props) {
     super(props);
@@ -54,7 +55,7 @@ export default class VoteManagerModals extends Component {
               <div className="content">
                 <div className="form-group">
                   <label className="form-label" htmlFor="input-example-3">Votes</label>
-                  <textarea className="form-input" readOnly id="input-example-3" placeholder="Votes" rows="8" cols="50" value={this.props.selectedDelegates} />
+                  <textarea className="form-input" readOnly id="input-example-3" placeholder="Votes" rows={8} cols={50} value={this.props.selectedDelegates} />
                 </div>
                 <div className="form-group">
                   <a href={`mailto:?subject=Hey, Here's a list with great Lisk delegates you can vote for!&body=You can use the lisk.builders vote manager to easily manage your votes (https://lisk.builders/votemanager). Press the import button and paste this list: %0D%0A%0D%0A${this.props.selectedDelegates}`} className="btn btn-primary">Send via email</a>
@@ -74,7 +75,7 @@ export default class VoteManagerModals extends Component {
               <div className="content">
                 <div className="form-group">
                   <label className="form-label" htmlFor="input-example-3">Votes</label>
-                  <textarea className="form-input" id="input-example-3" placeholder="Votes" rows="8" cols="50" onChange={(e) => this.setState({ votesToImport: e.target.value })} />
+                  <textarea className="form-input" id="input-example-3" placeholder="Votes" rows={8} cols={50} onChange={(e) => this.setState({ votesToImport: e.target.value })} />
                 </div>
                 <div className="form-group">
                   <button className="btn btn-secondary" onClick={() => this.importVotes()}>Import</button>

@@ -1,6 +1,7 @@
-import React from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import axios from 'axios';
-import classnames from 'classnames';
+import * as classnames from 'classnames';
 import lotteryData from '../data/lottery.json';
 
 const modalClassnames = isActive =>
@@ -10,7 +11,7 @@ const modalClassnames = isActive =>
 
 const getLastWinnersData = lotteryData[lotteryData.length - 1];
 
-class Lottery extends React.Component {
+class Lottery extends Component<any, any> {
     constructor(props) {
         super(props);
         this.state = {
@@ -130,7 +131,7 @@ class Lottery extends React.Component {
         const candidates = {};
 
         axios.all(delegates.map(this.getDelegateData)).then(res => {
-        res.forEach(dg => {
+        res.forEach((dg: any) => {
             dg.voters.forEach(vt => {
             if (blacklist.indexOf(vt.address) === -1) {
                 if (dg.required) {

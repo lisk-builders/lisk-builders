@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import axios from 'axios';
 import Note from './Note';
 import Slack from './Slack';
 import Container from './Container';
 import { GitHub } from './Icons';
-import notes from '../data/notes.json';
+import * as notes from '../data/notes.json';
 
 const url = 'https://api.github.com/orgs/lisk-builders/repos';
 
@@ -49,9 +50,9 @@ const renderProject = ({ id, name, description, language, updated_at, html_url, 
   </div>
 );
 
-export default class Contributions extends Component {
-  constructor() {
-    super();
+export default class Contributions extends Component<any, any> {
+  constructor(props) {
+    super(props);
     this.state = {
       loaded: false,
       data: null

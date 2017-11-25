@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 
-const style = {
+const style: any = {
     width: '16px',
     height: '16px',
     position: 'relative',

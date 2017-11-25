@@ -1,9 +1,10 @@
-import _ from 'lodash';
-import React, { Component } from 'react';
-import groups from '../data/groups.json';
-import { listDiff, debounce, getUrl } from './utils';
+import * as _ from 'lodash';
+import * as React from 'react';
+import { Component } from 'react';
+import * as groups from '../../data/groups.json';
+import { listDiff, debounce, getUrl } from '../utils';
 
-export default class VoteManagerControls extends Component {
+export default class VoteManagerControls extends Component<any, any> {
 
   constructor(props) {
     super(props);

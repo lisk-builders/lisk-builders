@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import groups from '../data/groups.json';
+import * as React from 'react';
+import { Component } from 'react';
+import * as groups from '../../data/groups.json';
 
-export default class VoteManagerTable extends Component {
+export default class VoteManagerTable extends Component<any, any> {
 
   constructor(props) {
     super(props);

@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import * as classnames from 'classnames';
 import BigNumber from 'bignumber.js';
 
 BigNumber.config({ ERRORS: false });
@@ -21,7 +21,7 @@ export const fromRawLsk = value => (
 );
 
 export const toRawLsk = value => (
-  new BigNumber(value * new BigNumber(10).pow(8)).round(0).toNumber()
+  new BigNumber(value * new BigNumber(10).pow(8).toNumber()).round(0).toNumber()
 );
 
 export const debounce = (fn, delay) => {

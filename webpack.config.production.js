@@ -55,39 +55,40 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/'
   },
+  target: 'web',
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
+    // Fix webpack's default behavior to not load packages with jsnext:main module
+    // https://github.com/Microsoft/TypeScript/issues/11677
+    mainFields: ['browser', 'main']
   },
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
-      }
+      },
+      beautify: false
     }),
     new HtmlWebpackPlugin({
-        version: new Date().getTime(),
-        template: 'index.ejs',
-        filename: '../index.html',
-        inject: false
+      version: new Date().getTime(),
+      template: 'index.ejs',
+      filename: '../index.html',
+      inject: false
     })
   ],
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
-        loaders: ['babel'],
-        include: path.join(__dirname, 'scripts')
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
+        test: /\.tsx?$/,
+        use: [
+          'react-hot-loader/webpack',
+          'awesome-typescript-loader'
+        ],
+        exclude: /node_modules/
       }
     ]
   }

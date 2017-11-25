@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import Joyride from 'react-joyride';
 
-export default class VoteManagerTable extends Component {
+export default class VoteManagerTable extends Component<any, any> {
 
   constructor(props) {
     super(props);
@@ -91,7 +92,7 @@ export default class VoteManagerTable extends Component {
         type={this.state.introType}
         run={this.state.runIntro}
         autoStart={this.state.runIntro}
-        showOverlay={() => true}
+        showOverlay={true}
         showSkipButton={this.state.introSkipButton}
         disableOverlay={this.state.introDisableOverlay}
         steps={this.state.introSteps}

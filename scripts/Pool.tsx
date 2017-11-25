@@ -1,13 +1,14 @@
-import _ from 'lodash';
-import React, { Component } from 'react';
+import * as _ from 'lodash';
+import * as React from 'react';
+import { Component } from 'react';
 import axios from 'axios';
-import classnames from 'classnames';
+import * as classnames from 'classnames';
 import Container from './Container';
 import Note from './Note';
 import Panel from './Panel';
 import Slack from './Slack';
 import poolData from '../data/pool.json';
-import notes from '../data/notes.json';
+import * as notes from '../data/notes.json';
 import { fromRawLsk } from './utils';
 
 const modalClassnames = isActive =>
@@ -63,7 +64,7 @@ const Payouts = () => (
   </div>
 );
 
-class Pool extends Component {
+class Pool extends Component<any, any> {
   constructor(props) {
     super(props);
     this.getTotalForgedLisk = this.getTotalForgedLisk.bind(this);
@@ -78,7 +79,7 @@ class Pool extends Component {
   getTotalForgedLisk(data) {
     const totalForged = data.reduce((acc, el) => acc + fromRawLsk(el.forged), 0);
     this.setState({
-      forged: parseInt((totalForged * 30) / 100, 10)
+      forged: (totalForged * 30) / 100
     });
   }
   handleChange = event => {

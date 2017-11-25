@@ -1,16 +1,18 @@
-import React from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Container from './Container';
 
 const title = '{ lisk.builders }';
-export default class NavBar extends React.PureComponent {
-  constructor() {
-    super();
+export default class NavBar extends Component<any, any> {
+
+  menu: any;
+
+  constructor(props) {
+    super(props);
     this.state = {
       dropDownOpen: false
     };
   }
-
 
   componentDidMount() {
     document.addEventListener('click', this.closeMenu);
@@ -55,7 +57,7 @@ export default class NavBar extends React.PureComponent {
                   </div>
                   <div className="show-md">
                     <div className="dropdown dropdown-right active">
-                      <a href="#menu" className="btn btn-link" tabIndex="0" onClick={this.handleClick} ref={el => this.menu = el}>
+                      <a href="#menu" className="btn btn-link" tabIndex={0} onClick={this.handleClick} ref={el => this.menu = el}>
                         Menu <i className="icon icon-caret" />
                       </a>
                       { dropDownOpen &&
@@ -73,6 +75,6 @@ export default class NavBar extends React.PureComponent {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

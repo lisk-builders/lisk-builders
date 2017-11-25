@@ -1,25 +1,32 @@
-import _ from 'lodash';
+import * as _ from 'lodash';
 import 'regenerator-runtime/runtime';
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import axios from 'axios';
-import Slack from './Slack';
-import Container from './Container';
-import Toast from './Toast';
-import dposdata from '../dpos-tools-data/lisk/pools.json';
-import groups from '../data/groups.json';
-import { listDiff, debounce, getUrl } from './utils';
-import * as consts from '../data/consts.json';
-import Note from './Note';
+import { observer } from 'mobx-react';
+import Slack from '../Slack';
+import Container from '../Container';
+import Toast from '../Toast';
+import * as dposdata from '../../dpos-tools-data/lisk/pools.json';
+import * as groups from '../../data/groups.json';
+import { listDiff, debounce, getUrl } from '../utils';
+import * as consts from '../../data/consts.json';
+import Note from '../Note';
 import VoteManagerTable from './VoteManagerTable';
 import VoteManagerControls from './VoteManagerControls';
 import VoteManagerIntro from './VoteManagerIntro';
 import VoteManagerImportExport from './VoteManagerImportExport';
 import VoteManagerSummary from './VoteManagerSummary';
-import notes from '../data/notes.json';
+import * as notes from '../../data/notes.json';
 
 const toastText = 'Do you like this tool? vote alepop & 5an1ty!';
 
-export default class VoteManager extends Component {
+@observer
+export default class VoteManager extends Component<any, any> {
+
+  debouncedSearch: any;
+  offsetTop: any;
+  delegateCountRef:any;
 
   constructor(props) {
     super(props);
@@ -68,7 +75,7 @@ export default class VoteManager extends Component {
     this.setState(state, cb);
   }
 
-  setData(data, cb) {
+  setData(data, cb?) {
     const newData = data.map(d => {
       const newDelegate = { ...d };
       const dposFound = dposdata.find(dd => dd.delegate === newDelegate.username);
@@ -84,6 +91,7 @@ export default class VoteManager extends Component {
       });
       return newDelegate;
     });
+    this.props.store.setDelegates(newData);
     this.setState({ data: newData }, cb);
   }
 
@@ -184,7 +192,7 @@ export default class VoteManager extends Component {
     }
   }
 
-  navigate(page, cb) {
+  navigate(page, cb?) {
     this.getPage(page).then(data => {
       return this.setData(data, () => {
         this.setState({
@@ -307,7 +315,7 @@ export default class VoteManager extends Component {
           <div className="centered">
             <ul className="pagination">
               <li className="page-item">
-                <a href="#scroll" tabIndex="-1" disabled={this.state.selectedPage <= 1} onClick={() => this.navigate(this.state.selectedPage - 1)}>Previous</a>
+                <a className={`${this.state.selectedPage <= 1 ? 'disabled' : ''}`} href="#scroll" tabIndex={-1} onClick={() => this.navigate(this.state.selectedPage - 1)}>Previous</a>
               </li>
               { this.state.selectedPage - 1 > 0 &&
                 <li className="page-item">
@@ -329,7 +337,7 @@ export default class VoteManager extends Component {
                 <a href="#scroll" onClick={() => this.navigate(this.state.totalPages)}>{this.state.totalPages}</a>
               </li>
               <li className="page-item">
-                <a href="#scroll" disabled={this.state.selectedPage >= this.state.totalPages} onClick={() => this.navigate(this.state.selectedPage + 1)}>Next</a>
+                <a className={`${this.state.selectedPage >= this.state.totalPages ? 'disabled' : ''}`} href="#scroll" onClick={() => this.navigate(this.state.selectedPage + 1)}>Next</a>
               </li>
             </ul>
           </div>

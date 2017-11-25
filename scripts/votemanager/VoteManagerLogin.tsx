@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import notes from '../data/notes.json';
-import Note from './Note';
-import Slack from './Slack';
-import Container from './Container';
+import * as notes from '../../data/notes.json';
+import Note from '../Note';
+import Slack from '../Slack';
+import Container from '../Container';
 
-class VoteManagerLogin extends Component {
+class VoteManagerLogin extends Component<any, any> {
 
   constructor(props) {
     super(props);
