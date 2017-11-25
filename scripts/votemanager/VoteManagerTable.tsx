@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Component } from 'react';
+import { observer } from 'mobx-react';
 import * as groups from '../../data/groups.json';
 
+@observer
 export default class VoteManagerTable extends Component<any, any> {
 
   constructor(props) {
@@ -9,20 +11,8 @@ export default class VoteManagerTable extends Component<any, any> {
   }
 
   isSelected(delegateUsername) {
-    return this.props.selectedDelegates
+    return this.props.store.selectedDelegates
       .find(username => username === delegateUsername) !== undefined;
-  }
-
-  toggleDelegate = (delegate) => {
-    let selectedDelegates = [...this.props.selectedDelegates];
-    if (selectedDelegates.find(username => username === delegate.username)) {
-      selectedDelegates = selectedDelegates.filter(dg =>
-        dg !== delegate.username
-      );
-    } else {
-      selectedDelegates.push(delegate.username);
-    }
-    this.props.setVoteManagerState({ selectedDelegates }, this.props.updateSelectedSets);
   }
 
   renderRow = (delegate) => {
@@ -31,7 +21,7 @@ export default class VoteManagerTable extends Component<any, any> {
     }, 0);
     const own = 100 - bonus - delegate.percentage;
     return (
-      <tr key={delegate.rank} className={this.isSelected(delegate.username) ? 'active' : null} onClick={() => this.toggleDelegate(delegate)}>
+      <tr key={delegate.rank} className={this.isSelected(delegate.username) ? 'active' : null} onClick={() => this.props.store.toggleDelegate(delegate)}>
         <td>
           <input type="checkbox" checked={this.isSelected(delegate.username)} onChange={() => true} />
           <i className="form-icon" />
@@ -73,7 +63,7 @@ export default class VoteManagerTable extends Component<any, any> {
           </tr>
         </thead>
         <tbody>
-          { this.props.data.map(this.renderRow) }
+          { this.props.store.delegates.map(this.renderRow) }
         </tbody>
       </table>
     );

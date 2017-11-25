@@ -14,7 +14,7 @@ export default class VoteManagerModals extends Component<any, any> {
 
   importVotes() {
     this.closeModal('import');
-    this.props.setVoteManagerState({ selectedDelegates: this.state.votesToImport.replace(/ /g, '').split(',') }, this.props.updateSelectedSets);
+    this.props.store.setSelectedDelegates(this.state.votesToImport.replace(/ /g, '').split(','));
   }
 
   openModal(modal) {
@@ -36,7 +36,7 @@ export default class VoteManagerModals extends Component<any, any> {
   }
 
   render() {
-    const voteData = this.props.getVoteUnvoteList();
+    const voteData = this.props.store.voteUnvoteList;
     const flatVoteData = [].concat(...voteData);
     return (
       <div>
@@ -55,7 +55,7 @@ export default class VoteManagerModals extends Component<any, any> {
               <div className="content">
                 <div className="form-group">
                   <label className="form-label" htmlFor="input-example-3">Votes</label>
-                  <textarea className="form-input" readOnly id="input-example-3" placeholder="Votes" rows={8} cols={50} value={this.props.selectedDelegates} />
+                  <textarea className="form-input" readOnly id="input-example-3" placeholder="Votes" rows={8} cols={50} value={this.props.store.selectedDelegates} />
                 </div>
                 <div className="form-group">
                   <a href={`mailto:?subject=Hey, Here's a list with great Lisk delegates you can vote for!&body=You can use the lisk.builders vote manager to easily manage your votes (https://lisk.builders/votemanager). Press the import button and paste this list: %0D%0A%0D%0A${this.props.selectedDelegates}`} className="btn btn-primary">Send via email</a>

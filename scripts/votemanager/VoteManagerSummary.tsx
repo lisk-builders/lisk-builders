@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 
-export default class VoteManagerModals extends Component<any, any> {
+export default class VoteManagerSummary extends Component<any, any> {
 
   constructor(props) {
     super(props);
@@ -23,7 +23,7 @@ export default class VoteManagerModals extends Component<any, any> {
   }
 
   render() {
-    const voteData = this.props.getVoteUnvoteList();
+    const voteData = this.props.store.voteUnvoteList;
     const flatVoteData = [].concat(...voteData);
     return (
       <span>
