@@ -31,7 +31,7 @@ export default class VoteManagerControls extends Component<any, any> {
   }
 
   resetSelectedDelegates() {
-    this.props.store.setSelectedDelegates(this.props.initialVotes);
+    this.props.store.setSelectedDelegates(this.props.store.initialVotes);
   }
 
   wipeSelectedDelegates() {

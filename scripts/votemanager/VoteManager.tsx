@@ -69,7 +69,7 @@ export default class VoteManager extends Component<any, any> {
     return axios.get(`${getUrl()}/api/accounts/delegates/?address=${address}`).then(res => {
       if (res.data.success) {
         this.props.store.setInitialVotes(res.data.delegates.map(dg => dg.username));
-        this.props.store.setDelegates(this.props.store.initialVotes);
+        this.props.store.setSelectedDelegates(this.props.store.initialVotes);
         return true;
       } else {
         return false;
