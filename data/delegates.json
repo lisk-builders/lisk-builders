@@ -168,12 +168,13 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1524",
     "githubUsername": "liskprocom",
     "poolPercentage": {
-      "D": "85",
+      "P": "50",
+      "D": "35",
       "O": "15"
     },
-    "affiliation": "Freelance",
+    "affiliation": "Sherwood",
     "liskChat": "LiskPro.com",
-    "pool": null,
+    "pool": "http://robinhood.liskpro.com/",
     "poolMember": false,
     "required": false,
     "featured": false
