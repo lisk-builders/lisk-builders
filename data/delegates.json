@@ -266,11 +266,11 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?f=6&t=1651",
     "githubUsername": "tobiaslins",
     "poolPercentage": {
-      "P": "30",
-      "D": "30",
+      "P": "50",
+      "D": "10",
       "O": "40"
     },
-    "affiliation": "Individual",
+    "affiliation": "Freelance",
     "liskChat": "tobiaslins",
     "pool": "",
     "poolMember": false,
