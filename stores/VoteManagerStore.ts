@@ -57,7 +57,11 @@ class VoteManagerStore {
   setDelegates = (delegates) => {
     const newData = delegates.map(d => {
       const newDelegate = { ...d };
-      const dposFound = dposdata.find(dd => dd.delegate === newDelegate.username);
+      const dposFound = dposdata.find(dd => {
+        const usernameFound = dd.delegate === newDelegate.username;
+        const eliteFound = dd.requirements && dd.requirements.find(r => r.value === 'elite');
+        return usernameFound && !eliteFound;
+      });
       newDelegate.percentage = dposFound ? dposFound.share : 0;
       newDelegate.groups = [];
       Object.keys(groups).forEach(ds => {

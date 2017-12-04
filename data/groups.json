@@ -2,7 +2,7 @@
   "elite": {
     "tag": "Elite",
     "fullname": "Elite",
-    "bonus": 0,
+    "bonus": 25,
     "nobonus": [],
     "tooltip": "https://liskelite.com",
     "color": "bg-yellow text-light",

@@ -38,7 +38,6 @@ export default class VoteManager extends Component<any, any> {
     this.handleSearch = this.handleSearch.bind(this);
     this.stickyCounter = this.stickyCounter.bind(this);
     this.searchInPages = this.searchInPages.bind(this);
-    this.setVoteManagerState = this.setVoteManagerState.bind(this);
     this.navigate = this.navigate.bind(this);
     this.offsetTop = null;
   }
@@ -59,10 +58,6 @@ export default class VoteManager extends Component<any, any> {
 
   componentWillUnmount() {
     document.removeEventListener('scroll', this.stickyCounter);
-  }
-
-  setVoteManagerState(state, cb) {
-    this.setState(state, cb);
   }
 
   getVotesForAddress(address) {
