@@ -276,5 +276,21 @@
     "poolMember": false,
     "required": false,
     "featured": false
+  },
+  {
+    "delegateName": "bluedragon",
+    "delegateAddress": "5755886524444585708L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1683",
+    "githubUsername": "BlueDragon555",
+    "poolPercentage": {
+      "D": "75",
+      "O": "25"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "bluedragon",
+    "pool": "",
+    "poolMember": false,
+    "required": false,
+    "featured": false
   }
 ]
