@@ -135,9 +135,9 @@
     "proposal": "https://forum.lisk.io/viewtopic.php?t=1560",
     "githubUsername": "4fryn",
     "poolPercentage": {
-      "P": "80",
+      "P": "75",
       "D": "15",
-      "O": "5"
+      "O": "10"
     },
     "affiliation": "Freelance",
     "liskChat": "4fryn",
