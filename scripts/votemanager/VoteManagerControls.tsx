@@ -50,7 +50,7 @@ export default class VoteManagerControls extends Component<any, any> {
   }
 
   setSelectedToOptimized() {
-    const payoutoptimized = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'stellardynamic', 'index']);
+    const payoutoptimized = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'stellardynamic', 'phoenix1969']);
     this.props.store.setSelectedDelegates(payoutoptimized);
   }
 

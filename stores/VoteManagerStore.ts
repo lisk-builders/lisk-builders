@@ -60,7 +60,7 @@ class VoteManagerStore {
       const dposFound = dposdata.find(dd => {
         const usernameFound = dd.delegate === newDelegate.username;
         const eliteFound = dd.requirements && dd.requirements.find(r => r.value === 'elite');
-        return usernameFound && !eliteFound;
+        return usernameFound && (!eliteFound || newDelegate.username === 'phoenix1969' ||  newDelegate.username === 'stellardynamic');
       });
       newDelegate.percentage = dposFound ? dposFound.share : 0;
       newDelegate.groups = [];

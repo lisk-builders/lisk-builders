@@ -16,6 +16,7 @@ export default class VoteManagerTable extends Component<any, any> {
   }
 
   renderRow = (delegate) => {
+    console.log(delegate);
     const bonus = delegate.groups.reduce((mem, gp) => {
       return gp.nobonus.find(username => username === delegate.username) ? 0 : mem + gp.bonus;
     }, 0);
