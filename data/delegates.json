@@ -309,5 +309,22 @@
     "poolMember": false,
     "required": false,
     "featured": false
-  }
+  },
++ {
++    "delegateName": "liskpoland.pl",
++    "delegateAddress": "11551549432293832181L",
++    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1626",
++    "githubUsername": "TheBlaineMono",
++    "poolPercentage": {
++      "P": "60",
++      "D": "10",
++      "O": "30"
++    },
++    "affiliation": "Freelance",
++    "liskChat": "liskpoland.pl",
++    "pool": null,
++    "poolMember": false,
++    "required": false,
++    "featured": false
+   }
 ]
