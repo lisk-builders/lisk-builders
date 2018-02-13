@@ -169,11 +169,20 @@
     "color": "bg-orange text-light",
     "data": ["dutch_pool", "kippers", "thamar", "fnoufnou", "st3v3n"]
   },
+  "ascend": {
+    "tag": "Ascend",
+    "fullname": "Lisk Ascend",
+    "bonus": 0,
+    "nobonus": [],
+    "tooltip": "https://liskascend.com/",
+    "color": "bg-purple text-light",
+    "data": ["anamix", "gregorsk", "kylefromohio", "goforlisk", "hirish", "nimbus", "moosty", "sdrpa", "roblad"]
+  },
   "builders": {
     "tag": "Builders",
     "fullname": "Lisk Builders",
     "bonus": 0,
-    "nobonus": [], 
+    "nobonus": [],
     "tooltip": "Active contributors to lisk",
     "color": "bg-blue  text-light",
     "data": ["liskit", "dakk", "vekexasia", "5an1ty", "cc001", "gr33ndrag0n", "mrv", "alepop", "4fryn", "carbonara", "liskpro.com", "joo5ty", "thepool", "bioly", "philhellmuth", "endro", "elevate", "bluedragon", "andrew", "liskpoland.pl"]
@@ -182,7 +191,7 @@
     "tag": null,
     "fullname": "alepop & 5an1ty",
     "bonus": 0,
-    "nobonus": [], 
+    "nobonus": [],
     "tooltip": "The creators of this site ;-)",
     "color": "",
     "data": ["5an1ty", "alepop"]
