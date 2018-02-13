@@ -19,7 +19,7 @@ import VoteManagerImportExport from './VoteManagerImportExport';
 import VoteManagerSummary from './VoteManagerSummary';
 import * as notes from '../../data/notes.json';
 
-const toastText = 'Do you like this tool? vote alepop & 5an1ty!';
+const toastText = 'Do you like this tool? Vote Lisk Builders!';
 
 @observer
 export default class VoteManager extends Component<any, any> {
