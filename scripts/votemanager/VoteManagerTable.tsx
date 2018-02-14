@@ -33,7 +33,7 @@ export default class VoteManagerTable extends Component<any, any> {
         {
           delegate.groups.length > 0 ? delegate.groups.map((gp, i) => {
             return (<span key={i} className={`chip ${groups[gp.group].color}`}>{groups[gp.group].tag}</span>);
-          }) : (<span key={0} className={'chip bg-darkgray text-light'}>Freelance</span>)
+          }) : (<span>&nbsp;</span>)
         }
         </td>
         <td>
