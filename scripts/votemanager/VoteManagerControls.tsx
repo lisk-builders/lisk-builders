@@ -49,9 +49,14 @@ export default class VoteManagerControls extends Component<any, any> {
     this.props.store.setSelectedDelegates(filtered);
   }
 
-  setSelectedToOptimized() {
-    const payoutoptimized = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'stellardynamic', 'phoenix1969']);
-    this.props.store.setSelectedDelegates(payoutoptimized);
+  setSelectedToContrib() {
+    const payoutcontrib = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, ...groups.builders.data, 'shinekami', 'stellardynamic', 'phoenix1969', 'index']);
+    this.props.store.setSelectedDelegates(payoutcontrib);
+  }
+
+  setSelectedToMaximum() {
+    const payoutmax = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'stellardynamic', 'phoenix1969']);
+    this.props.store.setSelectedDelegates(payoutmax);
   }
 
   renderFilters() {
@@ -79,7 +84,8 @@ export default class VoteManagerControls extends Component<any, any> {
         <div className="btn-group btn-group-block">
           <button className="btn btn-secondary" id="intro-restore-btn" onClick={() => this.resetSelectedDelegates()}>Restore</button>
           <button className="btn btn-secondary" id="intro-unvote-btn" onClick={() => this.wipeSelectedDelegates()}>Unvote All</button>
-          <button className="btn btn-secondary tooltip" id="intro-optimize-btn" data-tooltip="Vote for the highest paying delegates" onClick={() => this.setSelectedToOptimized()}>Vote For Maximum Payouts</button>
+          <button className="btn btn-secondary tooltip" id="intro-contribute-btn" data-tooltip="Vote for the delegates contributing to Lisk" onClick={() => this.setSelectedToContrib()}>Vote For Contributors</button>
+          <button className="btn btn-secondary tooltip" id="intro-maximize-btn" data-tooltip="Vote for the delegates currently forging" onClick={() => this.setSelectedToMaximum()}>Vote For Forgers</button>
           <button className="btn btn-secondary" id="intro-selectpage-btn" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
           <button className="btn btn-secondary" id="intro-deselectpage-btn" onClick={() => this.deselectCurrentPage()}>Deselect Current Page</button>
         </div>
