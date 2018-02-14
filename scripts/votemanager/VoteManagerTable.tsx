@@ -37,7 +37,7 @@ export default class VoteManagerTable extends Component<any, any> {
         }
         </td>
         <td>
-          <div className="bar tooltip" data-tooltip={`Personal ${delegate.percentage}% / Groups ${bonus}% / Self ${own}%`}>
+          <div className="bar tooltip" data-tooltip={`Shares ${delegate.percentage}% / Pools ${bonus}% / Keeps ${own}%`}>
             <div className="bar-item" style={{ width: `${delegate.percentage}%`, backgroundColor: '#5764c6' }} />
             <div className="bar-item" style={{ width: `${bonus}%`, backgroundColor: '#818bd5' }} />
             <div className="bar-item" style={{ width: `${own}%`, backgroundColor: '#abb1e2' }} />
