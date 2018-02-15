@@ -18,6 +18,7 @@ import VoteManagerIntro from './VoteManagerIntro';
 import VoteManagerImportExport from './VoteManagerImportExport';
 import VoteManagerSummary from './VoteManagerSummary';
 import * as notes from '../../data/notes.json';
+import '@lisk-builders/lisk-buttons';
 
 const toastText = 'Do you like this tool? Vote Lisk Builders!';
 

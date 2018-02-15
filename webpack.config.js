@@ -58,12 +58,12 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
     contentBase: path.resolve(__dirname),
-    publicPath: '/static/'
+    publicPath: '/build/'
   },
   output: {
-    path: path.resolve(__dirname, 'static'),
+    path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: '/build/'
   },
   target: 'web',
   resolve: {
