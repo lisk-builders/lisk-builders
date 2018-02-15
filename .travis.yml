@@ -7,7 +7,7 @@ cache:
     - "node_modules"
 script: npm run build
 git:
-  submodules: false
+  submodules: true
 deploy:
   provider: pages
   skip_cleanup: true
