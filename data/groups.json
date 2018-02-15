@@ -171,11 +171,11 @@
   "ascend": {
     "tag": "Ascend",
     "fullname": "Lisk Ascend",
-    "bonus": 0,
+    "bonus": 50,
     "nobonus": [],
     "tooltip": "https://liskascend.com/",
     "color": "bg-purple text-light",
-    "data": ["anamix", "gregorsk", "kylefromohio", "goforlisk", "hirish", "nimbus", "moosty", "sdrpa", "roblad"]
+    "data": ["anamix", "gregorsk", "kylefromohio", "goforlisk", "hirish", "nimbus", "moosty", "sdrpa", "roblad", "lisktrust"]
   },
   "builders": {
     "tag": "Builders",
