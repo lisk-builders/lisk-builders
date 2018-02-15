@@ -7,7 +7,9 @@ cache:
     - "node_modules"
 script: npm run build
 git:
-  submodules: true
+  submodules: false
+before_install:
+  "git submodule foreach --recursive git reset --hard origin/artifacts"
 deploy:
   provider: pages
   skip_cleanup: true
