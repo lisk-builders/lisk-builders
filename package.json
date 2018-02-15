@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "update": "git submodule foreach --recursive git reset --hard",
+    "update": "git submodule foreach --recursive git reset --hard origin/artifacts",
     "build": "npm run update; cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.production.js",
     "lint": "eslint --cache --ignore-path .gitignore --format=node_modules/eslint-formatter-pretty . *.js",
     "test": "npm run lint",
