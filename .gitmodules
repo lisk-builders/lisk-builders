@@ -1,0 +1,4 @@
+[submodule "dpos-tools-data"]
+	path = dpos-tools-data
+	url = https://github.com/vekexasia/dpos-tools-data
+	branch = artifacts

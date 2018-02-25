@@ -1,0 +1,330 @@
+[
+  {
+      "delegateName": "liskit",
+      "delegateAddress": "10310263204519541551L",
+      "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=197",
+      "githubUsername": "andreafspeziale",
+      "poolPercentage": {
+        "O": "80",
+        "P": "20"
+      },
+      "affiliation": "GDT",
+      "liskChat": "liskit.me",
+      "pool": "http://liskit.me",
+      "poolMember": false,
+      "required": false,
+      "featured": false
+    },
+    {
+    "delegateName": "dakk",
+    "delegateAddress": "2324852447570841050L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1094",
+    "githubUsername": "dakk",
+    "poolPercentage": {
+      "O": "80",
+      "P": "20"
+    },
+    "affiliation": "GDT",
+    "liskChat": "dakk_delegate",
+    "pool": "https://dakk.github.io/lisk-pool/",
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "vekexasia",
+    "delegateAddress": "9102643396261850794L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1546",
+    "githubUsername": "vekexasia",
+    "poolPercentage": {
+      "O": "75",
+      "P": "25"
+    },
+    "affiliation": "GDT",
+    "liskChat": "vekexasia",
+    "pool": null,
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "5an1ty",
+    "delegateAddress": "14871479939815286293L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1521",
+    "githubUsername": "5an1ty",
+    "poolPercentage": {
+      "P": "25",
+      "D": "0",
+      "O": "75"
+    },
+    "affiliation": "GDT",
+    "liskChat": "5an1ty",
+    "pool": "https://pool.liskgdt.net",
+    "poolMember": false,
+    "required": false,
+    "featured": true
+  },
+  {
+    "delegateName": "cc001",
+    "delegateAddress": "6787154358850114730L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=54",
+    "githubUsername": "simonmorgenthaler",
+    "poolPercentage": {
+      "D": "25",
+      "O": "75"
+    },
+    "affiliation": "GDT",
+    "liskChat": "cc001",
+    "pool": null,
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "gr33ndrag0n",
+    "delegateAddress": "194109334904015388L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=143",
+    "githubUsername": "Gr33nDrag0n69",
+    "poolPercentage": {
+      "O": "100"
+    },
+    "affiliation": "GDT",
+    "liskChat": "Gr33ndrag0n",
+    "pool": null,
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "mrv",
+    "delegateAddress": "11380384760969655418L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?t=292",
+    "githubUsername": "mrv777",
+    "poolPercentage": {
+      "P": "5",
+      "D": "50",
+      "O": "45"
+    },
+    "affiliation": "GDT",
+    "liskChat": "MrV",
+    "pool": "https://lisktools.io/profitShares.php",
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "alepop",
+    "delegateAddress": "9010579446607279905L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?t=1526",
+    "githubUsername": "alepop",
+    "poolPercentage": {
+      "P": "25",
+      "D": "5",
+      "O": "70"
+    },
+    "affiliation": "GDT",
+    "liskChat": "alepop",
+    "pool": null,
+    "poolMember": false,
+    "required": false,
+    "featured": true
+  },
+  {
+    "delegateName": "4fryn",
+    "delegateAddress": "12632212355488748579L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?t=1560",
+    "githubUsername": "4fryn",
+    "poolPercentage": {
+      "P": "75",
+      "D": "15",
+      "O": "10"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "4fryn",
+    "pool": null,
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "carbonara",
+    "delegateAddress": "6165534766664619667L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?t=1530",
+    "githubUsername": "xunga",
+    "poolPercentage": {
+      "D": "25",
+      "O": "75"
+    },
+    "affiliation": "Elite",
+    "liskChat": "carbonara",
+    "pool": "https://lottery.lisk.rocks/",
+    "poolMember": false,
+    "required": false,
+    "featured": true
+  },
+  {
+    "delegateName": "liskpro.com",
+    "delegateAddress": "13112651512533400586L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1524",
+    "githubUsername": "liskprocom",
+    "poolPercentage": {
+      "P": "50",
+      "D": "35",
+      "O": "15"
+    },
+    "affiliation": "Sherwood",
+    "liskChat": "LiskPro.com",
+    "pool": "http://robinhood.liskpro.com/",
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "joo5ty",
+    "delegateAddress": "12654423644480926777L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1543",
+    "githubUsername": "Joo5t",
+    "poolPercentage": {
+      "D": "25",
+      "O": "75"
+    },
+    "affiliation": "GDT",
+    "liskChat": "joo5ty",
+    "pool": null,
+    "poolMember": false,
+    "required": false,
+    "featured": true
+  },
+  {
+    "delegateName": "thepool",
+    "delegateAddress": "10839494368003872009L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1366",
+    "githubUsername": "karek314",
+    "poolPercentage": {
+      "P": "70",
+      "O": "30"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "Karek",
+    "pool": "http://thepool.io/",
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "bioly",
+    "delegateAddress": "7984234674117396356L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=237",
+    "githubUsername": "biolypl",
+    "poolPercentage": {
+      "P": "25",
+      "O": "75"
+    },
+    "affiliation": "GDT",
+    "liskChat": "biolypl",
+    "pool": "http://pool.mylisk.com/",
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "philhellmuth",
+    "delegateAddress": "3706844901938026254L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1488",
+    "githubUsername": "philhellmuthIE",
+    "poolPercentage": {
+      "P": "35",
+      "D": "0",
+      "O": "65"
+    },
+    "affiliation": "GDT",
+    "liskChat": "philhellmuth",
+    "pool": "https://pool.liskgdt.net",
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "endro",
+    "delegateAddress": "9096358076943957197L",
+    "proposal": "",
+    "githubUsername": "tomploem",
+    "poolPercentage": {
+      "D": "75",
+      "O": "25"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "endro",
+    "pool": "",
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "elevate",
+    "delegateAddress": "17890508407355636952L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=6&t=1651",
+    "githubUsername": "tobiaslins",
+    "poolPercentage": {
+      "P": "50",
+      "D": "10",
+      "O": "40"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "tobiaslins",
+    "pool": "",
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "bluedragon",
+    "delegateAddress": "5755886524444585708L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1683",
+    "githubUsername": "BlueDragon555",
+    "poolPercentage": {
+      "D": "75",
+      "O": "25"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "bluedragon",
+    "pool": "",
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "andrew",
+    "delegateAddress": "14987768355736502769L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=25&t=1688",
+    "githubUsername": "AndrewBarba",
+    "poolPercentage": {
+      "P": "0",
+      "D": "15",
+      "O": "85"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "andrewbarba",
+    "pool": null,
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "liskpoland.pl",
+    "delegateAddress": "11551549432293832181L",
+    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1626",
+    "githubUsername": "TheBlaineMono",
+    "poolPercentage": {
+      "P": "60",
+      "D": "10",
+      "O": "30"
+    },
+     "affiliation": "Freelance",
+     "liskChat": "liskpoland.pl",
+     "pool": null,
+     "poolMember": false,
+     "required": false,
+     "featured": false
+   }
+]
