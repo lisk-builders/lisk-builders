@@ -40,12 +40,8 @@ export default class VoteManagerTable extends Component<any, any> {
           text: 'Unvote all delegates you currently vote for.'
         },
         {
-          selector: '#intro-contribute-btn',
-          text: 'Select a set of delegates contributing to Lisk.'
-        },
-        {
-          selector: '#intro-maximize-btn',
-          text: 'Select a payment-optimized set of delegates.'
+          selector: '#intro-wizard-btn',
+          text: 'Open the vote wizard.'
         },
         {
           selector: '#intro-selectpage-btn',

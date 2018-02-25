@@ -10,6 +10,21 @@ export default class VoteManagerControls extends Component<any, any> {
 
   constructor(props) {
     super(props);
+    this.state = {
+      showWizardModal: false
+    };
+  }
+
+  openModal(modal) {
+    if (modal === 'wizard') {
+      this.setState({ showWizardModal: true });
+    }
+  }
+
+  closeModal(modal) {
+    if (modal === 'wizard') {
+      this.setState({ showWizardModal: false });
+    }
   }
 
   showGroup(key) {
@@ -50,12 +65,14 @@ export default class VoteManagerControls extends Component<any, any> {
   }
 
   setSelectedToContrib() {
-    const payoutcontrib = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, ...groups.builders.data, 'shinekami', 'stellardynamic', 'phoenix1969', 'index']);
+    const payoutcontrib = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, ...groups.builders.data, 'shinekami', 'stellardynamic', 'phoenix1969', 'devasive']);
+    this.closeModal('wizard');
     this.props.store.setSelectedDelegates(payoutcontrib);
   }
 
   setSelectedToMaximum() {
     const payoutmax = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'stellardynamic', 'phoenix1969']);
+    this.closeModal('wizard');
     this.props.store.setSelectedDelegates(payoutmax);
   }
 
@@ -84,10 +101,25 @@ export default class VoteManagerControls extends Component<any, any> {
         <div className="btn-group btn-group-block">
           <button className="btn btn-secondary" id="intro-restore-btn" onClick={() => this.resetSelectedDelegates()}>Restore</button>
           <button className="btn btn-secondary" id="intro-unvote-btn" onClick={() => this.wipeSelectedDelegates()}>Unvote All</button>
-          <button className="btn btn-secondary tooltip" id="intro-contribute-btn" data-tooltip="Vote for the delegates contributing to Lisk" onClick={() => this.setSelectedToContrib()}>Vote For Contributors</button>
-          <button className="btn btn-secondary tooltip" id="intro-maximize-btn" data-tooltip="Vote for the delegates currently forging" onClick={() => this.setSelectedToMaximum()}>Vote For Forgers</button>
+          <button className="btn btn-secondary" id="intro-wizard-btn" onClick={() => this.openModal('wizard')}>Vote Wizard</button>
           <button className="btn btn-secondary" id="intro-selectpage-btn" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
           <button className="btn btn-secondary" id="intro-deselectpage-btn" onClick={() => this.deselectCurrentPage()}>Deselect Current Page</button>
+        </div>
+        <div className={`modal ${this.state.showWizardModal ? 'active' : ''}`} id="modal-id">
+          <a href="#close" className="modal-overlay" aria-label="Close"></a>
+          <div className="modal-container">
+            <div className="modal-header">
+              <a href="#close" className="btn btn-clear float-right" aria-label="Close" onClick={() => this.closeModal('wizard')}></a>
+              <div className="modal-title h5">Vote Wizard</div>
+            </div>
+            <div className="modal-body">
+              <div className="content">
+                <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToMaximum()}>Maximum Payout (100% Earnings)</button>
+                <div className="divider text-center" data-content="OR"></div>
+                <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToContrib()}>Support Contributors (94% Earnings)</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
