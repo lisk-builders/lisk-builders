@@ -9,7 +9,7 @@ script: npm run build
 git:
   submodules: false
 before_install:
-  - "git submodule update --init --recursive &> /dev/null"
+  - "git submodule update --init --recursive"
   - "git submodule foreach --recursive git reset --hard origin/artifacts"
 deploy:
   provider: pages
