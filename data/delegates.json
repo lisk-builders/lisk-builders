@@ -135,9 +135,9 @@
     "proposal": "https://forum.lisk.support/t/4fryn-127-lisk-builder-delegate-sharing-75-pool-and-15-donations-90/931",
     "githubUsername": "4fryn",
     "poolPercentage": {
-      "P": "75",
+      "P": "60",
       "D": "15",
-      "O": "10"
+      "O": "25"
     },
     "affiliation": "Sherwood",
     "liskChat": "4fryn",
