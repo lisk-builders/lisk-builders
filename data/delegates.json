@@ -141,7 +141,7 @@
     },
     "affiliation": "Sherwood",
     "liskChat": "4fryn",
-    "pool": "http://robinhood.liskpro.com/",
+    "pool": "https://robinhood.liskpro.com/",
     "poolMember": false,
     "required": false,
     "featured": true
@@ -174,7 +174,7 @@
     },
     "affiliation": "Sherwood",
     "liskChat": "LiskPro.com",
-    "pool": "http://robinhood.liskpro.com/",
+    "pool": "https://robinhood.liskpro.com/",
     "poolMember": false,
     "required": false,
     "featured": false
