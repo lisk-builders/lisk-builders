@@ -275,7 +275,7 @@
     "pool": "",
     "poolMember": false,
     "required": false,
-    "featured": false
+    "featured": true
   },
   {
     "delegateName": "bluedragon",
