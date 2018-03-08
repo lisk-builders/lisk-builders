@@ -12,8 +12,11 @@ before_install:
   - "git submodule update --init --recursive"
   - "git submodule foreach --recursive git reset --hard origin/artifacts"
 deploy:
+  edge:
+    branch: v1.8.47
   provider: pages
   skip_cleanup: true
+  keep-history: true
   github_token: $GITHUB_TOKEN
   on:
     branch: master

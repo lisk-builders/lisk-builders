@@ -4,5 +4,11 @@ __lisk_indexedReqs({
       "type": "groupvote",
       "value": "elite"
     }
+  ],
+  "gdt": [
+    {
+      "type": "groupvote",
+      "value": "gdt"
+    }
   ]
 });

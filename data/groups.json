@@ -148,7 +148,7 @@
     "nobonus": [],
     "tooltip": "http://robinhood.liskpro.com",
     "color": "bg-vanilla text-light",
-    "data": ["robinhood", "liberspirita", "liskpro.com"]
+    "data": ["robinhood", "liberspirita", "liskpro.com", "4fryn", "bitbanksy", "bloqspace.io"]
   },
   "lig": {
     "tag": "LIG",
@@ -175,7 +175,7 @@
     "nobonus": [],
     "tooltip": "https://liskascend.com/",
     "color": "bg-purple text-light",
-    "data": ["anamix", "gregorsk", "kylefromohio", "goforlisk", "hirish", "nimbus", "moosty", "sdrpa", "roblad", "lisktrust"]
+    "data": ["anamix", "gregorst", "kylefromohio", "goforlisk", "hirish", "nimbus", "moosty", "sdrpa", "roblad", "lisktrust", "slamper", "puredelta"]
   },
   "builders": {
     "tag": "Builders",

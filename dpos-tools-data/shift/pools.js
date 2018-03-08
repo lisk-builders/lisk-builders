@@ -1,5 +1,94 @@
 __shift_pools([
   {
+    "delegate": "dutch_pool",
+    "share": 90,
+    "website": "http://shift.dutchpool.io",
+    "payout": {
+      "min": 0.1,
+      "schedule": "weekly"
+    }
+  },
+  {
+    "delegate": "fnoufnou",
+    "share": 75,
+    "website": "http://shift.dutchpool.io",
+    "upgrades": [
+      {
+        "name": "90% Reward",
+        "type": "new_share",
+        "value": 90,
+        "requirements": [
+          {
+            "type": "groupvote",
+            "value": "dutch"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "delegate": "kippers",
+    "share": 75,
+    "website": "http://shift.dutchpool.io",
+    "upgrades": [
+      {
+        "name": "90% Reward",
+        "type": "new_share",
+        "value": 90,
+        "requirements": [
+          {
+            "type": "groupvote",
+            "value": "dutch"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "delegate": "st3v3n",
+    "share": 75,
+    "website": "http://shift.dutchpool.io",
+    "upgrades": [
+      {
+        "name": "90% Reward",
+        "type": "new_share",
+        "value": 90,
+        "requirements": [
+          {
+            "type": "groupvote",
+            "value": "dutch"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "delegate": "shiftadspool",
+    "share": 80,
+    "payout": {
+      "schedule": "weekly",
+      "min": 0.2
+    }
+  },
+  {
+    "delegate": "thamar",
+    "share": 75,
+    "website": "http://shift.dutchpool.io",
+    "upgrades": [
+      {
+        "name": "90% Reward",
+        "type": "new_share",
+        "value": 90,
+        "requirements": [
+          {
+            "type": "groupvote",
+            "value": "dutch"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "delegate": "get_shifty",
     "share": 75,
     "notes": "an extra 10% is given to devs"
@@ -54,7 +143,7 @@ __shift_pools([
   },
   {
     "delegate": "carsonpool",
-    "share": 60,
+    "share": 50,
     "payout": {
       "min": 0.1,
       "schedule": "weekly"

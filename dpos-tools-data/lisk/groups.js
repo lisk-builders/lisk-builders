@@ -67,7 +67,6 @@ __lisk_groups({
     "class": "md-warn",
     "members": [
       "phoenix1969",
-      "bitbanksy",
       "stellardynamic",
       "nerigal"
     ]
@@ -140,7 +139,10 @@ __lisk_groups({
     "members": [
       "liberspirita",
       "robinhood",
-      "liskpro.com"
+      "liskpro.com",
+      "bitbanksy",
+      "4fryn",
+      "bloqspace.io"
     ]
   }
 });

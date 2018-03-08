@@ -129,6 +129,10 @@ __rise_pools([
     }
   },
   {
+    "delegate": "arrow",
+    "share": 91
+  },
+  {
     "delegate": "risearmyxx",
     "share": 95,
     "payout": {

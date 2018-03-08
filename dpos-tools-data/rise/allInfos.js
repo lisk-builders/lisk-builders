@@ -141,6 +141,10 @@ __rise_allInfos({
       }
     },
     {
+      "delegate": "arrow",
+      "share": 91
+    },
+    {
       "delegate": "risearmyxx",
       "share": 95,
       "payout": {
