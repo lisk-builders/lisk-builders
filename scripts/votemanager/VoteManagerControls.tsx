@@ -65,13 +65,13 @@ export default class VoteManagerControls extends Component<any, any> {
   }
 
   setSelectedToContrib() {
-    const payoutcontrib = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, ...groups.builders.data, 'shinekami', 'stellardynamic', 'phoenix1969', 'devasive']);
+    const payoutcontrib = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, ...groups.builders.data, 'shinekami', 'stellardynamic']);
     this.closeModal('wizard');
     this.props.store.setSelectedDelegates(payoutcontrib);
   }
 
   setSelectedToMaximum() {
-    const payoutmax = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'stellardynamic', 'phoenix1969']);
+    const payoutmax = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'communitypool', 'stellardynamic', 'phoenix1969']);
     this.closeModal('wizard');
     this.props.store.setSelectedDelegates(payoutmax);
   }
@@ -116,7 +116,7 @@ export default class VoteManagerControls extends Component<any, any> {
               <div className="content">
                 <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToMaximum()}>Maximum Payout (100% Earnings)</button>
                 <div className="divider text-center" data-content="OR"></div>
-                <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToContrib()}>Support Contributors (94% Earnings)</button>
+                <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToContrib()}>Support Contributors (92% Earnings)</button>
               </div>
             </div>
           </div>
