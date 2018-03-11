@@ -1,4 +1,23 @@
 __lisk_groups({
+  "ascend": {
+    "tooltip": "Lisk Ascend Team",
+    "tag": "ASC",
+    "members": [
+      "hirish",
+      "moosty",
+      "nimbus",
+      "kylefromohio",
+      "goforlisk",
+      "anamix",
+      "gregorst",
+      "sdrpa",
+      "roblad",
+      "lisktrust",
+      "slamper",
+      "puredelta",
+      "diamse"
+    ]
+  },
   "dutch": {
     "tooltip": "Dutch Pools",
     "tag": "DTCH",

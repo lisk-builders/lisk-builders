@@ -985,6 +985,140 @@
     ]
   },
   {
+    "delegate": "hirish",
+    "share": 50,
+    "requirements": [
+      {
+        "type": "indexed",
+        "value": "ascend"
+      }
+    ]
+  },
+  {
+    "delegate": "moosty",
+    "share": 50,
+    "requirements": [
+      {
+        "type": "indexed",
+        "value": "ascend"
+      }
+    ]
+  },
+  {
+    "delegate": "nimbus",
+    "share": 50,
+    "requirements": [
+      {
+        "type": "indexed",
+        "value": "ascend"
+      }
+    ]
+  },
+  {
+    "delegate": "kylefromohio",
+    "share": 50,
+    "requirements": [
+      {
+        "type": "indexed",
+        "value": "ascend"
+      }
+    ]
+  },
+  {
+    "delegate": "goforlisk",
+    "share": 50,
+    "requirements": [
+      {
+        "type": "indexed",
+        "value": "ascend"
+      }
+    ]
+  },
+  {
+    "delegate": "anamix",
+    "share": 10,
+    "upgrades": [
+      {
+        "name": "Ascend Share",
+        "type": "new_share",
+        "value": 60,
+        "requirements": [
+          {
+            "type": "groupvote",
+            "value": "ascend"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "delegate": "gregorst",
+    "share": 50,
+    "requirements": [
+      {
+        "type": "indexed",
+        "value": "ascend"
+      }
+    ]
+  },
+  {
+    "delegate": "sdrpa",
+    "share": 50,
+    "requirements": [
+      {
+        "type": "indexed",
+        "value": "ascend"
+      }
+    ]
+  },
+  {
+    "delegate": "roblad",
+    "share": 50,
+    "requirements": [
+      {
+        "type": "indexed",
+        "value": "ascend"
+      }
+    ]
+  },
+  {
+    "delegate": "lisktrust",
+    "share": 40,
+    "upgrades": [
+      {
+        "name": "Ascend Share",
+        "type": "new_share",
+        "value": 90,
+        "requirements": [
+          {
+            "type": "groupvote",
+            "value": "ascend"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "delegate": "slamper",
+    "share": 50,
+    "requirements": [
+      {
+        "type": "indexed",
+        "value": "ascend"
+      }
+    ]
+  },
+  {
+    "delegate": "diamse",
+    "share": 50,
+    "requirements": [
+      {
+        "type": "indexed",
+        "value": "ascend"
+      }
+    ]
+  },
+  {
     "delegate": "mars",
     "share": 75,
     "notes": "Extra 5% community fund"
@@ -1081,16 +1215,6 @@
     "notes": "extra 10% shared to dev projects"
   },
   {
-    "delegate": "hirish",
-    "share": 70,
-    "notes": "extra 10% shared to dev projects"
-  },
-  {
-    "delegate": "gregorst",
-    "share": 50,
-    "website": "https://pool.lisk.gregorst.org/"
-  },
-  {
     "delegate": "vrlc92",
     "share": 50,
     "website": "http://vliskpool.com/",
@@ -1099,10 +1223,6 @@
         "17208736554155208523L"
       ]
     }
-  },
-  {
-    "delegate": "anamix",
-    "share": 10
   },
   {
     "delegate": "stoner19",
