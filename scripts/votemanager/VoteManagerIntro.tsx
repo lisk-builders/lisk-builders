@@ -41,7 +41,7 @@ export default class VoteManagerTable extends Component<any, any> {
         },
         {
           selector: '#intro-wizard-btn',
-          text: 'Open the vote wizard.'
+          text: 'Open the vote wizard to chose between maximum payouts, lisk contributors, or highest sharing delegates.'
         },
         {
           selector: '#intro-selectpage-btn',
