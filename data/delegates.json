@@ -160,7 +160,7 @@
     "pool": "https://lottery.lisk.rocks/",
     "poolMember": false,
     "required": false,
-    "featured": false
+    "featured": true
   },
   {
     "delegateName": "liskpro.com",
@@ -193,7 +193,7 @@
     "pool": null,
     "poolMember": false,
     "required": false,
-    "featured": false
+    "featured": true
   },
   {
     "delegateName": "thepool",
