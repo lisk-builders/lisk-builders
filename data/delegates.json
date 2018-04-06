@@ -130,23 +130,6 @@
     "featured": true
   },
   {
-    "delegateName": "4fryn",
-    "delegateAddress": "12632212355488748579L",
-    "proposal": "https://forum.lisk.support/t/4fryn-127-lisk-builder-delegate-sharing-75-pool-and-15-donations-90/931",
-    "githubUsername": "4fryn",
-    "poolPercentage": {
-      "P": "60",
-      "D": "15",
-      "O": "25"
-    },
-    "affiliation": "Sherwood",
-    "liskChat": "4fryn",
-    "pool": "https://robinhood.liskpro.com/",
-    "poolMember": false,
-    "required": false,
-    "featured": true
-  },
-  {
     "delegateName": "carbonara",
     "delegateAddress": "6165534766664619667L",
     "proposal": "https://forum.lisk.io/viewtopic.php?t=1530",
@@ -160,7 +143,7 @@
     "pool": "https://lottery.lisk.rocks/",
     "poolMember": false,
     "required": false,
-    "featured": false
+    "featured": true
   },
   {
     "delegateName": "liskpro.com",
@@ -193,7 +176,7 @@
     "pool": null,
     "poolMember": false,
     "required": false,
-    "featured": false
+    "featured": true
   },
   {
     "delegateName": "thepool",
