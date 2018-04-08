@@ -62,7 +62,7 @@
     "pool": "https://pool.liskgdt.net",
     "poolMember": false,
     "required": false,
-    "featured": true
+    "featured": false
   },
   {
     "delegateName": "cc001",
@@ -127,7 +127,7 @@
     "pool": null,
     "poolMember": false,
     "required": false,
-    "featured": true
+    "featured": false
   },
   {
     "delegateName": "4fryn",
@@ -144,7 +144,7 @@
     "pool": "https://robinhood.liskpro.com/",
     "poolMember": false,
     "required": false,
-    "featured": true
+    "featured": false
   },
   {
     "delegateName": "carbonara",
@@ -258,7 +258,7 @@
     "pool": "",
     "poolMember": false,
     "required": false,
-    "featured": true
+    "featured": false
   },
   {
     "delegateName": "elevate",
@@ -275,7 +275,7 @@
     "pool": "",
     "poolMember": false,
     "required": false,
-    "featured": true
+    "featured": false
   },
   {
     "delegateName": "bluedragon",

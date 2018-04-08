@@ -1,5 +1,15 @@
 __lisk_pools([
   {
+    "delegate": "samaritan",
+    "share": 80,
+    "website": "http://lisk.ovh"
+  },
+  {
+    "delegate": "ren.dao",
+    "share": 70,
+    "website": "https://rencoin.io/lisk-delegate"
+  },
+  {
     "delegate": "4miners.net",
     "share": 6.25,
     "requirements": [
@@ -298,20 +308,7 @@ __lisk_pools([
   },
   {
     "delegate": "ondin",
-    "share": 25,
-    "upgrades": [
-      {
-        "name": "GDT Full Share",
-        "type": "new_share",
-        "value": 31.25,
-        "requirements": [
-          {
-            "type": "groupvote",
-            "value": "gdt"
-          }
-        ]
-      }
-    ]
+    "share": 25
   },
   {
     "delegate": "philhellmuth",
@@ -645,6 +642,10 @@ __lisk_pools([
     ]
   },
   {
+    "delegate": "luukas",
+    "share": 25
+  },
+  {
     "delegate": "crodam",
     "share": 25,
     "requirements": [
@@ -923,6 +924,10 @@ __lisk_pools([
         "value": "elite"
       }
     ]
+  },
+  {
+    "delegate": "loveforever",
+    "share": 25
   },
   {
     "delegate": "kc",
@@ -1388,10 +1393,6 @@ __lisk_pools([
   {
     "delegate": "hoop",
     "share": 30
-  },
-  {
-    "delegate": "loveforever",
-    "share": 25
   },
   {
     "delegate": "samuray",
