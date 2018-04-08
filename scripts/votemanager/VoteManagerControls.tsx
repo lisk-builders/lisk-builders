@@ -64,6 +64,12 @@ export default class VoteManagerControls extends Component<any, any> {
     this.props.store.setSelectedDelegates(filtered);
   }
 
+  setSelectedToSharers() {
+    const payoutsharers = _.uniq([...groups.elite.data, ...groups.shw.data, ...groups.dutchpool.data, ...groups.ascend.data, ...groups.alepop5an1ty.data, 'gdtpool', 'liskpool.top', 'liskpool_com_01', 'shinekami', 'communitypool', 'liskpoland.pl', 'thepool', 'endro', 'devasive', 'elevate', 'samuray', 'vrlc92', 'vipertkd', 'liskaustralia', 'hagie', 'kushed.delegate', 'vi1son', 'phoenix1969', 'stellardynamic', 'philhellmuth', 'sgdias']);
+    this.closeModal('wizard');
+    this.props.store.setSelectedDelegates(payoutsharers);
+  }
+
   setSelectedToContrib() {
     const payoutcontrib = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, ...groups.builders.data, 'phoenix1969', 'stellardynamic']);
     this.closeModal('wizard');
@@ -114,9 +120,11 @@ export default class VoteManagerControls extends Component<any, any> {
             </div>
             <div className="modal-body">
               <div className="content">
-                <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToMaximum()}>Maximum Payout (100% Earnings)</button>
+                <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToMaximum()}>Vote for Maximum Payouts (100% Earnings)</button>
                 <div className="divider text-center" data-content="OR"></div>
-                <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToContrib()}>Support Contributors (92% Earnings)</button>
+                <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToContrib()}>Vote for Lisk Contributors (92% Earnings)</button>
+                <div className="divider text-center" data-content="OR"></div>
+                <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToSharers()}>Vote for Highest Sharing Delegates (75% Earnings)</button>
               </div>
             </div>
           </div>
