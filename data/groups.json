@@ -107,7 +107,6 @@
     "color": "bg-dark text-light",
     "data": [
       "gdtpool",
-      "4miners.net",
       "5an1ty",
       "alepop",
       "bioly",
@@ -138,7 +137,8 @@
       "splatters",
       "tembo",
       "vekexasia",
-      "vi1son"
+      "vi1son",
+      "hirish"
     ]
   },
   "shw": {
@@ -175,7 +175,7 @@
     "nobonus": [],
     "tooltip": "https://liskascend.com/",
     "color": "bg-purple text-light",
-    "data": ["anamix", "gregorst", "kylefromohio", "goforlisk", "hirish", "nimbus", "moosty", "sdrpa", "roblad", "lisktrust", "slamper", "puredelta", "diamse"]
+    "data": ["anamix", "gregorst", "kylefromohio", "goforlisk", "nimbus", "moosty", "sdrpa", "roblad", "lisktrust", "slamper", "puredelta", "diamse"]
   },
   "builders": {
     "tag": "Builders",
