@@ -3,10 +3,9 @@ import { Component } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';
+import { hot } from 'react-hot-loader'
 
-if (module.hot) {
-  module.hot.accept();
-}
+export default hot(module)(App)
 
 render(
   <BrowserRouter>

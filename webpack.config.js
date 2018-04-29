@@ -77,12 +77,18 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.tsx?$/,
         use: [
-          'react-hot-loader/webpack',
-          'awesome-typescript-loader'
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: true,
+              plugins: ['react-hot-loader/babel'],
+            },
+          },
+          'awesome-typescript-loader', // (or awesome-typescript-loader)
         ],
         exclude: /node_modules/
       }
