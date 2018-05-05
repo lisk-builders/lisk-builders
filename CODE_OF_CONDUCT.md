@@ -40,5 +40,12 @@ If you feel you have been falsely or unfairly accused of violating this Code of 
 # Scope
 We expect all community participants (contributors; sponsors; and other guests) to abide by this Code of Conduct in all community venues—online and in-person—as well as in all one-on-one communications pertaining to community business.
 
+# Where to find support
+If you think you need to contact one of the community leaders you can reach out to:
+
+- 5an1ty @5an1ty - available on the Lisk.builders slack and lisk.chat
+- Alepop @alepop - available on the Lisk.builders slack and lisk.chat
+- Carbonara @carbonara - available on the Lisk.builders slack and lisk.chat
+
 # License and attribution
 This Code of Conduct has been extended from the [Berlin Code of Conduct](https://berlincodeofconduct.org) and arranged for the purposes of [Lisk.builders community](https://lisk.builders/). The Berlin Code of Conduct and this Code of Conduct are  distributed under a Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license.
