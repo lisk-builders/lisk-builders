@@ -1,5 +1,19 @@
 __shift_pools([
   {
+    "delegate": "lancekincaid",
+    "share": 80
+  },
+  {
+    "delegate": "mx",
+    "share": 80,
+    "note": "50% to voters, 25% marketing, 5% team",
+    "website": "https://t.me/infoMx"
+  },
+  {
+    "delegate": "dwarf",
+    "share": 80
+  },
+  {
     "delegate": "dutch_pool",
     "share": 90,
     "website": "http://shift.dutchpool.io",
@@ -119,8 +133,8 @@ __shift_pools([
   },
   {
     "delegate": "shift_tools",
-    "share": 35,
-    "website": "https://shift-tools.com/pool.html",
+    "share": 12,
+    "website": "http://shift-tools.com/lottery.html",
     "notes": "Depending on the month, the payout is either a lottery that rewards with physical gifts, or a the entirety of the bounty.",
     "payout": {
       "schedule": "monthly",
@@ -129,7 +143,7 @@ __shift_pools([
   },
   {
     "delegate": "deadpool",
-    "share": 80,
+    "share": 40,
     "website": "https://public.tableau.com/views/ShiftPoolAnalysis/Analysis",
     "payout": {
       "min": 0.01,
@@ -143,7 +157,7 @@ __shift_pools([
   },
   {
     "delegate": "carsonpool",
-    "share": 50,
+    "share": 40,
     "payout": {
       "min": 0.1,
       "schedule": "weekly"

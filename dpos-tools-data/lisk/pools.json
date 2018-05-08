@@ -10,12 +10,19 @@
     "website": "https://rencoin.io/lisk-delegate"
   },
   {
-    "delegate": "4miners.net",
-    "share": 6.25,
-    "requirements": [
+    "delegate": "hirish",
+    "share": 28.75,
+    "upgrades": [
       {
-        "type": "indexed",
-        "value": "gdt"
+        "name": "GDT Full Share",
+        "type": "new_share",
+        "value": 35,
+        "requirements": [
+          {
+            "type": "groupvote",
+            "value": "gdt"
+          }
+        ]
       }
     ]
   },
@@ -115,19 +122,12 @@
   },
   {
     "delegate": "forrest",
-    "share": 25,
+    "share": 20,
     "website": "http://lisk.forrestpool.win/",
-    "upgrades": [
+    "requirements": [
       {
-        "name": "GDT Full Share",
-        "type": "new_share",
-        "value": 31.25,
-        "requirements": [
-          {
-            "type": "groupvote",
-            "value": "gdt"
-          }
-        ]
+        "type": "indexed",
+        "value": "gdt"
       }
     ]
   },
@@ -986,16 +986,6 @@
       {
         "type": "indexed",
         "value": "elite"
-      }
-    ]
-  },
-  {
-    "delegate": "hirish",
-    "share": 50,
-    "requirements": [
-      {
-        "type": "indexed",
-        "value": "ascend"
       }
     ]
   },

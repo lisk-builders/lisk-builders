@@ -3,7 +3,6 @@ __lisk_groups({
     "tooltip": "Lisk Ascend Team",
     "tag": "ASC",
     "members": [
-      "hirish",
       "moosty",
       "nimbus",
       "kylefromohio",
@@ -45,7 +44,7 @@ __lisk_groups({
     "tag": "GDT",
     "class": "md-primary",
     "members": [
-      "4miners.net",
+      "hirish",
       "5an1ty",
       "alepop",
       "bioly",

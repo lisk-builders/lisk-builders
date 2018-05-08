@@ -26,6 +26,11 @@ __lwf_allInfos({
   },
   "pools": [
     {
+      "delegate": "lwffaucet",
+      "share": 100,
+      "website": "http://lwfpool.com"
+    },
+    {
       "delegate": "thamar",
       "share": 90,
       "website": "http://onz.dutchpool.io"
