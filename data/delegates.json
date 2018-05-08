@@ -1,5 +1,22 @@
 [
   {
+      "delegateName": "becometa",
+      "delegateAddress": "2573405411511660917L",
+      "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1634",
+      "githubUsername": "becometa",
+      "poolPercentage": {
+        "O": "18",
+        "P": "70",
+        "D": "12"
+      },
+      "affiliation": "Independent",
+      "liskChat": "becometa",
+      "pool": "",
+      "poolMember": false,
+      "required": false,
+      "featured": false
+    },
+    {
       "delegateName": "liskit",
       "delegateAddress": "10310263204519541551L",
       "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=197",
