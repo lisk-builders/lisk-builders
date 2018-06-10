@@ -213,7 +213,7 @@ __lwf_allInfos({
     },
     {
       "delegate": "cool_pool",
-      "share": 80,
+      "share": 60,
       "website": "http://www.lwfcoolpool.ovh"
     },
     {
@@ -462,7 +462,7 @@ __lwf_allInfos({
     },
     {
       "delegate": "jokerellone",
-      "share": 30
+      "share": 61
     }
   ],
   "promotedDelegates": [

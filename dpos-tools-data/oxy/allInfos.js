@@ -1213,14 +1213,6 @@ __oxy_allInfos({
       ]
     },
     {
-      "delegate": "ondin",
-      "share": 25,
-      "payout": {
-        "min": 0.5,
-        "schedule": "daily"
-      }
-    },
-    {
       "delegate": "ilie_156",
       "share": 50,
       "website": "http://ilie156.myoxy.pw",
@@ -1321,7 +1313,7 @@ __oxy_allInfos({
     },
     {
       "delegate": "djandre",
-      "share": 80,
+      "share": 30,
       "website": "http://oxypool.ovh",
       "payout": {
         "min": 1,
@@ -1346,10 +1338,9 @@ __oxy_allInfos({
     },
     {
       "delegate": "ampsicora",
-      "share": 92,
-      "website": "http://www.ampsicora-pools.ml",
+      "share": 30,
       "payout": {
-        "min": 0.5,
+        "min": 0.01,
         "schedule": "monthly"
       }
     },

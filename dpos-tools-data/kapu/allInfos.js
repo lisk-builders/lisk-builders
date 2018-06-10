@@ -39,10 +39,6 @@ __kapu_allInfos({
       "share": 60
     },
     {
-      "delegate": "ampsicora",
-      "share": 50
-    },
-    {
       "delegate": "gsilvestri",
       "share": 65
     },

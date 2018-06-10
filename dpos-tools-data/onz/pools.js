@@ -123,7 +123,7 @@ __onz_pools([
   },
   {
     "delegate": "djandre",
-    "share": 80,
+    "share": 90,
     "website": "http://onzpool.ovh"
   },
   {

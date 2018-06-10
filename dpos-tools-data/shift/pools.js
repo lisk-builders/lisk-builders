@@ -4,10 +4,22 @@ __shift_pools([
     "share": 80
   },
   {
+    "delegate": "terrabellus",
+    "share": 40,
+    "notes": "An extra 10% be donated to development team"
+  },
+  {
     "delegate": "mx",
     "share": 80,
-    "note": "50% to voters, 25% marketing, 5% team",
-    "website": "https://t.me/infoMx"
+    "notes": "50% to voters, 25% marketing, 5% team",
+    "website": "http://telegra.ph/Vote-for-Mx-05-28",
+    "payout": {
+      "min": 0.1,
+      "schedule": "monthly",
+      "addresses": [
+        "4446910057799968777S"
+      ]
+    }
   },
   {
     "delegate": "dwarf",
@@ -129,7 +141,8 @@ __shift_pools([
   },
   {
     "delegate": "pnwdrew",
-    "share": 80
+    "share": 50,
+    "website": "https://pnwdrew.shift.dpos-pool-info.com"
   },
   {
     "delegate": "shift_tools",
@@ -178,8 +191,9 @@ __shift_pools([
   },
   {
     "delegate": "kicken",
-    "share": 10,
-    "notes": "kicken also share 10% with the shift team"
+    "share": 65,
+    "notes": "kicken also share 10% with the shift team",
+    "website": "https://shift.kicken.tech"
   },
   {
     "delegate": "samuel_paulsun",
@@ -325,7 +339,7 @@ __shift_pools([
   {
     "delegate": "dimm86",
     "share": 20,
-    "website": "https://shiftpool.info/",
+    "website": "http://dimmshiftpool.ovh/",
     "payout": {
       "schedule": "weekly",
       "addresses": [
@@ -491,8 +505,7 @@ __shift_pools([
   },
   {
     "delegate": "ampsicora",
-    "share": 22,
-    "website": "https://ampsicora.github.io/shift-pool/",
+    "share": 20,
     "payout": {
       "schedule": "weekly",
       "min": 0.1,

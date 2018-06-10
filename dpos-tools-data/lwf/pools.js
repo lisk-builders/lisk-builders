@@ -187,7 +187,7 @@ __lwf_pools([
   },
   {
     "delegate": "cool_pool",
-    "share": 80,
+    "share": 60,
     "website": "http://www.lwfcoolpool.ovh"
   },
   {
@@ -436,6 +436,6 @@ __lwf_pools([
   },
   {
     "delegate": "jokerellone",
-    "share": 30
+    "share": 61
   }
 ]);

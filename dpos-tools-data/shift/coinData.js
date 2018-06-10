@@ -3,7 +3,7 @@ __shift_coinData({
   "epoch": "2016-04-24_17:00:00",
   "numForgers": 101,
   "maxVotes": 101,
-  "blockExplorer": "https://wallet.rise.vision",
+  "blockExplorer": "https://explorer.shiftnrg.org",
   "blockTime": 27,
   "addressRegex": "^([0-9]{1,21}[S|s])$"
 });
