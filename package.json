@@ -33,6 +33,7 @@
     "bignumber.js": "^7.0.1",
     "classnames": "^2.2.5",
     "cross-env": "^5.1.4",
+    "lisk-elements": "^1.0.0",
     "lodash": "^4.17.10",
     "mobx": "^4.2.0",
     "mobx-react": "^5.0.0",
