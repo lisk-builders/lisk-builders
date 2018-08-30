@@ -2,14 +2,13 @@ import * as _ from 'lodash';
 import 'regenerator-runtime/runtime';
 import * as React from 'react';
 import { Component } from 'react';
-import axios from 'axios';
 import { observer } from 'mobx-react';
 import Slack from '../Slack';
 import Container from '../Container';
 import Toast from '../Toast';
 import * as dposdata from '../../dpos-tools-data/lisk/pools.json';
 import * as groups from '../../data/groups.json';
-import { listDiff, debounce, getUrl } from '../utils';
+import { listDiff, debounce } from '../utils';
 import * as consts from '../../data/consts.json';
 import Note from '../Note';
 import VoteManagerTable from './VoteManagerTable';
@@ -18,6 +17,7 @@ import VoteManagerIntro from './VoteManagerIntro';
 import VoteManagerImportExport from './VoteManagerImportExport';
 import VoteManagerSummary from './VoteManagerSummary';
 import * as notes from '../../data/notes.json';
+import { client } from '../api';
 import '@lisk-builders/lisk-buttons';
 
 const toastText = 'Do you like this tool? Vote Lisk Builders!';
@@ -62,9 +62,10 @@ export default class VoteManager extends Component<any, any> {
   }
 
   getVotesForAddress(address) {
-    return axios.get(`${getUrl()}/api/accounts/delegates/?address=${address}`).then(res => {
-      if (res.data.success) {
-        this.props.store.setInitialVotes(res.data.delegates.map(dg => dg.username));
+    return client.votes.get({ address, limit: 101 }).then(res => {
+      const { votes } = res.data;
+      if (!!votes.length) {
+        this.props.store.setInitialVotes(votes.map(dg => dg.username));
         this.props.store.setSelectedDelegates(this.props.store.initialVotes);
         return true;
       } else {
@@ -86,10 +87,11 @@ export default class VoteManager extends Component<any, any> {
 
   search(qs) {
     if (qs) {
-      axios.get(`${getUrl()}/api/delegates/search?q=${qs}&orderBy=username:asc`)
+      client.delegates.get({ search: qs, sort: 'username:asc' })
         .then(res => {
-          if (res.data.success) {
-            this.props.store.setDelegates(res.data.delegates);
+          const delegates = res.data;
+          if (!!delegates.length) {
+            this.props.store.setDelegates(delegates);
             return true;
           } else {
             return false;
@@ -128,12 +130,12 @@ export default class VoteManager extends Component<any, any> {
   getPage(page) {
     const existingPage = this.props.store.pages.find(pg => pg.id === page);
     if (!existingPage) {
-      return axios.get(`${getUrl()}/api/delegates?limit=${consts.maxAllowedVotes}&offset=${(page - 1) * consts.maxAllowedVotes}`)
+      return client.delegates.get({ limit: consts.maxAllowedVotes, offset: (page - 1) * consts.maxAllowedVotes})
       .then(res => {
-        const totalPages = 1 + Math.floor((res.data.totalCount - 1) / consts.maxAllowedVotes);
-        this.props.store.addPage({ id: page, delegates: res.data.delegates })
-        this.props.store.setTotalPages(totalPages);
-        return res.data.delegates;
+        // const totalPages = 1 + Math.floor((res.data.totalCount - 1) / consts.maxAllowedVotes);
+        this.props.store.addPage({ id: page, delegates: res.data })
+        // this.props.store.setTotalPages(totalPages);
+        return res.data;
       });
     } else {
       return Promise.resolve(existingPage.delegates);
@@ -227,7 +229,7 @@ export default class VoteManager extends Component<any, any> {
               <li className="page-item">
                 <a className={`${this.props.store.selectedPage <= 1 ? 'disabled' : ''}`} href="#scroll" tabIndex={-1} onClick={() => this.navigate(this.props.store.selectedPage - 1)}>Previous</a>
               </li>
-              { this.props.store.selectedPage - 1 > 0 &&
+              {/* { this.props.store.selectedPage - 1 > 0 &&
                 <li className="page-item">
                   <a href="#scroll" onClick={() => this.navigate(this.props.store.selectedPage - 1)}>{ this.props.store.selectedPage - 1 }</a>
                 </li>
@@ -245,7 +247,7 @@ export default class VoteManager extends Component<any, any> {
               </li>
               <li className="page-item">
                 <a href="#scroll" onClick={() => this.navigate(this.props.store.totalPages)}>{this.props.store.totalPages}</a>
-              </li>
+              </li> */}
               <li className="page-item">
                 <a className={`${this.props.store.selectedPage >= this.props.store.totalPages ? 'disabled' : ''}`} href="#scroll" onClick={() => this.navigate(this.props.store.selectedPage + 1)}>Next</a>
               </li>
