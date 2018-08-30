@@ -23,7 +23,7 @@ __kapu_allInfos({
     },
     {
       "delegate": "djandre",
-      "share": 90,
+      "share": 82.5,
       "website": "http://kapool.ovh"
     },
     {

@@ -44,7 +44,7 @@ __ark_allInfos({
     },
     {
       "delegate": "bioly",
-      "share": 70
+      "share": 90
     },
     {
       "delegate": "corsaro",

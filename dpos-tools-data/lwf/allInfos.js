@@ -110,7 +110,7 @@ __lwf_allInfos({
     },
     {
       "delegate": "scinti46",
-      "share": 82
+      "share": 55
     },
     {
       "delegate": "gandalf_pool",

@@ -30,7 +30,7 @@ __ark_pools([
   },
   {
     "delegate": "bioly",
-    "share": 70
+    "share": 90
   },
   {
     "delegate": "corsaro",

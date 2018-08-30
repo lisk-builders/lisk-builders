@@ -1372,11 +1372,11 @@ __oxy_allInfos({
     },
     {
       "delegate": "5an1ty",
-      "share": 51,
-      "website": "https://oxy.5an1ty.xyz/pool",
+      "share": 90,
+      "website": "https://oxy.5an1ty.xyz",
       "payout": {
         "min": 1,
-        "schedule": "daily"
+        "schedule": "weekly"
       }
     },
     {
