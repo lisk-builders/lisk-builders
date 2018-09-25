@@ -65,13 +65,13 @@ export default class VoteManagerControls extends Component<any, any> {
   }
 
   setSelectedToContrib() {
-    const payoutcontrib = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, ...groups.builders.data, 'phoenix1969', 'stellardynamic']);
+    const payoutcontrib = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, ...groups.builders.data, 'stellardynamic']);
     this.closeModal('wizard');
     this.props.store.setSelectedDelegates(payoutcontrib);
   }
 
   setSelectedToMaximum() {
-    const payoutmax = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'stellardynamic', 'phoenix1969']).filter(e => ['bitbanksy','4fryn','bloqspace.io'].indexOf(e) === -1);
+    const payoutmax = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, 'thepool', 'liskpool_com_01', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'stellardynamic']).filter(e => ['4fryn'].indexOf(e) === -1);
     this.closeModal('wizard');
     this.props.store.setSelectedDelegates(payoutmax);
   }

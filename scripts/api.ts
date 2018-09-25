@@ -1,3 +1,6 @@
 import { APIClient } from 'lisk-elements';
 
-export const client = APIClient.createMainnetAPIClient();
+export const client = () => {
+    return APIClient.createMainnetAPIClient();
+}
+
