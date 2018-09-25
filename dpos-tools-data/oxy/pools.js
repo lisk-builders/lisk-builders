@@ -1329,7 +1329,8 @@ __oxy_pools([
   },
   {
     "delegate": "deadpool",
-    "share": 91
+    "share": 80,
+    "website": "https://www.oxypool.deadpool.cf/"
   },
   {
     "delegate": "bon.bini_pool",

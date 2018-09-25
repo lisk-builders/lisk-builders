@@ -62,7 +62,7 @@ export default class VoteManager extends Component<any, any> {
   }
 
   getVotesForAddress(address) {
-    return client.votes.get({ address, limit: 101 }).then(res => {
+    return client().votes.get({ address, limit: 101 }).then(res => {
       const { votes } = res.data;
       if (!!votes.length) {
         this.props.store.setInitialVotes(votes.map(dg => dg.username));
@@ -87,7 +87,7 @@ export default class VoteManager extends Component<any, any> {
 
   search(qs) {
     if (qs) {
-      client.delegates.get({ search: qs, sort: 'username:asc' })
+      client().delegates.get({ search: qs, sort: 'username:asc' })
         .then(res => {
           const delegates = res.data;
           if (!!delegates.length) {
@@ -130,11 +130,12 @@ export default class VoteManager extends Component<any, any> {
   getPage(page) {
     const existingPage = this.props.store.pages.find(pg => pg.id === page);
     if (!existingPage) {
-      return client.delegates.get({ limit: consts.maxAllowedVotes, offset: (page - 1) * consts.maxAllowedVotes})
-      .then(res => {
-        // const totalPages = 1 + Math.floor((res.data.totalCount - 1) / consts.maxAllowedVotes);
+      return client().delegates.get({ limit: consts.maxAllowedVotes, offset: (page - 1) * consts.maxAllowedVotes})
+      .then(async (res) => {
+        const lastDelegate = await client().delegates.get({ limit: 1, sort: "rank:desc"});
+        const totalPages = 1 + Math.floor((lastDelegate.data[0].rank - 1) / consts.maxAllowedVotes);
         this.props.store.addPage({ id: page, delegates: res.data })
-        // this.props.store.setTotalPages(totalPages);
+        this.props.store.setTotalPages(totalPages);
         return res.data;
       });
     } else {
@@ -229,7 +230,7 @@ export default class VoteManager extends Component<any, any> {
               <li className="page-item">
                 <a className={`${this.props.store.selectedPage <= 1 ? 'disabled' : ''}`} href="#scroll" tabIndex={-1} onClick={() => this.navigate(this.props.store.selectedPage - 1)}>Previous</a>
               </li>
-              {/* { this.props.store.selectedPage - 1 > 0 &&
+              { this.props.store.selectedPage - 1 > 0 &&
                 <li className="page-item">
                   <a href="#scroll" onClick={() => this.navigate(this.props.store.selectedPage - 1)}>{ this.props.store.selectedPage - 1 }</a>
                 </li>
@@ -247,7 +248,7 @@ export default class VoteManager extends Component<any, any> {
               </li>
               <li className="page-item">
                 <a href="#scroll" onClick={() => this.navigate(this.props.store.totalPages)}>{this.props.store.totalPages}</a>
-              </li> */}
+              </li>
               <li className="page-item">
                 <a className={`${this.props.store.selectedPage >= this.props.store.totalPages ? 'disabled' : ''}`} href="#scroll" onClick={() => this.navigate(this.props.store.selectedPage + 1)}>Next</a>
               </li>

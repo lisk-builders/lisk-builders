@@ -294,23 +294,6 @@
     "featured": false
   },
   {
-    "delegateName": "andrew",
-    "delegateAddress": "14987768355736502769L",
-    "proposal": "https://forum.lisk.io/viewtopic.php?f=25&t=1688",
-    "githubUsername": "AndrewBarba",
-    "poolPercentage": {
-      "P": "0",
-      "D": "15",
-      "O": "85"
-    },
-    "affiliation": "Freelance",
-    "liskChat": "andrewbarba",
-    "pool": null,
-    "poolMember": false,
-    "required": false,
-    "featured": false
-  },
-  {
     "delegateName": "liskpoland.pl",
     "delegateAddress": "11551549432293832181L",
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1626",
@@ -343,5 +326,22 @@
     "poolMember": false, 
     "required": false, 
     "featured": false 
+  },
+  {
+    "delegateName": "tonyt908",
+    "delegateAddress": "15297866638783057016L",
+    "proposal": "https://www.tonyt908.com",
+    "githubUsername": "MorinelloA",
+    "poolPercentage": {
+      "P": "50",
+      "D": "10",
+      "O": "40"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "TonyT908",
+    "pool": "",
+    "poolMember": false,
+    "required": false,
+    "featured": false
   }
 ]

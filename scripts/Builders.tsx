@@ -13,7 +13,7 @@ import { getUrl } from './utils';
 import { client } from './api';
 
 const getDelegateData = delegate =>
-client.delegates.get({ username: delegate.delegateName })
+client().delegates.get({ username: delegate.delegateName })
     .then(
         res => {
           const data = res.data[0];

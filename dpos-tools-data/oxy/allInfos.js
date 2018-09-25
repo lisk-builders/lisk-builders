@@ -1480,7 +1480,8 @@ __oxy_allInfos({
     },
     {
       "delegate": "deadpool",
-      "share": 91
+      "share": 80,
+      "website": "https://www.oxypool.deadpool.cf/"
     },
     {
       "delegate": "bon.bini_pool",
