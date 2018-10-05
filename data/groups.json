@@ -78,7 +78,6 @@
       "cad789",
       "cryptostorms",
       "dafricash",
-      "devasive",
       "doweig",
       "cannabananadelegate",
       "diplo",
@@ -86,14 +85,12 @@
       "fixcrypt",
       "grexx",
       "hoop",
-      "samuray",
       "sonobit",
       "tharude",
       "techbytes",
       "thrice.pi_prometheus",
       "traderbill",
       "vega",
-      "vrlc92",
       "wannabe_rotebaron",
       "xujian"
     ]
@@ -148,7 +145,7 @@
     "nobonus": [],
     "tooltip": "http://robinhood.liskpro.com",
     "color": "bg-vanilla text-light",
-    "data": ["robinhood", "liberspirita", "liskpro.com", "4fryn", "bloqspace.io", "phoenix1969"]
+    "data": ["robinhood", "liberspirita", "liskpro.com", "4fryn", "bloqspace.io", "phoenix1969", "liskascend"]
   },
   "lig": {
     "tag": "LIG",
@@ -157,7 +154,7 @@
     "nobonus": [],
     "tooltip": "https://liskitaliangroup.github.io",
     "color": "bg-green text-light",
-    "data": ["dakk", "liskit", "anamix", "corsaro", "splatters", "redsn0w", "gregorst", "ondin", "vekexasia", "fulig", "hirish"]
+    "data": ["dakk", "liskit", "anamix", "corsaro", "splatters", "redsn0w", "gregorst", "ondin", "vekexasia", "hirish"]
   },
   "dutchpool": {
     "tag": "Dutch",
@@ -175,7 +172,7 @@
     "nobonus": [],
     "tooltip": "https://liskascend.com/",
     "color": "bg-purple text-light",
-    "data": ["anamix", "gregorst", "kylefromohio", "goforlisk", "nimbus", "moosty", "sdrpa", "roblad", "lisktrust", "slamper", "puredelta", "diamse"]
+    "data": ["moosty", "nimbus", "kylefromohio", "anamix", "sdrpa", "lisktrust", "diamse", "slamper", "liskascend", "crypto_embassy"]
   },
   "builders": {
     "tag": "Builders",
