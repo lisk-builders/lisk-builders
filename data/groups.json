@@ -173,7 +173,7 @@
     "nobonus": [],
     "tooltip": "https://liskascend.com/",
     "color": "bg-purple text-light",
-    "data": ["moosty", "nimbus", "kylefromohio", "anamix", "sdrpa", "lisktrust", "diamse", "slamper", "liskascend", "crypto_embassy"]
+    "data": ["anamix","crypto_embassy","diamse","kylefromohio","liskascend","moosty","nimbus","sdrpa","slamper","southpaw439"]
   },
   "builders": {
     "tag": "Builders",
