@@ -65,7 +65,7 @@ export default class VoteManagerControls extends Component<any, any> {
   }
 
   setSelectedToContrib() {
-    const payoutcontrib = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, ...groups.builders.data, 'stellardynamic']);
+    const payoutcontrib  = _.uniq([...groups.gdt.data, ...groups.shw.data, ...groups.builders.data, ...groups.lig.data, ...groups.ascend.data, ...groups.dutchpool.data, "4fryn", "5an1ty", "acheng", "adrianhunter", "alepop", "anamix", "augurproject", "badman0316", "bioly", "bloqspace.io", "carbonara", "carolina", "cc001", "chamberlain", "communitypool", "corsaro", "crodam", "crolisk", "dakk", "devasive", "diamse", "eastwind_ja", "eclipsun", "elevate", "endro", "forger_of_lisk", "forrest", "gdtpool", "goldeneye", "gr33ndrag0n", "grajsondelegate", "grumlin", "hagie", "hirish", "hmachado", "honeybee", "iii.element.iii", "joel", "joo5ty", "kushed.delegate", "leo", "liberspirita", "liskascend", "liskgate", "liskit", "liskjp", "liskpoland.pl", "liskpool.top", "liskpool_com_01", "liskpro.com", "loveforever", "luiz", "luxiang7890", "minions", "moosty", "mrgr", "mrv", "nerigal", "nimbus", "ntelo", "ondin", "panzer", "philhellmuth", "phinx", "phoenix1969", "punkrock", "redsn0w", "robinhood", "samuray", "savetheworld", "seven", "sgdias", "shinekami", "slamper", "slasheks", "spacetrucker", "splatters", "stellardynamic", "tembo", "thepool", "tonyt908", "vekexasia", "vi1son", "vipertkd", "vrlc92", "ultrafresh", "moracle.network", "prolina"]);
     this.closeModal('wizard');
     this.props.store.setSelectedDelegates(payoutcontrib);
   }
@@ -116,7 +116,7 @@ export default class VoteManagerControls extends Component<any, any> {
               <div className="content">
                 <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToMaximum()}>Maximum Payout (100% Earnings)</button>
                 <div className="divider text-center" data-content="OR"></div>
-                <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToContrib()}>Support Contributors (92% Earnings)</button>
+                <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToContrib()}>Support Contributors (71% Earnings)</button>
               </div>
             </div>
           </div>
