@@ -344,5 +344,22 @@
     "poolMember": false, 
     "required": false, 
     "featured": false 
+  },
+  { 
+    "delegateName": "phoenix1969", 
+    "delegateAddress": "8668463642800443353L", 
+    "proposal": "https://feanix.io/about-phoenix1969/", 
+    "githubUsername": "Phoenix1969", 
+    "poolPercentage": { 
+      "P": "50", 
+      "D": "10", 
+      "O": "40" 
+    }, 
+    "affiliation": "Sherwood", 
+    "liskChat": "phoenix1969", 
+    "pool": "Robinhood", 
+    "poolMember": true, 
+    "required": true, 
+    "featured": false 
   }
 ]
