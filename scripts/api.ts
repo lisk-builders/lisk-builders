@@ -1,6 +1,9 @@
 import { APIClient } from 'lisk-elements';
 
 export const client = () => {
-    return APIClient.createMainnetAPIClient();
+    return new APIClient([
+        'https://wallet.mylisk.com',
+        'https://wallet.lisknode.io'
+    ]);
 }
 
