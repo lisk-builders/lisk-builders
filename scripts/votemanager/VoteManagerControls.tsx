@@ -65,7 +65,7 @@ export default class VoteManagerControls extends Component<any, any> {
   }
 
   setSelectedToContrib() {
-    const payoutcontrib = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, ...groups.builders.data, 'stellardynamic']);
+    const payoutcontrib = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, ...groups.builders.data, 'stellardynamic']).filter(e => ['liskascend'].indexOf(e) === -1);
     this.closeModal('wizard');
     this.props.store.setSelectedDelegates(payoutcontrib);
   }
