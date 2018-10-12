@@ -278,22 +278,6 @@
     "featured": false
   },
   {
-    "delegateName": "bluedragon",
-    "delegateAddress": "5755886524444585708L",
-    "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1683",
-    "githubUsername": "BlueDragon555",
-    "poolPercentage": {
-      "D": "75",
-      "O": "25"
-    },
-    "affiliation": "Freelance",
-    "liskChat": "bluedragon",
-    "pool": "",
-    "poolMember": false,
-    "required": false,
-    "featured": false
-  },
-  {
     "delegateName": "liskpoland.pl",
     "delegateAddress": "11551549432293832181L",
     "proposal": "https://forum.lisk.io/viewtopic.php?f=48&t=1626",
@@ -343,5 +327,22 @@
     "poolMember": false,
     "required": false,
     "featured": false
+  },
+  { 
+    "delegateName": "minions", 
+    "delegateAddress": "3975649959792505193L", 
+    "proposal": "http://minionsteam.org", 
+    "githubUsername": "S3x0r", 
+    "poolPercentage": { 
+      "P": "70", 
+      "D": "10", 
+      "O": "20" 
+    }, 
+    "affiliation": "Freelance", 
+    "liskChat": "sexor", 
+    "pool": "", 
+    "poolMember": false, 
+    "required": false, 
+    "featured": false 
   }
 ]
