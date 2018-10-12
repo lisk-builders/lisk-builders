@@ -78,7 +78,6 @@
       "cad789",
       "cryptostorms",
       "dafricash",
-      "devasive",
       "doweig",
       "cannabananadelegate",
       "diplo",
@@ -86,7 +85,6 @@
       "fixcrypt",
       "grexx",
       "hoop",
-      "samuray",
       "sonobit",
       "tharude",
       "techbytes",
@@ -148,7 +146,7 @@
     "nobonus": [],
     "tooltip": "http://robinhood.liskpro.com",
     "color": "bg-vanilla text-light",
-    "data": ["robinhood", "liberspirita", "liskpro.com", "4fryn", "bloqspace.io", "phoenix1969"]
+    "data": ["robinhood", "liberspirita", "liskpro.com", "4fryn", "bloqspace.io", "phoenix1969", "liskascend"]
   },
   "lig": {
     "tag": "LIG",
@@ -175,7 +173,7 @@
     "nobonus": [],
     "tooltip": "https://liskascend.com/",
     "color": "bg-purple text-light",
-    "data": ["anamix", "gregorst", "kylefromohio", "goforlisk", "nimbus", "moosty", "sdrpa", "roblad", "lisktrust", "slamper", "puredelta", "diamse"]
+    "data": ["anamix", "crypto_embassy", "diamse", "kylefromohio", "liskascend", "liskmagazine", "moosty", "nimbus", "sdrpa", "slamper", "southpaw439"]
   },
   "builders": {
     "tag": "Builders",

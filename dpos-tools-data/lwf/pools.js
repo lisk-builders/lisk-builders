@@ -97,7 +97,7 @@ __lwf_pools([
   },
   {
     "delegate": "djandre_pool",
-    "share": 80,
+    "share": 50,
     "website": "http://lwfpool.ovh/"
   },
   {

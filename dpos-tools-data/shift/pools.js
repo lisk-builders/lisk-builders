@@ -6,7 +6,8 @@ __shift_pools([
   {
     "delegate": "terrabellus",
     "share": 40,
-    "notes": "An extra 10% be donated to development team"
+    "notes": "An extra 10% be donated to development team",
+    "website": "https://terrabellus.studyshift.net"
   },
   {
     "delegate": "mx",
@@ -130,6 +131,10 @@ __shift_pools([
   {
     "delegate": "felix_delegate",
     "share": 50
+  },
+  {
+    "delegate": "shiftysailor",
+    "share": 70
   },
   {
     "delegate": "dotnet70",

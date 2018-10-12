@@ -154,7 +154,7 @@ __onz_allInfos({
     },
     {
       "delegate": "djandre",
-      "share": 90,
+      "share": 80,
       "website": "http://onzpool.ovh"
     },
     {

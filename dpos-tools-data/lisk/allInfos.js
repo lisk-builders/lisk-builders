@@ -1503,7 +1503,7 @@ __lisk_allInfos({
     },
     {
       "delegate": "liskpool.top",
-      "share": 90,
+      "share": 85,
       "website": "https://liskpool.top/"
     },
     {
@@ -1545,7 +1545,7 @@ __lisk_allInfos({
     },
     {
       "delegate": "thepool",
-      "share": 50,
+      "share": 35,
       "website": "http://thepool.io/"
     },
     {

@@ -123,7 +123,7 @@ __lwf_allInfos({
     },
     {
       "delegate": "djandre_pool",
-      "share": 80,
+      "share": 50,
       "website": "http://lwfpool.ovh/"
     },
     {

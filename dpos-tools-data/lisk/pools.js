@@ -1295,7 +1295,7 @@ __lisk_pools([
   },
   {
     "delegate": "liskpool.top",
-    "share": 90,
+    "share": 85,
     "website": "https://liskpool.top/"
   },
   {
@@ -1337,7 +1337,7 @@ __lisk_pools([
   },
   {
     "delegate": "thepool",
-    "share": 50,
+    "share": 35,
     "website": "http://thepool.io/"
   },
   {
