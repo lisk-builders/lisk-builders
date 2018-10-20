@@ -71,7 +71,7 @@ export default class VoteManagerControls extends Component<any, any> {
   }
 
   setSelectedToMaximum() {
-    const payoutmax = _.uniq([...groups.gdt.data, ...groups.ascend.data, ...groups.shw.data,, ...groups.builders.data, ...groups.lig.data, ...groups.dutchpool.data, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'stellardynamic']);
+    const payoutmax = _.uniq([...groups.gdt.data, ...groups.ascend.data, ...groups.shw.data, ...groups.builders.data, ...groups.lig.data, ...groups.dutchpool.data, 'thepool', 'liskpool_com_01', 'liskpool.top', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'stellardynamic']);
     this.closeModal('wizard');
     this.props.store.setSelectedDelegates(payoutmax);
   }
