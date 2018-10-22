@@ -293,23 +293,23 @@
      "poolMember": false,
      "required": false,
      "featured": false
-   }, 
-  { 
-    "delegateName": "slamper", 
-    "delegateAddress": "16863632246347444618L", 
-    "proposal": "", 
-    "githubUsername": "Slamper", 
-    "poolPercentage": { 
-      "P": "50", 
-      "D": "10", 
-      "O": "40" 
-    }, 
-    "affiliation": "Ascend", 
-    "liskChat": "slamper", 
-    "pool": "https://liskascend.com/", 
-    "poolMember": false, 
-    "required": false, 
-    "featured": false 
+   },
+  {
+    "delegateName": "slamper",
+    "delegateAddress": "16863632246347444618L",
+    "proposal": "",
+    "githubUsername": "Slamper",
+    "poolPercentage": {
+      "P": "50",
+      "D": "10",
+      "O": "40"
+    },
+    "affiliation": "Ascend",
+    "liskChat": "slamper",
+    "pool": "https://liskascend.com/",
+    "poolMember": false,
+    "required": false,
+    "featured": false
   },
   {
     "delegateName": "tonyt908",
@@ -328,21 +328,38 @@
     "required": false,
     "featured": false
   },
-  { 
-    "delegateName": "minions", 
-    "delegateAddress": "3975649959792505193L", 
-    "proposal": "http://minionsteam.org", 
-    "githubUsername": "S3x0r", 
-    "poolPercentage": { 
-      "P": "70", 
-      "D": "10", 
-      "O": "20" 
-    }, 
-    "affiliation": "Freelance", 
-    "liskChat": "sexor", 
-    "pool": "", 
-    "poolMember": false, 
-    "required": false, 
-    "featured": false 
+  {
+    "delegateName": "minions",
+    "delegateAddress": "3975649959792505193L",
+    "proposal": "http://minionsteam.org",
+    "githubUsername": "S3x0r",
+    "poolPercentage": {
+      "P": "70",
+      "D": "10",
+      "O": "20"
+    },
+    "affiliation": "Freelance",
+    "liskChat": "sexor",
+    "pool": "",
+    "poolMember": false,
+    "required": false,
+    "featured": false
+  },
+  {
+    "delegateName": "hirish",
+    "delegateAddress": "17670127987160191762L",
+    "proposal": "",
+    "githubUsername": "hirishh",
+    "poolPercentage": {
+      "P": "35",
+      "D": "0",
+      "O": "65"
+    },
+    "affiliation": "GDT",
+    "liskChat": "hirish",
+    "pool": null,
+    "poolMember": false,
+    "required": false,
+    "featured": false
   }
 ]
