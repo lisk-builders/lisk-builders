@@ -236,7 +236,7 @@ __lisk_allInfos({
     },
     {
       "delegate": "5an1ty",
-      "share": 25,
+      "share": 18.75,
       "requirements": [
         {
           "type": "indexed",

@@ -283,17 +283,6 @@
     }
   },
   {
-    "delegate": "shiftcow",
-    "share": 40,
-    "website": "http://shiftcow.com/",
-    "payout": {
-      "min": 0.5,
-      "addresses": [
-        "14889278221670389848S"
-      ]
-    }
-  },
-  {
     "delegate": "redpool",
     "share": 40,
     "payout": {
