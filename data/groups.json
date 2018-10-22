@@ -78,7 +78,6 @@
       "cad789",
       "cryptostorms",
       "dafricash",
-      "devasive",
       "doweig",
       "cannabananadelegate",
       "diplo",
@@ -86,7 +85,6 @@
       "fixcrypt",
       "grexx",
       "hoop",
-      "samuray",
       "sonobit",
       "tharude",
       "techbytes",
@@ -107,7 +105,6 @@
     "color": "bg-dark text-light",
     "data": [
       "gdtpool",
-      "4miners.net",
       "5an1ty",
       "alepop",
       "bioly",
@@ -138,7 +135,8 @@
       "splatters",
       "tembo",
       "vekexasia",
-      "vi1son"
+      "vi1son",
+      "hirish"
     ]
   },
   "shw": {
@@ -148,7 +146,7 @@
     "nobonus": [],
     "tooltip": "http://robinhood.liskpro.com",
     "color": "bg-vanilla text-light",
-    "data": ["robinhood", "liberspirita", "liskpro.com", "4fryn", "bitbanksy", "bloqspace.io"]
+    "data": ["robinhood", "liberspirita", "liskpro.com", "4fryn", "bloqspace.io", "phoenix1969", "liskascend"]
   },
   "lig": {
     "tag": "LIG",
@@ -171,11 +169,11 @@
   "ascend": {
     "tag": "Ascend",
     "fullname": "Lisk Ascend",
-    "bonus": 50,
+    "bonus": 0,
     "nobonus": [],
     "tooltip": "https://liskascend.com/",
     "color": "bg-purple text-light",
-    "data": ["anamix", "gregorst", "kylefromohio", "goforlisk", "hirish", "nimbus", "moosty", "sdrpa", "roblad", "lisktrust", "slamper", "puredelta"]
+    "data": ["anamix", "crypto_embassy", "diamse", "kylefromohio", "liskascend", "liskmagazine", "moosty", "nimbus", "sdrpa", "slamper", "southpaw439"]
   },
   "builders": {
     "tag": "Builders",
@@ -184,7 +182,7 @@
     "nobonus": [],
     "tooltip": "Active contributors to lisk",
     "color": "bg-blue  text-light",
-    "data": ["liskit", "dakk", "vekexasia", "5an1ty", "cc001", "gr33ndrag0n", "mrv", "alepop", "4fryn", "carbonara", "liskpro.com", "joo5ty", "thepool", "bioly", "philhellmuth", "endro", "elevate", "bluedragon", "andrew", "liskpoland.pl"]
+    "data": ["liskit", "dakk", "vekexasia", "5an1ty", "cc001", "gr33ndrag0n", "mrv", "alepop", "4fryn", "carbonara", "liskpro.com", "joo5ty", "thepool", "bioly", "philhellmuth", "endro", "elevate", "liskpoland.pl", "slamper", "tonyt908", "minions"]
   },
   "alepop5an1ty": {
     "tag": null,

@@ -67,12 +67,6 @@ module.exports = {
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      beautify: false
-    }),
     new HtmlWebpackPlugin({
       version: new Date().getTime(),
       template: 'index.ejs',
@@ -81,12 +75,18 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.tsx?$/,
         use: [
-          'react-hot-loader/webpack',
-          'awesome-typescript-loader'
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: true,
+              plugins: ['react-hot-loader/babel'],
+            },
+          },
+          'awesome-typescript-loader', // (or awesome-typescript-loader)
         ],
         exclude: /node_modules/
       }

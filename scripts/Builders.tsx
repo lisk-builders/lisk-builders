@@ -10,18 +10,16 @@ import Container from './Container';
 import * as delegates from '../data/delegates.json';
 import * as notes from '../data/notes.json';
 import { getUrl } from './utils';
+import { client } from './api';
 
 const getDelegateData = delegate =>
-axios
-    .get(
-        `${getUrl()}/api/delegates/get?username=${delegate.delegateName}`,
-    )
+client().delegates.get({ username: delegate.delegateName })
     .then(
         res => {
-          const data = res.data.delegate;
+          const data = res.data[0];
           if (data) {
             delegate.rank = data.rank;
-            delegate.publicKey = data.publicKey;
+            delegate.publicKey = data.account.publicKey;
           }
           return delegate;
         }

@@ -7,3 +7,4 @@ The website presents you with a list of Delegates and easy ways to look up their
 # A complete list of lisk delegates that actively contribute towards improving Lisk!
 
 To add yourself to the list please submit a PR by modifying data/delegates.json with your information!
+_Make sure to read and accept the [CODE_OF_CONDUCT](https://github.com/lisk-builders/lisk-builders/blob/master/CODE_OF_CONDUCT.md) when deciding to partecipate with Lisk.builders_
