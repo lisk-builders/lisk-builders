@@ -8,25 +8,6 @@ import { debounce, getUrl } from '../utils';
 @observer
 export default class VoteManagerControls extends Component<any, any> {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showWizardModal: false
-    };
-  }
-
-  openModal(modal) {
-    if (modal === 'wizard') {
-      this.setState({ showWizardModal: true });
-    }
-  }
-
-  closeModal(modal) {
-    if (modal === 'wizard') {
-      this.setState({ showWizardModal: false });
-    }
-  }
-
   showGroup(key) {
     if (this.props.store.shownGroup !== key) {
       this.props.searchInPages(groups[key].data)
@@ -64,18 +45,6 @@ export default class VoteManagerControls extends Component<any, any> {
     this.props.store.setSelectedDelegates(filtered);
   }
 
-  setSelectedToContrib() {
-    const payoutcontrib = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, ...groups.builders.data, 'stellardynamic']).filter(e => ['liskascend'].indexOf(e) === -1);
-    this.closeModal('wizard');
-    this.props.store.setSelectedDelegates(payoutcontrib);
-  }
-
-  setSelectedToMaximum() {
-    const payoutmax = _.uniq([...groups.gdt.data, ...groups.elite.data, ...groups.shw.data, 'thepool', 'liskpool_com_01', 'shinekami', 'vipertkd', 'vrlc92', 'communitypool', 'devasive', 'samuray', 'stellardynamic']).filter(e => ['4fryn', 'liskascend'].indexOf(e) === -1);
-    this.closeModal('wizard');
-    this.props.store.setSelectedDelegates(payoutmax);
-  }
-
   renderFilters() {
     return Object.keys(groups).map(key => {
       const { fullname, tooltip } = groups[key];
@@ -101,25 +70,8 @@ export default class VoteManagerControls extends Component<any, any> {
         <div className="btn-group btn-group-block">
           <button className="btn btn-secondary" id="intro-restore-btn" onClick={() => this.resetSelectedDelegates()}>Restore</button>
           <button className="btn btn-secondary" id="intro-unvote-btn" onClick={() => this.wipeSelectedDelegates()}>Unvote All</button>
-          <button className="btn btn-secondary" id="intro-wizard-btn" onClick={() => this.openModal('wizard')}>Vote Wizard</button>
           <button className="btn btn-secondary" id="intro-selectpage-btn" onClick={() => this.selectCurrentPage()}>Select Current Page</button>
           <button className="btn btn-secondary" id="intro-deselectpage-btn" onClick={() => this.deselectCurrentPage()}>Deselect Current Page</button>
-        </div>
-        <div className={`modal ${this.state.showWizardModal ? 'active' : ''}`} id="modal-id">
-          <a href="#close" className="modal-overlay" aria-label="Close"></a>
-          <div className="modal-container">
-            <div className="modal-header">
-              <a href="#close" className="btn btn-clear float-right" aria-label="Close" onClick={() => this.closeModal('wizard')}></a>
-              <div className="modal-title h5">Vote Wizard</div>
-            </div>
-            <div className="modal-body">
-              <div className="content">
-                <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToMaximum()}>Maximum Payout (100% Earnings)</button>
-                <div className="divider text-center" data-content="OR"></div>
-                <button className="btn btn-secondary btn-block" onClick={() => this.setSelectedToContrib()}>Support Contributors (92% Earnings)</button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     );
