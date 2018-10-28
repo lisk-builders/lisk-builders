@@ -2,18 +2,17 @@ __lisk_groups({
   "ascend": {
     "tooltip": "Lisk Ascend Team",
     "tag": "ASC",
+    "class": "md-ascend",
     "members": [
       "moosty",
       "nimbus",
       "kylefromohio",
-      "goforlisk",
+      "crypto_embassy",
       "anamix",
-      "gregorst",
+      "southpaw439",
       "sdrpa",
-      "roblad",
-      "lisktrust",
+      "liskmagazine",
       "slamper",
-      "puredelta",
       "diamse"
     ]
   },
@@ -158,9 +157,10 @@ __lisk_groups({
       "liberspirita",
       "robinhood",
       "liskpro.com",
-      "bitbanksy",
+      "phoenix1969",
       "4fryn",
-      "bloqspace.io"
+      "bloqspace.io",
+      "liskascend"
     ]
   }
 });

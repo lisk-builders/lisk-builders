@@ -21,12 +21,6 @@ __lisk_allInfos({
     "vekexasia"
   ],
   "indexedRequirements": {
-    "ascend": [
-      {
-        "type": "groupvote",
-        "value": "ascend"
-      }
-    ],
     "elite": [
       {
         "type": "groupvote",
@@ -38,24 +32,29 @@ __lisk_allInfos({
         "type": "groupvote",
         "value": "gdt"
       }
+    ],
+    "sherwood": [
+      {
+        "type": "groupvote",
+        "value": "sherwood"
+      }
     ]
   },
   "groups": {
     "ascend": {
       "tooltip": "Lisk Ascend Team",
       "tag": "ASC",
+      "class": "md-ascend",
       "members": [
         "moosty",
         "nimbus",
         "kylefromohio",
-        "goforlisk",
+        "crypto_embassy",
         "anamix",
-        "gregorst",
+        "southpaw439",
         "sdrpa",
-        "roblad",
-        "lisktrust",
+        "liskmagazine",
         "slamper",
-        "puredelta",
         "diamse"
       ]
     },
@@ -200,9 +199,10 @@ __lisk_allInfos({
         "liberspirita",
         "robinhood",
         "liskpro.com",
-        "bitbanksy",
+        "phoenix1969",
         "4fryn",
-        "bloqspace.io"
+        "bloqspace.io",
+        "liskascend"
       ]
     }
   },
@@ -1199,127 +1199,43 @@ __lisk_allInfos({
     },
     {
       "delegate": "moosty",
-      "share": 50,
-      "requirements": [
-        {
-          "type": "indexed",
-          "value": "ascend"
-        }
-      ]
+      "share": 55
     },
     {
       "delegate": "nimbus",
-      "share": 50,
-      "requirements": [
-        {
-          "type": "indexed",
-          "value": "ascend"
-        }
-      ]
+      "share": 55
     },
     {
       "delegate": "kylefromohio",
-      "share": 50,
-      "requirements": [
-        {
-          "type": "indexed",
-          "value": "ascend"
-        }
-      ]
+      "share": 55
     },
     {
-      "delegate": "goforlisk",
-      "share": 50,
-      "requirements": [
-        {
-          "type": "indexed",
-          "value": "ascend"
-        }
-      ]
+      "delegate": "crypto_embassy",
+      "share": 55
     },
     {
       "delegate": "anamix",
-      "share": 10,
-      "upgrades": [
-        {
-          "name": "Ascend Share",
-          "type": "new_share",
-          "value": 60,
-          "requirements": [
-            {
-              "type": "groupvote",
-              "value": "ascend"
-            }
-          ]
-        }
-      ]
+      "share": 55
     },
     {
-      "delegate": "gregorst",
-      "share": 50,
-      "requirements": [
-        {
-          "type": "indexed",
-          "value": "ascend"
-        }
-      ]
+      "delegate": "southpaw439",
+      "share": 55
     },
     {
       "delegate": "sdrpa",
-      "share": 50,
-      "requirements": [
-        {
-          "type": "indexed",
-          "value": "ascend"
-        }
-      ]
+      "share": 55
     },
     {
-      "delegate": "roblad",
-      "share": 50,
-      "requirements": [
-        {
-          "type": "indexed",
-          "value": "ascend"
-        }
-      ]
-    },
-    {
-      "delegate": "lisktrust",
-      "share": 40,
-      "upgrades": [
-        {
-          "name": "Ascend Share",
-          "type": "new_share",
-          "value": 90,
-          "requirements": [
-            {
-              "type": "groupvote",
-              "value": "ascend"
-            }
-          ]
-        }
-      ]
+      "delegate": "liskmagazine",
+      "share": 55
     },
     {
       "delegate": "slamper",
-      "share": 50,
-      "requirements": [
-        {
-          "type": "indexed",
-          "value": "ascend"
-        }
-      ]
+      "share": 55
     },
     {
       "delegate": "diamse",
-      "share": 50,
-      "requirements": [
-        {
-          "type": "indexed",
-          "value": "ascend"
-        }
-      ]
+      "share": 55
     },
     {
       "delegate": "mars",
@@ -1433,14 +1349,8 @@ __lisk_allInfos({
     },
     {
       "delegate": "phoenix1969",
-      "share": 45,
-      "website": "http://vote.phoenix1969.win/",
-      "requirements": [
-        {
-          "type": "indexed",
-          "value": "elite"
-        }
-      ]
+      "share": 60,
+      "website": "http://feanix.io/"
     },
     {
       "delegate": "bitbanksy",
@@ -1648,6 +1558,30 @@ __lisk_allInfos({
     {
       "delegate": "elevate",
       "share": 50
+    },
+    {
+      "delegate": "liskascend",
+      "website": "https://liskascend.com/",
+      "share": 50,
+      "requirements": [
+        {
+          "type": "indexed",
+          "value": "sherwood"
+        }
+      ],
+      "upgrades": [
+        {
+          "name": "90% Reward",
+          "type": "new_share",
+          "value": 90,
+          "requirements": [
+            {
+              "type": "vote",
+              "value": "moosty"
+            }
+          ]
+        }
+      ]
     }
   ]
 });

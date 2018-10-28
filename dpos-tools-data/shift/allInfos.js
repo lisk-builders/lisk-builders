@@ -239,7 +239,7 @@ __shift_allInfos({
     },
     {
       "delegate": "drake_pool",
-      "share": 40,
+      "share": 30,
       "payout": {
         "min": 0.4
       }

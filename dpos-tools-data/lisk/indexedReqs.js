@@ -1,10 +1,4 @@
 __lisk_indexedReqs({
-  "ascend": [
-    {
-      "type": "groupvote",
-      "value": "ascend"
-    }
-  ],
   "elite": [
     {
       "type": "groupvote",
@@ -15,6 +9,12 @@ __lisk_indexedReqs({
     {
       "type": "groupvote",
       "value": "gdt"
+    }
+  ],
+  "sherwood": [
+    {
+      "type": "groupvote",
+      "value": "sherwood"
     }
   ]
 });
