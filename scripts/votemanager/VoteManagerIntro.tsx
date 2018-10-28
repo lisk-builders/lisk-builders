@@ -40,7 +40,6 @@ export default class VoteManagerTable extends Component<any, any> {
           text: 'Unvote all delegates you currently vote for.'
         },
         {
-        {
           selector: '#intro-selectpage-btn',
           text: 'Select all delegates on the current page.'
         },
