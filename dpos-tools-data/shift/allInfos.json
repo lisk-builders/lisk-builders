@@ -37,7 +37,7 @@
       "delegate": "mx",
       "share": 50,
       "notes": "50% to voters, 30% marketing",
-      "website": "http://telegra.ph/Vote-for-Mx-05-28",
+      "website": "http://pool.votefor.mx",
       "payout": {
         "min": 0.1,
         "schedule": "monthly",
@@ -308,7 +308,7 @@
     },
     {
       "delegate": "redpool",
-      "share": 40,
+      "share": 30,
       "payout": {
         "addresses": [
           "8909782982051000850S"
@@ -429,7 +429,7 @@
     },
     {
       "delegate": "shozay_pool",
-      "share": 40,
+      "share": 30,
       "payout": {
         "addresses": [
           "15999348859093551866S"

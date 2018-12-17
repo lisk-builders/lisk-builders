@@ -13,7 +13,7 @@ __shift_pools([
     "delegate": "mx",
     "share": 50,
     "notes": "50% to voters, 30% marketing",
-    "website": "http://telegra.ph/Vote-for-Mx-05-28",
+    "website": "http://pool.votefor.mx",
     "payout": {
       "min": 0.1,
       "schedule": "monthly",
@@ -284,7 +284,7 @@ __shift_pools([
   },
   {
     "delegate": "redpool",
-    "share": 40,
+    "share": 30,
     "payout": {
       "addresses": [
         "8909782982051000850S"
@@ -405,7 +405,7 @@ __shift_pools([
   },
   {
     "delegate": "shozay_pool",
-    "share": 40,
+    "share": 30,
     "payout": {
       "addresses": [
         "15999348859093551866S"

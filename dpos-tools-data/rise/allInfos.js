@@ -28,8 +28,11 @@ __rise_allInfos({
       "website": "http://37.221.192.164/"
     },
     {
-      "delegate": "anamix",
-      "share": 80
+      "delegate": "drusilla",
+      "share": 90,
+      "payout": {
+        "schedule": "weekly"
+      }
     },
     {
       "delegate": "stefanoproxy_pool",
