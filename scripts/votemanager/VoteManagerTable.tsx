@@ -16,9 +16,14 @@ export default class VoteManagerTable extends Component<any, any> {
   }
 
   renderRow = (delegate) => {
-    const bonus = delegate.groups.reduce((mem, gp) => {
+    let bonus = delegate.groups.reduce((mem, gp) => {
       return gp.nobonus.find(username => username === delegate.username) ? 0 : mem + gp.bonus;
     }, 0);
+    // Exception for joel while dpos-tools-data is broken
+    if (delegate.username === 'joel') {
+      delegate.percentage = 50;
+      bonus = 0;
+    }
     const own = 100 - bonus - delegate.percentage;
     return (
       <tr key={delegate.rank} className={this.isSelected(delegate.username) ? 'active' : null} onClick={() => this.props.store.toggleDelegate(delegate)}>
