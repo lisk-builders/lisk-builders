@@ -21,10 +21,11 @@ export default class VoteManagerTable extends Component<any, any> {
     }, 0);
     // Exception for joel while dpos-tools-data is broken
     if (delegate.username === 'joel') {
-      delegate.percentage = 50;
       bonus = 0;
     }
-    const own = 100 - bonus - delegate.percentage;
+    const modPercentage = delegate.username === 'joel' ? 50 : delegate.percentage;
+    // Exception for joel while dpos-tools-data is broken
+    const own = 100 - bonus - modPercentage;
     return (
       <tr key={delegate.rank} className={this.isSelected(delegate.username) ? 'active' : null} onClick={() => this.props.store.toggleDelegate(delegate)}>
         <td>
@@ -41,8 +42,8 @@ export default class VoteManagerTable extends Component<any, any> {
         }
         </td>
         <td>
-          <div className="bar tooltip" data-tooltip={`Shares ${delegate.percentage}% / Pools ${bonus}% / Keeps ${own}%`}>
-            <div className="bar-item" style={{ width: `${delegate.percentage}%`, backgroundColor: '#5764c6' }} />
+          <div className="bar tooltip" data-tooltip={`Shares ${modPercentage}% / Pools ${bonus}% / Keeps ${own}%`}>
+            <div className="bar-item" style={{ width: `${modPercentage}%`, backgroundColor: '#5764c6' }} />
             <div className="bar-item" style={{ width: `${bonus}%`, backgroundColor: '#818bd5' }} />
             <div className="bar-item" style={{ width: `${own}%`, backgroundColor: '#abb1e2' }} />
           </div>

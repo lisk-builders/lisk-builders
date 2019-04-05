@@ -14,8 +14,7 @@ import { client } from './api';
 
 const getDelegateData = delegate =>
 client().delegates.get({ username: delegate.delegateName })
-    .then(
-        res => {
+    .then((res: any) => {
           const data = res.data[0];
           if (data) {
             delegate.rank = data.rank;

@@ -49,6 +49,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  node: {
+    fs: 'empty'
+  },
   entry: './scripts/index',
   output: {
     path: path.join(__dirname, 'build'),

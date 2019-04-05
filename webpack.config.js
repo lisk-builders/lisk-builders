@@ -48,6 +48,9 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
+  node: {
+    fs: 'empty'
+  },
   entry: [
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',

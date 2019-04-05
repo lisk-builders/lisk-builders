@@ -62,7 +62,7 @@ export default class VoteManager extends Component<any, any> {
   }
 
   getVotesForAddress(address) {
-    return client().votes.get({ address, limit: 101 }).then(res => {
+    return client().votes.get({ address, limit: 101 }).then((res: any) => {
       const { votes } = res.data;
       if (!!votes.length) {
         this.props.store.setInitialVotes(votes.map(dg => dg.username));
@@ -89,7 +89,7 @@ export default class VoteManager extends Component<any, any> {
     if (qs) {
       client().delegates.get({ search: qs, sort: 'username:asc' })
         .then(res => {
-          const delegates = res.data;
+          const delegates: any = res.data;
           if (!!delegates.length) {
             this.props.store.setDelegates(delegates);
             return true;
@@ -131,8 +131,8 @@ export default class VoteManager extends Component<any, any> {
     const existingPage = this.props.store.pages.find(pg => pg.id === page);
     if (!existingPage) {
       return client().delegates.get({ limit: consts.maxAllowedVotes, offset: (page - 1) * consts.maxAllowedVotes})
-      .then(async (res) => {
-        const lastDelegate = await client().delegates.get({ limit: 1, sort: "rank:desc"});
+      .then(async (res: any) => {
+        const lastDelegate: any = await client().delegates.get({ limit: 1, sort: "rank:desc"});
         const totalPages = 1 + Math.floor((lastDelegate.data[0].rank - 1) / consts.maxAllowedVotes);
         this.props.store.addPage({ id: page, delegates: res.data })
         this.props.store.setTotalPages(totalPages);
