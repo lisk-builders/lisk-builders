@@ -166,7 +166,8 @@ export default class VoteManager extends Component<any, any> {
                 <span style={{ marginRight: 4 }} key={i}>
                   <lisk-button-vote
                     votes={group.vote ? getNames(group.vote) : ''} unvotes={group.unvote ? getNames(group.unvote) : ''}
-                    title={`Step ${i + 1}: ${group.unvote ? `-${group.unvote.length}` : ''}${group.vote && group.unvote ? `, +${group.vote.length}` : ''}${group.vote && !group.unvote ? `+${group.vote.length}` : ''}`}
+                    buttontitle={`Step ${i + 1}: ${group.unvote ? `-${group.unvote.length}` : ''}${group.vote && group.unvote ? `, +${group.vote.length}` : ''}${group.vote && !group.unvote ? `+${group.vote.length}` : ''}`}
+                    classnames="btn btn-primary"
                   />
                 </span>)) : null
           }

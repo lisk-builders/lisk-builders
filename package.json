@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@lisk-builders/lisk-buttons": "^0.7.5",
+    "@lisk-builders/lisk-buttons": "^0.7.7",
     "@types/jest": "24.0.11",
     "@types/node": "11.13.7",
     "@types/react-dom": "16.8.4",
