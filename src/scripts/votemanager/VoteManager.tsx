@@ -6,7 +6,7 @@ import { observer } from 'mobx-react';
 import Slack from '../Slack';
 import Container from '../Container';
 import Toast from '../Toast';
-import { listDiff, debounce } from '../utils';
+import { debounce } from '../utils';
 import consts from '../../data/consts.json';
 import Note from '../Note';
 import VoteManagerTable from './VoteManagerTable';

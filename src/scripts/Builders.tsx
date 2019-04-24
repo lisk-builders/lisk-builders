@@ -9,7 +9,6 @@ import Slack from './Slack';
 import Container from './Container';
 import delegates from '../data/delegates.json';
 import notes from '../data/notes.json';
-import { getUrl } from './utils';
 import { client } from './api';
 
 const getDelegateData = delegate =>

@@ -6,10 +6,6 @@ import groups from '../../data/groups.json';
 @observer
 export default class VoteManagerTable extends Component<any, any> {
 
-  constructor(props) {
-    super(props);
-  }
-
   isSelected(delegateUsername) {
     return this.props.store.selectedDelegates
       .find(username => username === delegateUsername) !== undefined;

@@ -8,7 +8,7 @@ export default () => (
       </div>
       <h5 className="empty-title">Need help?</h5>
       <div className="empty-action">
-        <a className="btn btn-lg btn-primary" href="https://lisk-builders-slack-invite.herokuapp.com" target="_blank">Join Us On Slack</a>
+        <a className="btn btn-lg btn-primary" href="https://lisk-builders-slack-invite.herokuapp.com" target="_blank" rel="noopener noreferrer">Join Us On Slack</a>
       </div>
     </div>
   </div>

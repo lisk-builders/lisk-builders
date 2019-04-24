@@ -32,12 +32,13 @@ const Panel = ({
                 <figure
                     className="avatar avatar-lg"
                     data-initial={delegateName.split('')[0].toUpperCase()}>
-                    <img src={avatar_url} />
+                    <img src={avatar_url} alt="" />
                 </figure>
                 <div className="panel-title mt-10">{delegateName} </div>
                 <div className="panel-subtitle">
                     <a
                         target="_blank"
+                        rel="noopener noreferrer"
                         href={`https://explorer.lisk.io/delegate/${delegateAddress}`}>
                         {delegateAddress}
                     </a>
@@ -70,6 +71,7 @@ const Panel = ({
                         <a
                             className={`btn btn-sm btn-block ${!pool ? 'disabled' : ''}`}
                             target="_blank"
+                            rel="noopener noreferrer"
                             href={pool}>
                             Pool
                         </a>
@@ -81,6 +83,7 @@ const Panel = ({
                         <a
                             className={`btn btn-sm btn-block ${!proposal ? 'disabled' : ''}`}
                             target="_blank"
+                            rel="noopener noreferrer"
                             href={proposal}>
                             Proposal
                         </a>
@@ -93,6 +96,7 @@ const Panel = ({
                             <a
                                 className="btn btn-sm btn-block"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 href={`https://github.com/${githubUsername}`}>
                                 <GitHub /> {githubUsername}
                             </a>
@@ -104,6 +108,7 @@ const Panel = ({
                     <a
                         className="btn btn-sm btn-block"
                         target="_blank"
+                        rel="noopener noreferrer"
                         href={`https://lisk.chat/direct/${liskChat}`}>
                         @{liskChat}
                     </a>}

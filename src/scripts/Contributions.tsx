@@ -42,6 +42,7 @@ const renderProject = ({ id, name, description, language, updated_at, html_url, 
         <a
           className="btn btn-sm btn-block"
           target="_blank"
+          rel="noopener noreferrer"
           href={html_url}>
           <GitHub /> Source
         </a>
