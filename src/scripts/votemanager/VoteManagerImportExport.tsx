@@ -36,8 +36,6 @@ export default class VoteManagerModals extends Component<any, any> {
   }
 
   render() {
-    const voteData = this.props.store.voteUnvoteList;
-    const flatVoteData = [].concat(...voteData);
     return (
       <div>
         <div className="btn-group btn-group-block">

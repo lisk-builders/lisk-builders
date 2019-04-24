@@ -21,9 +21,9 @@
     "typescript": "3.4.5"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -42,16 +42,14 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.4.3",
     "@types/classnames": "^2.2.7",
     "@types/lodash": "^4.14.123",
     "@types/react": "^16.8.14",
     "@types/react-router": "^4.4.5",
     "@types/react-router-dom": "^4.3.2",
-    "babel-loader": "^8.0.5",
-    "babel-plugin-transform-custom-element-classes": "^0.1.0",
-    "react-app-rewired": "^2.1.2"
+    "acorn": "^6.1.1"
+  },
+  "resolutions": {
+    "webpack/acorn": "6.1.1"
   }
 }

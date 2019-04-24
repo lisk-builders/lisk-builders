@@ -16,6 +16,7 @@ export default class Note extends Component<any, any> {
               <a
                   className="btn btn-primary"
                   target="_blank"
+                  rel="noopener noreferrer"
                   href="https://lisk.chat/direct/5an1ty">
                   Send a message
               </a>
