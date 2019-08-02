@@ -321,20 +321,7 @@
     },
     {
       "delegate": "philhellmuth",
-      "share": 30,
-      "upgrades": [
-        {
-          "name": "GDT Full Share",
-          "type": "new_share",
-          "value": 36.25,
-          "requirements": [
-            {
-              "type": "groupvote",
-              "value": "gdt"
-            }
-          ]
-        }
-      ]
+      "share": 30
     },
     {
       "delegate": "punkrock",
@@ -1045,11 +1032,13 @@
     },
     {
       "delegate": "endro",
-      "share": 60,
-      "payout": {
-        "min": 1,
-        "schedule": "week"
-      }
+      "share": 25,
+      "requirements": [
+        {
+          "type": "indexed",
+          "value": "gdt"
+        }
+      ]
     },
     {
       "delegate": "kippers",
