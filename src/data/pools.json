@@ -469,13 +469,7 @@
     },
     {
       "delegate": "iii.element.iii",
-      "share": 25,
-      "requirements": [
-        {
-          "type": "indexed",
-          "value": "elite"
-        }
-      ]
+      "share": 25
     },
     {
       "delegate": "acheng",
@@ -673,13 +667,7 @@
     },
     {
       "delegate": "adrianhunter",
-      "share": 25,
-      "requirements": [
-        {
-          "type": "indexed",
-          "value": "elite"
-        }
-      ]
+      "share": 0
     },
     {
       "delegate": "augurproject",
