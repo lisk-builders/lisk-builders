@@ -975,7 +975,13 @@
     },
     {
       "delegate": "moosty",
-      "share": 55
+      "share": 20,
+      "requirements": [
+        {
+          "type": "indexed",
+          "value": "gdt"
+        }
+      ]
     },
     {
       "delegate": "nimbus",
