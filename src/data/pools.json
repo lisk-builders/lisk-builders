@@ -19,6 +19,15 @@
       }
     },
     {
+      "delegate": "4miners.net",
+      "share": 25,
+      "website": "https://explorer.lisk.4miners.net",
+      "payout": {
+        "schedule": "weekly",
+        "min": 1
+      }
+    },
+    {
       "delegate": "hirish",
       "share": 28.75,
       "upgrades": [
