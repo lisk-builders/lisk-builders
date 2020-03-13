@@ -48,7 +48,7 @@
     "@types/react": "^16.8.14",
     "@types/react-router": "^4.4.5",
     "@types/react-router-dom": "^4.3.2",
-    "acorn": "^6.1.1"
+    "acorn": "^6.4.1"
   },
   "resolutions": {
     "webpack/acorn": "6.1.1"
