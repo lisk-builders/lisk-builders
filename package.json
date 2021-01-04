@@ -8,7 +8,7 @@
     "@types/jest": "24.0.11",
     "@types/node": "11.13.7",
     "@types/react-dom": "16.8.4",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bignumber.js": "^8.1.1",
     "classnames": "^2.2.6",
     "lisk-elements": "^2.0.0",
